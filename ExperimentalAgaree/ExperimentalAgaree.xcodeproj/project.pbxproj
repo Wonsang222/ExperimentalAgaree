@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */; };
 		7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */; };
 		7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */; };
 		7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBC12C755B6100DF4DD7 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentalAgaree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */,
 				7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */,
 				7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */,
+				7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,

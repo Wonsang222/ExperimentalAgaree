@@ -2,7 +2,7 @@
 //  Network.swift
 //  ExperimentalAgaree
 //
-//  Created by 위사모바일 on 8/21/24.
+//  Created by 황원상 on 8/21/24.
 //
 
 import Foundation
@@ -42,5 +42,66 @@ final class DefaultNetworkSessionManager: NetworkSessionManager {
         let task = URLSession(configuration: config).dataTask(with: req, completionHandler: completion)
         task.resume()
         return task
+    }
+}
+
+final class DefaultNetworkService: NetworkService {
+    
+    let config: NetworkConfigurable
+    let session: NetworkSessionManager
+    
+    init(
+        config: NetworkConfigurable,
+        session: NetworkSessionManager = DefaultNetworkSessionManager()
+    ) {
+        self.config = config
+        self.session = session
+    }
+    
+    private func resolveError(error: Error) -> NetworkError {
+        let code = URLError.Code(rawValue: (error as NSError).code)
+        switch code {
+        case .notConnectedToInternet:
+            return .notConnected
+        case .cancelled:
+            return .cancelled
+        default:
+            return .generic(error)
+        }
+    }
+    
+    private func makeRequest(
+        request: URLRequest,
+        configuration: URLSessionConfiguration,
+        completion: @escaping Completion
+    ) -> NetworkCancellable {
+        let task = session.request(req: request, config: configuration) { data, resp, err in
+            if let err = err {
+                var netError: NetworkError
+                if let resp = resp as? HTTPURLResponse {
+                    netError = NetworkError.error(statusCode: resp.statusCode, data: data)
+                } else {
+                    netError  = self.resolveError(error: err)
+                }
+                completion(.failure(netError))
+            }
+        }
+        return task
+        
+    }
+    
+    func request(
+        endpoint: Requestable,
+        completion: @escaping Completion
+    ) -> NetworkCancellable? {
+        do {
+            let req = try endpoint.urlRequest(with: config)
+            let configuration = endpoint.urlConfiguration(with: config)
+            let task = self.makeRequest(request: req, configuration: configuration, completion: completion)
+            return task
+        } catch {
+            completion(.failure(.urlGeneration))
+            return nil
+        }
     }
 }
