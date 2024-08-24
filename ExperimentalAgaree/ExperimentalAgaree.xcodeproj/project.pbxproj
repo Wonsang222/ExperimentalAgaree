@@ -17,6 +17,10 @@
 		7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */; };
 		7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
+		C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */; };
+		C1C692E02C7A0A0B00EF0C45 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */; };
+		C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */; };
+		C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRepository.swift; sourceTree = "<group>"; };
+		C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameModel.swift; sourceTree = "<group>"; };
+		C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,9 @@
 		7E83FBBC2C755B6100DF4DD7 /* ExperimentalAgaree */ = {
 			isa = PBXGroup;
 			children = (
+				C1C692E32C7A0FEA00EF0C45 /* Common */,
+				C1C692DA2C7A078200EF0C45 /* Data */,
+				C1C692D92C7A077900EF0C45 /* Domain */,
 				7E83FBD32C755CB900DF4DD7 /* Infrastructure */,
 				7E83FBD12C755B6D00DF4DD7 /* Application */,
 				7E83FBC12C755B6100DF4DD7 /* ViewController.swift */,
@@ -109,6 +120,55 @@
 				7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C1C692D92C7A077900EF0C45 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB29E2C7A204C00011058 /* UseCases */,
+				C1C692DE2C7A0A0100EF0C45 /* Entities */,
+				C1C692DB2C7A078600EF0C45 /* Interfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		C1C692DA2C7A078200EF0C45 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C1C692DB2C7A078600EF0C45 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		C1C692DE2C7A0A0100EF0C45 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */,
+				C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		C1C692E32C7A0FEA00EF0C45 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C1DFB29E2C7A204C00011058 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,9 +244,13 @@
 			files = (
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
+				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
+				C1C692E02C7A0A0B00EF0C45 /* GameInfo.swift in Sources */,
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
+				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
+				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);
