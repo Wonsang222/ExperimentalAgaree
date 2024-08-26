@@ -8,7 +8,7 @@
 import Foundation
 
 struct GameInfo {
-    let game: String
+    let gamePath: String
     let query: String
 }
 

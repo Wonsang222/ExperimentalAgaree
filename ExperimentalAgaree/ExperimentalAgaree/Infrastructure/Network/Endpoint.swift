@@ -25,6 +25,7 @@ protocol BodyEncoder {
 }
 
 protocol Requestable {
+    var path: String?  { get }
     var method: HttpMethod { get }
     var headerParameters: [String : String] { get }
     var queryParameter: Encodable { get }
@@ -59,9 +60,13 @@ extension Requestable {
     }
     
     func url(with config: NetworkConfigurable) throws -> URL {
-        let stringURL = config.baseURL.absoluteString.last == "/"
+        var stringURL = config.baseURL.absoluteString.last == "/"
         ? config.baseURL.absoluteString
         : config.baseURL.absoluteString + "/"
+        
+        if let path = path {
+            stringURL += path
+        }
         
         guard var urlComponent = URLComponents(string: stringURL) else { throw RequestError.urlComponent}
         
@@ -94,6 +99,7 @@ protocol ResponseRequestable: Requestable {
 final class Endpoint<T>: ResponseRequestable {
     typealias Response = T
     
+        let path: String?
        let responseDecoder: ResponseDecoder
        let method: HttpMethod
        let headerParameters: [String : String]
@@ -102,6 +108,7 @@ final class Endpoint<T>: ResponseRequestable {
        let bodyEncoder: BodyEncoder
     
     init(
+        path: String?,
         responseDecoder: ResponseDecoder,
          method: HttpMethod,
         headerParameters: [String : String] = [:],
@@ -109,6 +116,7 @@ final class Endpoint<T>: ResponseRequestable {
          bodyParameter: Encodable,
          bodyEncoder: BodyEncoder
     ) {
+        self.path = path
         self.responseDecoder = responseDecoder
         self.method = method
         self.headerParameters = headerParameters

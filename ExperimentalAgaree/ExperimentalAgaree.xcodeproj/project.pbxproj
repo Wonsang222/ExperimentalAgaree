@@ -17,6 +17,9 @@
 		7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */; };
 		7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
+		7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */; };
+		7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8DA2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift */; };
+		7E8DB8E62C7C0BC100D9B9F0 /* GameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8E52C7C0BC100D9B9F0 /* GameUseCase.swift */; };
 		C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */; };
 		C1C692E02C7A0A0B00EF0C45 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */; };
 		C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */; };
@@ -36,6 +39,9 @@
 		7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
+		7E8DB8DA2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoGameUseCase.swift; path = ExperimentalAgaree/Domain/UseCases/GuessWhoGame/GuessWhoGameUseCase.swift; sourceTree = SOURCE_ROOT; };
+		7E8DB8E52C7C0BC100D9B9F0 /* GameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUseCase.swift; sourceTree = "<group>"; };
 		C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRepository.swift; sourceTree = "<group>"; };
 		C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
 		C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameModel.swift; sourceTree = "<group>"; };
@@ -122,6 +128,74 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		7E8DB8DC2C7BFF8400D9B9F0 /* PreGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PreGame;
+			sourceTree = "<group>";
+		};
+		7E8DB8DD2C7BFF8A00D9B9F0 /* GuessWhoGame */ = {
+			isa = PBXGroup;
+			children = (
+				7E8DB8DA2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift */,
+			);
+			path = GuessWhoGame;
+			sourceTree = "<group>";
+		};
+		7E8DB8DE2C7BFF9000D9B9F0 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		7E8DB8DF2C7C018F00D9B9F0 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7E8DB8E22C7C01AC00D9B9F0 /* PreGame */,
+				7E8DB8E12C7C01A100D9B9F0 /* GuessWhoGame */,
+				7E8DB8E02C7C019C00D9B9F0 /* Result */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7E8DB8E02C7C019C00D9B9F0 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		7E8DB8E12C7C01A100D9B9F0 /* GuessWhoGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GuessWhoGame;
+			sourceTree = "<group>";
+		};
+		7E8DB8E22C7C01AC00D9B9F0 /* PreGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PreGame;
+			sourceTree = "<group>";
+		};
+		7E8DB8E32C7C01CA00D9B9F0 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		7E8DB8E42C7C0BB800D9B9F0 /* interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				7E8DB8E52C7C0BC100D9B9F0 /* GameUseCase.swift */,
+			);
+			path = interfaces;
+			sourceTree = "<group>";
+		};
 		C1C692D92C7A077900EF0C45 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +209,8 @@
 		C1C692DA2C7A078200EF0C45 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7E8DB8E32C7C01CA00D9B9F0 /* DataMapping */,
+				7E8DB8DF2C7C018F00D9B9F0 /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -143,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */,
+				7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -167,6 +244,10 @@
 		C1DFB29E2C7A204C00011058 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				7E8DB8E42C7C0BB800D9B9F0 /* interfaces */,
+				7E8DB8DE2C7BFF9000D9B9F0 /* Result */,
+				7E8DB8DD2C7BFF8A00D9B9F0 /* GuessWhoGame */,
+				7E8DB8DC2C7BFF8400D9B9F0 /* PreGame */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -243,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
+				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
 				C1C692E02C7A0A0B00EF0C45 /* GameInfo.swift in Sources */,
@@ -250,7 +332,9 @@
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
+				7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
+				7E8DB8E62C7C0BC100D9B9F0 /* GameUseCase.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);
