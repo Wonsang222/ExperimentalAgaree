@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */; };
+		7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B165C2C7D42D300632CBB /* Observable.swift */; };
+		7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B165E2C7D455C00632CBB /* LoadingView.swift */; };
+		7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16612C7D4BC000632CBB /* Alertable.swift */; };
+		7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */; };
+		7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */; };
 		7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */; };
 		7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */; };
 		7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBC12C755B6100DF4DD7 /* ViewController.swift */; };
@@ -28,6 +33,11 @@
 
 /* Begin PBXFileReference section */
 		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		7E7B165C2C7D42D300632CBB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		7E7B165E2C7D455C00632CBB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7E7B16612C7D4BC000632CBB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionBase.swift; sourceTree = "<group>"; };
+		7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC + AddBehaviors.swift"; sourceTree = "<group>"; };
 		7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentalAgaree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +69,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E7B165A2C7D40E800632CBB /* Prentation */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B16652C7D4E2700632CBB /* Extensions */,
+				7E7B16602C7D4AF200632CBB /* Protocols */,
+				7E7B165B2C7D410200632CBB /* Utils */,
+			);
+			path = Prentation;
+			sourceTree = "<group>";
+		};
+		7E7B165B2C7D410200632CBB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B165C2C7D42D300632CBB /* Observable.swift */,
+				7E7B165E2C7D455C00632CBB /* LoadingView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E7B16602C7D4AF200632CBB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B16612C7D4BC000632CBB /* Alertable.swift */,
+				7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7E7B16652C7D4E2700632CBB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7E83FBB12C755B6100DF4DD7 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +124,7 @@
 		7E83FBBC2C755B6100DF4DD7 /* ExperimentalAgaree */ = {
 			isa = PBXGroup;
 			children = (
+				7E7B165A2C7D40E800632CBB /* Prentation */,
 				C1C692E32C7A0FEA00EF0C45 /* Common */,
 				C1C692DA2C7A078200EF0C45 /* Data */,
 				C1C692D92C7A077900EF0C45 /* Domain */,
@@ -324,15 +371,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
+				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
+				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
+				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,
+				7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */,
 				C1C692E02C7A0A0B00EF0C45 /* GameInfo.swift in Sources */,
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
 				7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */,
+				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				7E8DB8E62C7C0BC100D9B9F0 /* GameUseCase.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
