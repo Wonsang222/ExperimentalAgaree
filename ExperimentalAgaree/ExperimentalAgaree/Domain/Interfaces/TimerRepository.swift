@@ -12,5 +12,6 @@ protocol TimerRepository {
         gameTime: Float,
         speed: Float,
         on queue: DispatchQueue,
-        block: @escaping (_ totalSecond:  Float) -> Void ) -> Timer
+        block: @escaping (_ totalSecond:  Float) -> Void 
+    ) -> Timer?
 }

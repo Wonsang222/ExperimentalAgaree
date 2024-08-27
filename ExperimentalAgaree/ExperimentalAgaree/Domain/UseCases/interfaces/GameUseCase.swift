@@ -9,6 +9,8 @@ import Foundation
 
 
 protocol GameUseCase {
-    func start(info: GameInfo) -> Cancellable?
+    @discardableResult
+    func fetch() -> Cancellable?
+    func start()
     func judge() -> Bool
 }

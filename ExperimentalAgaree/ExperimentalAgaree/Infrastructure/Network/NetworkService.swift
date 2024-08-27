@@ -45,6 +45,10 @@ final class DefaultNetworkSessionManager: NetworkSessionManager {
     }
 }
 
+//extension NetworkService: URLSessionDelegate {
+//    
+//}
+
 final class DefaultNetworkService: NetworkService {
     
     let config: NetworkConfigurable

@@ -8,13 +8,15 @@
 import Foundation
 
 protocol GamesRepository {
+    @discardableResult
     func fetchCharacterList(
         query: GameInfo,
-        completion: @escaping ([GameModel]) -> Void
+        completion: @escaping (Result<[GameModel], Error>) -> Void
     ) -> Cancellable?
     
+    @discardableResult
     func fetchCharacters(
         query: [GameModel],
-        completion: @escaping ([GuessWhoGameList]) -> Void
+        completion: @escaping (Result<[GuessWhoGameList], Error>) -> Void
     ) -> Cancellable?
 }
