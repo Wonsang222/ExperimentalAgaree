@@ -32,6 +32,8 @@
 		C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2A12C7DEBB000011058 /* STTRepository.swift */; };
 		C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2A32C7DED1200011058 /* SttModel.swift */; };
 		C1DFB2AC2C7E105E00011058 /* ExperimentalAgareeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */; };
+		C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */; };
+		C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		C1DFB2A32C7DED1200011058 /* SttModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SttModel.swift; sourceTree = "<group>"; };
 		C1DFB2A92C7E105E00011058 /* ExperimentalAgareeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExperimentalAgareeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalAgareeTests.swift; sourceTree = "<group>"; };
+		C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfiguration.swift; sourceTree = "<group>"; };
+		C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSerivice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 		7E83FBD32C755CB900DF4DD7 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2B32C80ABE000011058 /* Timer */,
 				7E83FBD42C755CD400DF4DD7 /* Network */,
 			);
 			path = Infrastructure;
@@ -226,32 +231,8 @@
 		7E8DB8DF2C7C018F00D9B9F0 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				7E8DB8E22C7C01AC00D9B9F0 /* PreGame */,
-				7E8DB8E12C7C01A100D9B9F0 /* GuessWhoGame */,
-				7E8DB8E02C7C019C00D9B9F0 /* Result */,
 			);
 			path = Repositories;
-			sourceTree = "<group>";
-		};
-		7E8DB8E02C7C019C00D9B9F0 /* Result */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Result;
-			sourceTree = "<group>";
-		};
-		7E8DB8E12C7C01A100D9B9F0 /* GuessWhoGame */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GuessWhoGame;
-			sourceTree = "<group>";
-		};
-		7E8DB8E22C7C01AC00D9B9F0 /* PreGame */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PreGame;
 			sourceTree = "<group>";
 		};
 		7E8DB8E32C7C01CA00D9B9F0 /* DataMapping */ = {
@@ -333,6 +314,15 @@
 				C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */,
 			);
 			path = ExperimentalAgareeTests;
+			sourceTree = "<group>";
+		};
+		C1DFB2B32C80ABE000011058 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */,
+				C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +430,7 @@
 				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
+				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
@@ -453,6 +444,7 @@
 				7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
+				C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */,
 				7E8DB8E62C7C0BC100D9B9F0 /* GameUseCase.swift in Sources */,
 				C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
@@ -630,6 +622,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,9 +630,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kangkangds.ExperimentalAgaree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -656,6 +653,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -663,9 +661,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kangkangds.ExperimentalAgaree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
