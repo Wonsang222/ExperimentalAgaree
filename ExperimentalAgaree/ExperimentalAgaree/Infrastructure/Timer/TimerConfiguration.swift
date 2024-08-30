@@ -7,7 +7,19 @@
 
 import Foundation
 
-protocol TimerConfiguration {
+protocol TimerConfigurable {
     var gameTime: Float { get }
     var gameSpeed: Float { get }
+}
+
+protocol TimerUsable {
+    func fire()
+    func invalidate()
+}
+
+extension Timer: TimerUsable {}
+
+struct TimerConfiguration: TimerConfigurable {
+    let gameTime: Float
+    let gameSpeed: Float
 }
