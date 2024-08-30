@@ -33,15 +33,8 @@ final class GuessWhoGameUseCase: GameUseCase {
     
     func fetch() -> (any Cancellable)? {
 
-        fetchingArgument { gameInfo in
-            gamesRepository.fetchCharacterList(query: gameInfo) { result in
-                switch result {
-                case .success(let gameModel):
-                    print(123)
-                case .failure(let error):
-                    print(123)
-                }
-            }
+        gamesRepository.fetchCharacterList(query: GameInfo(gamePath: "adsf", query: "dsf")) { result in
+            
         }
     }
     
@@ -50,7 +43,7 @@ final class GuessWhoGameUseCase: GameUseCase {
     }
     
     func judge() -> Bool {
-        
+        return true
     }
     
 }

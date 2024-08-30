@@ -9,7 +9,8 @@ import Foundation
 
 protocol TimerConfigurable {
     var gameTime: Float { get }
-    var gameSpeed: Float { get }
+    var timeInterval: Double { get }
+    var isRepeat: Bool { get }
 }
 
 protocol TimerUsable {
@@ -21,5 +22,6 @@ extension Timer: TimerUsable {}
 
 struct TimerConfiguration: TimerConfigurable {
     let gameTime: Float
-    let gameSpeed: Float
+    let timeInterval: Double
+    let isRepeat: Bool
 }
