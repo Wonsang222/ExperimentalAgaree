@@ -34,6 +34,8 @@
 		C1DFB2AC2C7E105E00011058 /* ExperimentalAgareeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */; };
 		C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */; };
 		C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */; };
+		C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */; };
+		C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BF2C84239200011058 /* SpeechTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalAgareeTests.swift; sourceTree = "<group>"; };
 		C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfiguration.swift; sourceTree = "<group>"; };
 		C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSerivice.swift; sourceTree = "<group>"; };
+		C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineService.swift; sourceTree = "<group>"; };
+		C1DFB2BF2C84239200011058 /* SpeechTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,7 @@
 		7E83FBD32C755CB900DF4DD7 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2B82C82246100011058 /* STT */,
 				C1DFB2B32C80ABE000011058 /* Timer */,
 				7E83FBD42C755CD400DF4DD7 /* Network */,
 			);
@@ -325,6 +330,15 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		C1DFB2B82C82246100011058 /* STT */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */,
+				C1DFB2BF2C84239200011058 /* SpeechTask.swift */,
+			);
+			path = STT;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -433,6 +447,7 @@
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
+				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
 				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,
 				7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */,
@@ -441,6 +456,7 @@
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
+				C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */,
 				7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,

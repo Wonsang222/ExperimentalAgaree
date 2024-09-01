@@ -85,6 +85,8 @@ final class DefaultNetworkService: NetworkService {
                     netError  = self.resolveError(error: err)
                 }
                 completion(.failure(netError))
+            } else {
+                completion(.success(data))
             }
         }
         return task

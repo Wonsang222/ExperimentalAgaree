@@ -7,20 +7,13 @@
 
 import Foundation
 
-enum TimerError: Error {
-    case isExisted
-    case generateTimer
-}
-
 protocol TimerManager {
     
     typealias TimerData = Float
     
-    func startTimer
-    (config: TimerConfigurable,
-     handlerQueue: DispatchQueue,
-     completion: @escaping (Result<TimerData,TimerError>) -> Void
-    ) -> TimerUsable?
+    func startTimer(config: TimerConfigurable, handlerQueue: DispatchQueue, completion: @escaping (Float) -> Void) -> TimerUsable?
+    
+    func stopTimer()
 }
 
 final class DefaultTimerService: TimerManager {
@@ -37,38 +30,38 @@ final class DefaultTimerService: TimerManager {
     func startTimer(
         config: TimerConfigurable,
         handlerQueue: DispatchQueue = DispatchQueue.main,
-        completion: @escaping (Result<TimerData,TimerError>) -> Void
-    ) -> TimerUsable? {
-        
-        var innerTimer: Timer? = nil
-        
-        guard timer != nil else {
-            completion(.failure(.isExisted))
-            return nil
-        }
-        
-       let frequency = calculateGameSpeed(config: config)
-        queue.asyncExecute { [weak self] in
-            guard let self = self else { return }
-            
-            innerTimer = Timer(timeInterval: config.timeInterval,
-                               repeats: config.isRepeat,
-                               block: { _ in
-                handlerQueue.async {
-                    completion(.success(frequency))
-                }
-            })
-            
-            guard let innerTimer = innerTimer else {
-                completion(.failure(.generateTimer))
-                return
-            }
-            
+        completion: @escaping (Float) -> Void
+    ) -> TimerUsable?
+    {
+        timer = nil
+        let innerTimer = setTimer(config: config, handlerQueue: handlerQueue, completion: completion)
+        timer = innerTimer
+        queue.asyncExecute {
             RunLoop.current.add(innerTimer, forMode: .common)
             innerTimer.fire()
             RunLoop.current.run()
         }
-        return innerTimer
+        return timer
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func setTimer(
+        config: TimerConfigurable,
+        handlerQueue: DispatchQueue,
+        completion: @escaping (Float) -> Void
+    ) -> Timer
+    {
+        let frequency = calculateGameSpeed(config: config)
+        let timer = Timer(timeInterval: config.timeInterval, repeats: config.isRepeat) { _ in
+            handlerQueue.async {
+                completion(frequency)
+            }
+        }
+        return timer
     }
     
     private func calculateGameSpeed(
