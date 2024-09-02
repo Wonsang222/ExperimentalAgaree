@@ -8,8 +8,9 @@
 import Foundation
 
 protocol STTRepository {
-    func recognize(
-        on queue: DispatchQueue,
+    func startRecognition(
         completion: @escaping (SttModel) -> Void
     )
+    
+    func stop()
 }

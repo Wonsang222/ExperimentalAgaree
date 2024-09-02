@@ -8,10 +8,9 @@
 import Foundation
 
 protocol TimerRepository {
+    
     func countGameTime(
-        gameTime: Float,
-        speed: Float,
-        on queue: DispatchQueue,
-        block: @escaping (_ totalSecond:  Float) -> Void 
-    ) -> Timer?
+        gameInfo: GameTimeInfo,
+        block: @escaping (Float) -> Void 
+    ) -> TimerUsable?
 }

@@ -36,6 +36,12 @@
 		C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */; };
 		C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */; };
 		C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BF2C84239200011058 /* SpeechTask.swift */; };
+		C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */; };
+		C1DFB2C42C85DF9A00011058 /* DefaultGamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C32C85DF9A00011058 /* DefaultGamesRepository.swift */; };
+		C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */; };
+		C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C92C85E58300011058 /* APIEndpoints.swift */; };
+		C1DFB2CC2C85F3B100011058 /* GameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CB2C85F3B100011058 /* GameRequestDTO.swift */; };
+		C1DFB2CE2C85F44C00011058 /* GameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CD2C85F44C00011058 /* GameResponseDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +87,12 @@
 		C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSerivice.swift; sourceTree = "<group>"; };
 		C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineService.swift; sourceTree = "<group>"; };
 		C1DFB2BF2C84239200011058 /* SpeechTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTask.swift; sourceTree = "<group>"; };
+		C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeInfo.swift; sourceTree = "<group>"; };
+		C1DFB2C32C85DF9A00011058 /* DefaultGamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultGamesRepository.swift; path = ExperimentalAgaree/Domain/Entities/DefaultGamesRepository.swift; sourceTree = SOURCE_ROOT; };
+		C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
+		C1DFB2C92C85E58300011058 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		C1DFB2CB2C85F3B100011058 /* GameRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameRequestDTO.swift; path = ExperimentalAgaree/Data/Network/GameRequestDTO.swift; sourceTree = SOURCE_ROOT; };
+		C1DFB2CD2C85F44C00011058 /* GameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResponseDTO.swift; path = ExperimentalAgaree/Data/Network/GameResponseDTO.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +248,7 @@
 		7E8DB8DF2C7C018F00D9B9F0 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2C32C85DF9A00011058 /* DefaultGamesRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -243,6 +256,8 @@
 		7E8DB8E32C7C01CA00D9B9F0 /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2CB2C85F3B100011058 /* GameRequestDTO.swift */,
+				C1DFB2CD2C85F44C00011058 /* GameResponseDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -268,6 +283,8 @@
 		C1C692DA2C7A078200EF0C45 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2C82C85E57000011058 /* Network */,
+				C1DFB2C52C85E3E900011058 /* Utils */,
 				7E8DB8E32C7C01CA00D9B9F0 /* DataMapping */,
 				7E8DB8DF2C7C018F00D9B9F0 /* Repositories */,
 			);
@@ -288,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C692DF2C7A0A0B00EF0C45 /* GameInfo.swift */,
+				C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */,
 				C1C692E12C7A0EA100EF0C45 /* GuessWhoGameModel.swift */,
 				C1DFB2A32C7DED1200011058 /* SttModel.swift */,
 			);
@@ -337,6 +355,22 @@
 				C1DFB2BF2C84239200011058 /* SpeechTask.swift */,
 			);
 			path = STT;
+			sourceTree = "<group>";
+		};
+		C1DFB2C52C85E3E900011058 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C1DFB2C82C85E57000011058 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB2C92C85E58300011058 /* APIEndpoints.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +479,7 @@
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
+				C1DFB2CC2C85F3B100011058 /* GameRequestDTO.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
@@ -455,13 +490,18 @@
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
+				C1DFB2C42C85DF9A00011058 /* DefaultGamesRepository.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
 				C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */,
 				7E8DB8DB2C7BFCCF00D9B9F0 /* GuessWhoGameUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
+				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
+				C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */,
+				C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */,
 				C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */,
 				7E8DB8E62C7C0BC100D9B9F0 /* GameUseCase.swift in Sources */,
+				C1DFB2CE2C85F44C00011058 /* GameResponseDTO.swift in Sources */,
 				C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,

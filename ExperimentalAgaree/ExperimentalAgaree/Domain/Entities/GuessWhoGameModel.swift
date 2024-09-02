@@ -7,9 +7,14 @@
 
 import UIKit
 
-struct GuessWhoGameModel {
+class GuessWhoGameModel {
     let name: String?
     let photo: UIImage?
+    
+    init(name: String?, photo: UIImage?) {
+        self.name = name
+        self.photo = photo
+    }
 }
 
 

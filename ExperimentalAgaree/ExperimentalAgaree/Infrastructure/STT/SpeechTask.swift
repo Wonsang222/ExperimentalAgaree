@@ -74,7 +74,8 @@ final class DefaultSpeechManager: SpeechTaskUsable {
             
             guard let recognitionRequest = recognitionRequest else { return }
             
-            self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { result, error in
+            self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest,
+                                                                          resultHandler: { result, error in
                 
                 if result != nil {
                     let text = result?.bestTranscription.formattedString

@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct GameInfo {
+class GameInfo {
     let gamePath: String
     let query: String
 }
 
-struct GameModel {
+class GameModel {
     let name: String?
     let photoUrl: String?
 }

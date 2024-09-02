@@ -7,8 +7,8 @@
 
 import Foundation
 
-class SttModel {
-    var word: String
+struct SttModel {
+    let word: String
     
     init(word: String) {
         self.word = word
