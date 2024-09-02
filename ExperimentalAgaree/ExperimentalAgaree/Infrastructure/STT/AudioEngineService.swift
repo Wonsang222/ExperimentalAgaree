@@ -22,7 +22,13 @@ import AVFoundation
 
 protocol AgareeAudio {
     func start() throws
-    func stop()
+}
+
+extension AgareeAudio where Self: AVAudioEngine {
+    func agareeStop() {
+        self.stop()
+        self.inputNode.removeTap(onBus: 0)
+    }
 }
 
 enum AudioError: Error {
@@ -34,7 +40,7 @@ enum AudioError: Error {
 extension AVAudioEngine: AgareeAudio {}
 
 protocol AudioEngineUsable {
-    func activateAudioEngine(config: AudioSessionCofigurable, completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void) -> AgareeAudio?
+    func activateAudioEngine(completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void) -> AgareeAudio?
     func stop(engine: AVAudioEngine)
 }
 
@@ -50,9 +56,14 @@ struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
 
 
 final class AudioEngineManager: AudioEngineUsable {
-
     
-    func activateAudioEngine(config: any AudioSessionCofigurable,
+    let audioSessionConfig: AudioSessionCofigurable
+    
+    init(audioSessionConfig: AudioSessionCofigurable) {
+        self.audioSessionConfig = audioSessionConfig
+    }
+
+    func activateAudioEngine(
                  completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void
     ) -> AgareeAudio? {
         do {
@@ -78,16 +89,16 @@ final class AudioEngineManager: AudioEngineUsable {
         engine.inputNode.removeTap(onBus: 0)
     }
     
-    func checkActivation(engine: AVAudioEngine) {
+   private func checkActivation(engine: AVAudioEngine) {
         if engine.isRunning {
             stop(engine: engine)
         }
     }
     
-    private func setAudioSession(config: AudioSessionCofigurable) throws {
+    private func setAudioSession() throws {
         let session = AVAudioSession.sharedInstance()
-        try session.setCategory(config.category)
-        try session.setMode(config.mode)
+        try session.setCategory(audioSessionConfig.category)
+        try session.setMode(audioSessionConfig.mode)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
 }
     
@@ -100,7 +111,6 @@ final class AudioEngineManager: AudioEngineUsable {
         default:
             return .generic
         }
-        
     }
 }
 

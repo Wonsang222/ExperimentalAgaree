@@ -21,6 +21,7 @@ protocol TimerUsable {
 extension Timer: TimerUsable {}
 
 struct TimerConfiguration: TimerConfigurable {
+    
     let gameTime: Float
     let timeInterval: Double
     let isRepeat: Bool

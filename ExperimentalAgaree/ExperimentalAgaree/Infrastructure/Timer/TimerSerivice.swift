@@ -8,11 +8,8 @@
 import Foundation
 
 protocol TimerManager {
-    
     typealias TimerData = Float
-    
     func startTimer(config: TimerConfigurable, handlerQueue: DispatchQueue, completion: @escaping (Float) -> Void) -> TimerUsable?
-    
     func stopTimer()
 }
 
