@@ -42,6 +42,7 @@
 		C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C92C85E58300011058 /* APIEndpoints.swift */; };
 		C1DFB2CC2C85F3B100011058 /* GameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CB2C85F3B100011058 /* GameRequestDTO.swift */; };
 		C1DFB2CE2C85F44C00011058 /* GameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CD2C85F44C00011058 /* GameResponseDTO.swift */; };
+		C1DFB2D02C87478600011058 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CF2C87478600011058 /* GameType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		C1DFB2C92C85E58300011058 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		C1DFB2CB2C85F3B100011058 /* GameRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameRequestDTO.swift; path = ExperimentalAgaree/Data/Network/GameRequestDTO.swift; sourceTree = SOURCE_ROOT; };
 		C1DFB2CD2C85F44C00011058 /* GameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResponseDTO.swift; path = ExperimentalAgaree/Data/Network/GameResponseDTO.swift; sourceTree = SOURCE_ROOT; };
+		C1DFB2CF2C87478600011058 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */,
+				C1DFB2CF2C87478600011058 /* GameType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
+				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,
 				C1DFB2CC2C85F3B100011058 /* GameRequestDTO.swift in Sources */,
 				C1C692E22C7A0EA100EF0C45 /* GuessWhoGameModel.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,

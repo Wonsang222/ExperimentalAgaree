@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class GameResponseDTO: Decodable {
+    var name: String?
+    var url: String?
+}

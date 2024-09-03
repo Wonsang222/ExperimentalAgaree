@@ -9,5 +9,18 @@ import Foundation
 
 
 struct APIEndpoints {
-    static func getGames(with gameReqDTO: GameRequestDTO) -> Endpoint<
+    static func getGames(
+        with gameReqDTO: GameRequestDTO
+    ) -> Endpoint<GameResponseDTO> {
+        
+        
+        
+        return Endpoint(
+            path: <#T##String?#>,
+            responseDecoder: <#T##any ResponseDecoder#>,
+            method: .get,
+            queryParameter: <#T##any Encodable#>,
+            bodyParameter: <#T##any Encodable#>,
+            bodyEncoder: <#T##any BodyEncoder#>)
+    }
 }
