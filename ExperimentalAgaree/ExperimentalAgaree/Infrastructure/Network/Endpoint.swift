@@ -97,7 +97,7 @@ protocol ResponseRequestable: Requestable {
 }
 
 final class Endpoint<T>: ResponseRequestable {
-    typealias Response = T
+        typealias Response = T
     
         let path: String?
        let responseDecoder: ResponseDecoder

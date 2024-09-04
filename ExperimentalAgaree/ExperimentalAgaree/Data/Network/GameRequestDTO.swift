@@ -8,6 +8,15 @@
 import Foundation
 
 struct GameRequestDTO: Encodable {
-    let game: String
+    let game: GameType
     let numberOfPlayers: UInt8
+    
+    private enum CodingKeys: String, CodingKey {
+        case numberOfPlayers
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(numberOfPlayers, forKey: .numberOfPlayers)
+    }
 }

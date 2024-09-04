@@ -16,7 +16,7 @@ struct APIEndpoints {
         
         
         return Endpoint(
-            path: <#T##String?#>,
+            path: gameReqDTO.game.rawValue,
             responseDecoder: <#T##any ResponseDecoder#>,
             method: .get,
             queryParameter: <#T##any Encodable#>,

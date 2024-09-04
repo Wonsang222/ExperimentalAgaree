@@ -12,12 +12,6 @@ class RepositoryTask: Cancellable {
     var task: NetworkCancellable?
     var isCancelled: Bool = false
     
-    init(
-        task: NetworkCancellable
-        ) {
-        self.task = task
-    }
-    
     func cancel() {
         task?.cancel()
         isCancelled = true
