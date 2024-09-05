@@ -7,7 +7,17 @@
 
 import Foundation
 
-class GameResponseDTO: Decodable {
-    var name: String?
-    var url: String?
+protocol GameModelUsable {
+    var name: String? { get }
+    var url: String? { get }
+}
+
+class GameResponseDTO: Decodable, GameModelUsable {
+    let name: String?
+    let url: String?
+    
+    init(name: String?, url: String?) {
+        self.name = name
+        self.url = url
+    }
 }

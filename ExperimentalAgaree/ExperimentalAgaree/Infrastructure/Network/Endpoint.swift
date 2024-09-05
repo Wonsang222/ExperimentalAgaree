@@ -21,7 +21,7 @@ enum HttpMethod: String {
 }
 
 protocol BodyEncoder {
-    func encode(parameters: [String:Any]) -> Data
+    func encode(parameters: [String:Any]) -> Data?
 }
 
 protocol Requestable {
@@ -87,7 +87,19 @@ extension Requestable {
 }
 
 protocol ResponseDecoder {
-    func decode<T: Decodable>(_ data: Data) throws -> T
+    func decode<T>(_ data: Data) throws -> [T] where T: Decodable, T: GameModelUsable
+}
+
+final class DefaultResponseDecoder: ResponseDecoder {
+    func decode<T>(_ data: Data) throws -> [T] where T : Decodable, T: GameModelUsable {
+        let dic = try JSONSerialization.jsonObject(with: data)
+        
+        if let dic = dic as? [String:String] {
+            return dic.map { GameResponseDTO(name: $0, url: $1) as! T }
+        } else {
+            throw DatatransferError.noResponse
+        }
+    }
 }
 
 protocol ResponseRequestable: Requestable {
@@ -109,12 +121,12 @@ final class Endpoint<T>: ResponseRequestable {
     
     init(
         path: String?,
-        responseDecoder: ResponseDecoder,
+        responseDecoder: ResponseDecoder = DefaultResponseDecoder(),
          method: HttpMethod,
         headerParameters: [String : String] = [:],
          queryParameter: Encodable,
-         bodyParameter: Encodable,
-         bodyEncoder: BodyEncoder
+         bodyParameter: Encodable?,
+         bodyEncoder: BodyEncoder = DefaultBodyEncoder()
     ) {
         self.path = path
         self.responseDecoder = responseDecoder
@@ -123,6 +135,12 @@ final class Endpoint<T>: ResponseRequestable {
         self.queryParameter = queryParameter
         self.bodyParameter = bodyParameter
         self.bodyEncoder = bodyEncoder
+    }
+}
+
+final class DefaultBodyEncoder: BodyEncoder {
+    func encode(parameters: [String : Any]) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: parameters)
     }
 }
 
