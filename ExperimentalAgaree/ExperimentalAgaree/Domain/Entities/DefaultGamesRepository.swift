@@ -24,19 +24,17 @@ final class DefaultGamesRepository: GamesRepository {
         query: GameInfo,
         completion: @escaping (Result<[GameModel], any Error>) -> Void
     ) -> (any Cancellable)? {
-        let task: RepositoryTask = dataTransferService.request(with: <#T##ResponseRequestable#>, on: completionQueue) { result in
-            switch result {
-            
-            }
+        let task = RepositoryTask()
+        
+        return task
         }
-    }
     
     func fetchCharacters(
         query: [GameModel],
         completion: @escaping (Result<[GuessWhoGameList], any Error>) -> Void
     ) -> (any Cancellable)? {
+        let task = RepositoryTask()
         
+        return task
     }
-    
-    
 }

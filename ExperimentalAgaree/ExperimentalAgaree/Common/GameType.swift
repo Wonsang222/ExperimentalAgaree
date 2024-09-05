@@ -7,6 +7,15 @@
 
 import Foundation
 
-enum GameType {
+enum GameType: String {
+    case guessWho
     
+    func getKoreaTitle() -> String {
+        switch self {
+        case .guessWho:
+            return "인물퀴즈"
+        default:
+            return ""
+        }
+    }
 }
