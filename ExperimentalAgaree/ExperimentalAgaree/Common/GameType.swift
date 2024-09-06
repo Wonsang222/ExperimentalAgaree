@@ -20,17 +20,10 @@ class GameInfo {
 enum GameType: String {
     case guessWho
     
-    func getKoreaTitle() -> String {
+    var description: String {
         switch self {
         case .guessWho:
             return "인물퀴즈"
-        }
-    }
-    
-    func getEnglishTitle() -> String {
-        switch self {
-        case .guessWho:
-            return "guessWho"
         }
     }
 }

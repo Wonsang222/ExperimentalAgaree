@@ -42,8 +42,4 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
             }
         }
     }
-    
-    private func fetch
-        
-    
 }
