@@ -7,17 +7,23 @@
 
 import Foundation
 
-protocol GameModelUsable {
-    var name: String? { get }
-    var url: String? { get }
-}
-
-class GameResponseDTO: Decodable, GameModelUsable {
+class GameModelInfo: Decodable {
     let name: String?
     let url: String?
     
     init(name: String?, url: String?) {
         self.name = name
         self.url = url
+    }
+}
+
+struct GameResponseDTO: Decodable {
+    let gameModelList: [GameModelInfo]
+}
+
+extension GameResponseDTO {
+    func toDomain() -> GameModelList {
+        let models = gameModelList.map { GameModel(name: $0.name, photoUrl: $0.url) }
+        return GameModelList(gameModels: models)
     }
 }

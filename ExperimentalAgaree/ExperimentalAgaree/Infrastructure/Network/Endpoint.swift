@@ -51,7 +51,7 @@ extension Requestable {
         let httpMethod = method.rawValue
         req.httpMethod = httpMethod
         if httpMethod == "POST",
-            var bodyParameter = bodyParameter,
+            let bodyParameter = bodyParameter,
            let httpBody = try bodyParameter.toDic() {
             req.httpBody = bodyEncoder.encode(parameters: httpBody)
         }
@@ -87,15 +87,16 @@ extension Requestable {
 }
 
 protocol ResponseDecoder {
-    func decode<T>(_ data: Data) throws -> [T] where T: Decodable, T: GameModelUsable
+    func decode<T>(_ data: Data) throws -> T where T: Decodable
 }
 
 final class DefaultResponseDecoder: ResponseDecoder {
-    func decode<T>(_ data: Data) throws -> [T] where T : Decodable, T: GameModelUsable {
+    func decode<T>(_ data: Data) throws -> T where T : Decodable {
         let dic = try JSONSerialization.jsonObject(with: data)
         
         if let dic = dic as? [String:String] {
-            return dic.map { GameResponseDTO(name: $0, url: $1) as! T }
+            let gameModelList = dic.map{ GameModelInfo(name: $0, url: $1) }
+            return GameResponseDTO(gameModelList: gameModelList) as! T
         } else {
             throw DatatransferError.noResponse
         }
@@ -143,7 +144,6 @@ final class DefaultBodyEncoder: BodyEncoder {
         return try? JSONSerialization.data(withJSONObject: parameters)
     }
 }
-
 
 extension Encodable {
     func toDic() throws -> [String:Any]? {

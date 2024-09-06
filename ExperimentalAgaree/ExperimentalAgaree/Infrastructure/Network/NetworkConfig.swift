@@ -25,7 +25,8 @@ struct ApiDataNetworkConfig: NetworkConfigurable {
         baseURL: URL,
         baseHeaders: [String : String] = [:],
         queryParameter: [String : String] = [:],
-        networkServiceType: NetworkServiceType) {
+        networkServiceType: NetworkServiceType
+    ) {
         self.baseURL = baseURL
         self.baseHeaders = baseHeaders
         self.queryParameter = queryParameter

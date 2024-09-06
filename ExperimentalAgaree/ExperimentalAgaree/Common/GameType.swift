@@ -7,6 +7,16 @@
 
 import Foundation
 
+class GameInfo {
+    let gamePath: GameType
+    let numberOfPlayers: UInt8
+    
+    init(gamePath: GameType, numberOfPlayers: UInt8) {
+        self.gamePath = gamePath
+        self.numberOfPlayers = numberOfPlayers
+    }
+}
+
 enum GameType: String {
     case guessWho
     
@@ -14,8 +24,13 @@ enum GameType: String {
         switch self {
         case .guessWho:
             return "인물퀴즈"
-        default:
-            return ""
+        }
+    }
+    
+    func getEnglishTitle() -> String {
+        switch self {
+        case .guessWho:
+            return "guessWho"
         }
     }
 }

@@ -12,38 +12,36 @@ import Foundation
 ///  1. fetch
 ///  2. start
 ///  3. judge
-final class GuessWhoGameUseCase: GameUseCase {
-
-    private let gamesRepository: GamesRepository
-    private let timerRepository: TimerRepository
-    private let sttRepository: STTRepository
-    private let fetchingArgument: ((GameInfo) -> Void) -> Void
-    
-    init(
-        gamesRepository: GamesRepository,
-        timerRepository: TimerRepository,
-        sttRepository: STTRepository,
-        fetchingArgument: @escaping ((GameInfo) -> Void) -> Void
-    ) {
-        self.gamesRepository = gamesRepository
-        self.timerRepository = timerRepository
-        self.sttRepository = sttRepository
-        self.fetchingArgument = fetchingArgument
-    }
-    
-    func fetch() -> (any Cancellable)? {
-
-        gamesRepository.fetchCharacterList(query: GameInfo(gamePath: "adsf", query: "dsf")) { result in
-            
-        }
-    }
-    
-    func start() {
-        
-    }
-    
-    func judge() -> Bool {
-        return true
-    }
-    
-}
+//final class GuessWhoGameUseCase: GameUseCase {
+//
+//    private let gamesRepository: GamesRepository
+//    private let timerRepository: TimerRepository
+//    private let sttRepository: STTRepository
+//    private let fetchingArgument: ((GameInfo) -> Void) -> Void
+//    
+//    init(
+//        gamesRepository: GamesRepository,
+//        timerRepository: TimerRepository,
+//        sttRepository: STTRepository,
+//        fetchingArgument: @escaping ((GameInfo) -> Void) -> Void
+//    ) {
+//        self.gamesRepository = gamesRepository
+//        self.timerRepository = timerRepository
+//        self.sttRepository = sttRepository
+//        self.fetchingArgument = fetchingArgument
+//    }
+//    
+//    func fetch() -> (any Cancellable)? {
+//            
+//        }
+//    }
+//    
+//    func start() {
+//        
+//    }
+//    
+//    func judge() -> Bool {
+//        return true
+//    }
+//    
+//}

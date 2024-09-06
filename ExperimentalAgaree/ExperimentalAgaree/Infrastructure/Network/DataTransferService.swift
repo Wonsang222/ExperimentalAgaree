@@ -18,8 +18,6 @@ protocol DataTransferDispatchQueue {
     func asyncExecute(work: @escaping () -> Void)
 }
 
-// 수정해야할수도있음. group
-#warning("Might 수정, group 추가해야할수도")
 extension DispatchQueue: DataTransferDispatchQueue {
     func asyncExecute(work: @escaping () -> Void) {
         async(execute: work)

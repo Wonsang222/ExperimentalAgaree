@@ -22,10 +22,24 @@ final class DefaultGamesRepository: GamesRepository {
     
     func fetchCharacterList(
         query: GameInfo,
-        completion: @escaping (Result<[GameModel], any Error>) -> Void
+        completion: @escaping (Result<GameModelList, any Error>) -> Void
     ) -> (any Cancellable)? {
         let task = RepositoryTask()
         
+        let requestDTO = GameRequestDTO(game: query.gamePath, numberOfPlayers: query.numberOfPlayers)
+        let endPoint = APIEndpoints.getGames(with: requestDTO)
+        task.networkTask = dataTransferService.request(with: endPoint, on: completionQueue) { [ weak self] result in
+            switch result {
+            case .success(let response):
+                self?.completionQueue.asyncExecute {
+                    completion(.success(response.toDomain()))
+                }
+            case .failure(let dataError):
+                self?.completionQueue.asyncExecute {
+                    completion(.failure(dataError))
+                }
+            }
+        }
         return task
         }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuessWhoGameModel {
+final class GuessWhoGameModel {
     let name: String?
     let photo: UIImage?
     

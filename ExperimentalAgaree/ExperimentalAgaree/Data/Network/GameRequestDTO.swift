@@ -8,6 +8,7 @@
 import Foundation
 
 struct GameRequestDTO: Encodable {
+    
     let game: GameType
     let numberOfPlayers: UInt8
     

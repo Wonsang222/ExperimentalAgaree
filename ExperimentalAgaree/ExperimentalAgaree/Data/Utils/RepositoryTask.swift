@@ -9,11 +9,11 @@ import Foundation
 
 class RepositoryTask: Cancellable {
     
-    var task: NetworkCancellable?
+    var networkTask: NetworkCancellable?
     var isCancelled: Bool = false
     
     func cancel() {
-        task?.cancel()
+        networkTask?.cancel()
         isCancelled = true
     }
 }

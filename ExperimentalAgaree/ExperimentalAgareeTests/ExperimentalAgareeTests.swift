@@ -21,17 +21,16 @@ final class ExperimentalAgareeTests: XCTestCase {
             RunLoop.current.add(self.timer!, forMode: .common)
             RunLoop.current.run()
         }
-        
-        
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        timer?.invalidate()
+        timer = nil
     }
 
     func testExample() throws {
         self.timer?.fire()
-    }
+        }
     
 
     func testPerformanceExample() throws {
