@@ -39,5 +39,15 @@ final class ExperimentalAgareeTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
+    // test대상_작업_예상되는결과
+    func test_Mine_() throws {
+        //Given
+        
+        //When
+        
+        //Then
+        
+    }
+    
 }

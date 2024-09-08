@@ -10,14 +10,13 @@ import Foundation
 protocol FetchGameModelUseCase {
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
-        completion: @escaping (GameModelList) -> Void
+        completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable?
 }
 
 struct FetchGameModelUseCaseRequestValue {
     let gameInfo: GameInfo
 }
-
 
 final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
     
@@ -31,15 +30,9 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
     
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
-        completion: @escaping (GameModelList) -> Void
+        completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable? {
-        gameRespository.fetchCharacterList(query: requestValue.gameInfo) { result in
-            switch result {
-            case .success(let gameModelList):
-                print(123)
-            case .failure(let error):
-                print(123)
-            }
-        }
+        gameRespository.fetchCharacterList(query: requestValue.gameInfo, completion: completion)
     }
+
 }

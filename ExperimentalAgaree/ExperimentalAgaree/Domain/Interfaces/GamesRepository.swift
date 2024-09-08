@@ -13,10 +13,4 @@ protocol GamesRepository {
         query: GameInfo,
         completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable?
-    
-    @discardableResult
-    func fetchCharacters(
-        query: [GameModel],
-        completion: @escaping (Result<[GuessWhoGameList], Error>) -> Void
-    ) -> Cancellable?
 }

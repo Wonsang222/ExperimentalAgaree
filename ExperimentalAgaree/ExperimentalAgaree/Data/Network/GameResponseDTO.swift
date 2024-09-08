@@ -24,6 +24,6 @@ struct GameResponseDTO: Decodable {
 extension GameResponseDTO {
     func toDomain() -> GameModelList {
         let models = gameModelList.map { GameModel(name: $0.name, photoUrl: $0.url) }
-        return GameModelList(gameModels: models)
+        return .init(gameModels: models)
     }
 }

@@ -70,7 +70,8 @@ extension DefaultDataTransferService: DataTransferService {
         let task = networkService.request(endpoint: endpoint) { result in
             switch result {
             case .success(let data):
-                let result: Result<T, DatatransferError> = self.decode(data: data, decoder: endpoint.responseDecoder)
+                let result: Result<T, DatatransferError> = self.decode(data: data,
+                                                                       decoder: endpoint.responseDecoder)
                 queue.asyncExecute {
                     completion(result)
                 }
