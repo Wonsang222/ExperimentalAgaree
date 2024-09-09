@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 class NetworkServiceTest: XCTestCase {
+    
     struct EndpointMock: Requestable {
         var path: String?
         var method: ExperimentalAgaree.HttpMethod
@@ -17,5 +18,14 @@ class NetworkServiceTest: XCTestCase {
         var queryParameter: Encodable
         var bodyParameter: Encodable?
         var bodyEncoder: ExperimentalAgaree.BodyEncoder
+        
+        init(path: String? = nil, method: ExperimentalAgaree.HttpMethod, headerParameters: [String : String], queryParameter: Encodable, bodyParameter: Encodable? = nil, bodyEncoder: ExperimentalAgaree.BodyEncoder) {
+            self.path = path
+            self.method = method
+            self.headerParameters = headerParameters
+            self.queryParameter = queryParameter
+            self.bodyParameter = bodyParameter
+            self.bodyEncoder = bodyEncoder
+        }
     }
 }

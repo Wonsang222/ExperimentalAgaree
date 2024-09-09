@@ -32,7 +32,7 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable? {
-        gameRespository.fetchCharacterList(query: requestValue.gameInfo, completion: completion)
+        gameRespository.fetchCharacterList(query: requestValue.gameInfo,
+                                           completion: completion)
     }
-
 }
