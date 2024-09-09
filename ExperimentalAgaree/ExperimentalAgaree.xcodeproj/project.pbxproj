@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
+		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
+		7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */; };
 		7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */; };
 		7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */; };
 		7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B165C2C7D42D300632CBB /* Observable.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
+		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
+		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGameModelUseCase.swift; sourceTree = "<group>"; };
 		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		7E7B165C2C7D42D300632CBB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -112,6 +118,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E41A1BC2C8E6BC1006060A3 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				7E41A1BD2C8E6BD4006060A3 /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		7E41A1BD2C8E6BD4006060A3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E41A1C02C8E6C45006060A3 /* Mock */,
+				7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7E41A1C02C8E6C45006060A3 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */,
+				7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		7E7B165A2C7D40E800632CBB /* Prentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +324,7 @@
 		C1DFB2AA2C7E105E00011058 /* ExperimentalAgareeTests */ = {
 			isa = PBXGroup;
 			children = (
+				7E41A1BC2C8E6BC1006060A3 /* Infrastructure */,
 				C1DFB2DA2C8C939200011058 /* Domain */,
 				C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */,
 			);
@@ -495,6 +528,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DFB2AC2C7E105E00011058 /* ExperimentalAgareeTests.swift in Sources */,
+				7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */,
+				7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */,
+				7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
