@@ -11,7 +11,11 @@ import XCTest
 
 class NetworkServiceTest: XCTestCase {
     
-    struct EndpointMock: Requestable {
+    private enum NetworkMockError: Error {
+        case mockError
+    }
+    
+   private struct EndpointMock: Requestable {
         var path: String?
         var method: ExperimentalAgaree.HttpMethod
         var headerParameters: [String : String]
@@ -19,7 +23,13 @@ class NetworkServiceTest: XCTestCase {
         var bodyParameter: Encodable?
         var bodyEncoder: ExperimentalAgaree.BodyEncoder
         
-        init(path: String? = nil, method: ExperimentalAgaree.HttpMethod, headerParameters: [String : String], queryParameter: Encodable, bodyParameter: Encodable? = nil, bodyEncoder: ExperimentalAgaree.BodyEncoder) {
+        init(path: String? = nil,
+             method: ExperimentalAgaree.HttpMethod = .get,
+             headerParameters: [String : String] = [:],
+             queryParameter: Encodable,
+             bodyParameter: Encodable? = nil,
+             bodyEncoder: ExperimentalAgaree.BodyEncoder
+        ) {
             self.path = path
             self.method = method
             self.headerParameters = headerParameters
@@ -27,5 +37,24 @@ class NetworkServiceTest: XCTestCase {
             self.bodyParameter = bodyParameter
             self.bodyEncoder = bodyEncoder
         }
+    }
+    
+    func test_whenDeviceInternetIsNotAvailable_shouldReturnCancelledError() {
+        //given
+        let config = NetworkConfigurableMock()
+        var completionCallsCount = 0
+        
+        
+        let cancelledError = NSError(domain: "network", code: NSURLErrorCancelled)
+        let session = NetworkSessionManagerMock(response: nil, data: nil, error: cancelledError)
+        
+//        let endPoint = EndpointMock(queryParameter: <#T##Encodable#>, bodyEncoder: <#T##BodyEncoder#>)
+//        
+//        let sut = DefaultNetworkService(config: config, session: session)
+//        //when
+//        
+//        _ = sut.request(endpoint: <#T##Requestable#>, completion: <#T##DefaultNetworkService.Completion##DefaultNetworkService.Completion##(Result<Data?, NetworkError>) -> Void#>)
+        
+        //then
     }
 }
