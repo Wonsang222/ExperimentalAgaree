@@ -11,7 +11,10 @@ class GameInfo {
     let gamePath: GameType
     let numberOfPlayers: UInt8
     
-    init(gamePath: GameType, numberOfPlayers: UInt8) {
+    init(
+        gamePath: GameType,
+        numberOfPlayers: UInt8
+    ) {
         self.gamePath = gamePath
         self.numberOfPlayers = numberOfPlayers
     }

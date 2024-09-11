@@ -7,10 +7,12 @@
 
 import Foundation
 
+
+
 protocol TimerRepository {
     
     func countGameTime(
         gameInfo: GameTimeInfo,
-        block: @escaping (Float) -> Void 
+        completion: @escaping (Float) -> Void 
     ) -> TimerUsable?
 }

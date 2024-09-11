@@ -48,12 +48,12 @@ class NetworkServiceTest: XCTestCase {
         let cancelledError = NSError(domain: "network", code: NSURLErrorCancelled)
         let session = NetworkSessionManagerMock(response: nil, data: nil, error: cancelledError)
         
-//        let endPoint = EndpointMock(queryParameter: <#T##Encodable#>, bodyEncoder: <#T##BodyEncoder#>)
-//        
-//        let sut = DefaultNetworkService(config: config, session: session)
-//        //when
-//        
-//        _ = sut.request(endpoint: <#T##Requestable#>, completion: <#T##DefaultNetworkService.Completion##DefaultNetworkService.Completion##(Result<Data?, NetworkError>) -> Void#>)
+        let endPoint = EndpointMock(queryParameter: <#T##Encodable#>, bodyEncoder: <#T##BodyEncoder#>)
+        
+        let sut = DefaultNetworkService(config: config, session: session)
+        //when
+        
+        _ = sut.request(endpoint: <#T##Requestable#>, completion: <#T##DefaultNetworkService.Completion##DefaultNetworkService.Completion##(Result<Data?, NetworkError>) -> Void#>)
         
         //then
     }

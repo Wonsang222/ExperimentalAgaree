@@ -8,9 +8,10 @@
 import Foundation
 
 protocol TimerManager {
-    func startTimer(config: TimerConfigurable,
-                    handlerQueue: DispatchQueue,
-                    completion: @escaping (Float) -> Void
+    func startTimer(
+        gameSec:Float,
+        handlerQueue: DispatchQueue,
+        completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     func stopTimer()
 }
@@ -19,21 +20,24 @@ final class DefaultTimerService: TimerManager {
 
     private var timer: TimerUsable?
     private let queue: DataTransferDispatchQueue
+    private let config: TimerConfigurable
     
     init(
-        queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated)
+        queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated),
+        config: TimerConfigurable
     ) {
         self.queue = queue
+        self.config = config
     }
     
     func startTimer(
-        config: TimerConfigurable,
+        gameSec:Float,
         handlerQueue: DispatchQueue = DispatchQueue.main,
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     {
-        timer = nil
-        let innerTimer = setTimer(config: config, handlerQueue: handlerQueue, completion: completion)
+        timer = nil             
+        let innerTimer = setTimer(gameTime: gameSec, config: config, handlerQueue: handlerQueue, completion: completion)
         timer = innerTimer
         queue.asyncExecute {
             RunLoop.current.add(innerTimer, forMode: .common)
@@ -49,12 +53,13 @@ final class DefaultTimerService: TimerManager {
     }
     
     private func setTimer(
+        gameTime: Float,
         config: TimerConfigurable,
         handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> Timer
     {
-        let frequency = calculateGameSpeed(config: config)
+        let frequency = calculateGameSpeed(gameSecond: gameTime)
         let timer = Timer(timeInterval: config.timeInterval,
                           repeats: config.isRepeat) { _ in
             handlerQueue.async {
@@ -65,9 +70,9 @@ final class DefaultTimerService: TimerManager {
     }
     
     private func calculateGameSpeed(
-        config: TimerConfigurable
+        gameSecond:Float
     ) -> Float {
-        let timerSpeed = (1.0 / config.gameTime) * 1.0
+        let timerSpeed = (1.0 / gameSecond) * 1.0
         return timerSpeed
     }
 }

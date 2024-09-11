@@ -44,6 +44,8 @@
 		C1DFB2D52C8BC9DC00011058 /* GameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2D32C8BC9DC00011058 /* GameRequestDTO.swift */; };
 		C1DFB2D82C8C138400011058 /* DefaultGamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */; };
 		C1DFB2DD2C8F1B0200011058 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */; };
+		C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2E02C91D1B800011058 /* GameJudge.swift */; };
+		C1DFB2E32C91D70200011058 /* DefaultTimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGamesRepository.swift; sourceTree = "<group>"; };
 		C1DFB2D92C8C499800011058 /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
+		C1DFB2E02C91D1B800011058 /* GameJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameJudge.swift; sourceTree = "<group>"; };
+		C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTimerRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,7 @@
 				C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */,
 				C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */,
 				C1DFB2A32C7DED1200011058 /* SttModel.swift */,
+				C1DFB2E02C91D1B800011058 /* GameJudge.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */,
+				C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -523,9 +529,11 @@
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */,
+				C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */,
 				C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */,
 				C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */,
 				C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */,
+				C1DFB2E32C91D70200011058 /* DefaultTimerRepository.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);
