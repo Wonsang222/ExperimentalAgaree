@@ -24,6 +24,7 @@ protocol AgareeAudio {
     func start() throws
 }
 
+// 수정
 extension AgareeAudio where Self: AVAudioEngine {
     func agareeStop() {
         self.stop()
@@ -54,10 +55,9 @@ struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
     var mode: AVAudioSession.Mode
 }
 
-
 final class AudioEngineManager: AudioEngineUsable {
     
-    let audioSessionConfig: AudioSessionCofigurable
+    private let audioSessionConfig: AudioSessionCofigurable
     
     init(audioSessionConfig: AudioSessionCofigurable) {
         self.audioSessionConfig = audioSessionConfig
@@ -67,7 +67,9 @@ final class AudioEngineManager: AudioEngineUsable {
                  completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void
     ) -> AgareeAudio? {
         do {
+            try setAudioSession()
             let engine = AVAudioEngine()
+            checkActivation(engine: engine)
             let inputNode = engine.inputNode
             let recordingFormat = inputNode.outputFormat(forBus: 0)
             inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
@@ -95,6 +97,7 @@ final class AudioEngineManager: AudioEngineUsable {
         }
     }
     
+    // Result로 만들 수 있다
     private func setAudioSession() throws {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(audioSessionConfig.category)

@@ -20,7 +20,7 @@ protocol TimerUsable {
 
 extension Timer: TimerUsable {}
 
-struct TimerConfiguration: TimerConfigurable {
+struct DefaultTimerConfiguration: TimerConfigurable {
     
     let gameTime: Float
     let timeInterval: Double

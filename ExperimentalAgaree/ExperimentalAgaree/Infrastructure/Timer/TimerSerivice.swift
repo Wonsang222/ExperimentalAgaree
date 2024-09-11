@@ -8,8 +8,10 @@
 import Foundation
 
 protocol TimerManager {
-    typealias TimerData = Float
-    func startTimer(config: TimerConfigurable, handlerQueue: DispatchQueue, completion: @escaping (Float) -> Void) -> TimerUsable?
+    func startTimer(config: TimerConfigurable,
+                    handlerQueue: DispatchQueue,
+                    completion: @escaping (Float) -> Void
+    ) -> TimerUsable?
     func stopTimer()
 }
 
@@ -53,7 +55,8 @@ final class DefaultTimerService: TimerManager {
     ) -> Timer
     {
         let frequency = calculateGameSpeed(config: config)
-        let timer = Timer(timeInterval: config.timeInterval, repeats: config.isRepeat) { _ in
+        let timer = Timer(timeInterval: config.timeInterval,
+                          repeats: config.isRepeat) { _ in
             handlerQueue.async {
                 completion(frequency)
             }

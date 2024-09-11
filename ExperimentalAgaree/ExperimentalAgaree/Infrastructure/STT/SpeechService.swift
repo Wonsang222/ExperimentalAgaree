@@ -5,12 +5,15 @@
 //  Created by 황원상 on 9/1/24.
 //
 
+
+
 import Foundation
 import Speech
 
 enum SpeechError: Error {
     case generateRecognizer
     case generateAudioEngine
+    case system
 }
 
 protocol SttConfigurable {
@@ -31,7 +34,7 @@ protocol SpeechTaskUsable {
     func stop()
 }
 
-final class DefaultSpeechManager: SpeechTaskUsable {
+final class DefaultSpeechService: SpeechTaskUsable {
 
     private var recognitionTask: SFSpeechRecognitionTask?
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
@@ -63,6 +66,8 @@ final class DefaultSpeechManager: SpeechTaskUsable {
         }
     }
     
+    
+#warning("코드 정리. -> Result 및 catch 연속 보기 안좋다")
     func request(
                 on queue: any DataTransferDispatchQueue,
                 completion: @escaping Completion
@@ -72,7 +77,10 @@ final class DefaultSpeechManager: SpeechTaskUsable {
             setRequest()
             try generateRecognizer(config: config)
             
-            guard let recognitionRequest = recognitionRequest else { return }
+            guard let recognitionRequest = recognitionRequest else {
+                completion(.failure(.system))
+                return
+            }
             
             self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest,
                                                                           resultHandler: { result, error in

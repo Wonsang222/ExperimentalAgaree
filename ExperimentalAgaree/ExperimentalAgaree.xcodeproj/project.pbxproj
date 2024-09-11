@@ -35,7 +35,7 @@
 		C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */; };
 		C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */; };
 		C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */; };
-		C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BF2C84239200011058 /* SpeechTask.swift */; };
+		C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BF2C84239200011058 /* SpeechService.swift */; };
 		C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */; };
 		C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */; };
 		C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C92C85E58300011058 /* APIEndpoints.swift */; };
@@ -88,7 +88,7 @@
 		C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfiguration.swift; sourceTree = "<group>"; };
 		C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSerivice.swift; sourceTree = "<group>"; };
 		C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineService.swift; sourceTree = "<group>"; };
-		C1DFB2BF2C84239200011058 /* SpeechTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTask.swift; sourceTree = "<group>"; };
+		C1DFB2BF2C84239200011058 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
 		C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeInfo.swift; sourceTree = "<group>"; };
 		C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		C1DFB2C92C85E58300011058 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */,
-				C1DFB2BF2C84239200011058 /* SpeechTask.swift */,
+				C1DFB2BF2C84239200011058 /* SpeechService.swift */,
 			);
 			path = STT;
 			sourceTree = "<group>";
@@ -517,7 +517,7 @@
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
-				C1DFB2C02C84239200011058 /* SpeechTask.swift in Sources */,
+				C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */,
 				7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
