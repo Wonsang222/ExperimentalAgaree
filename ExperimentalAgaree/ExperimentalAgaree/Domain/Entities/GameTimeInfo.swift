@@ -9,5 +9,5 @@ import Foundation
 
 struct GameTimeInfo {
     let gameTime: Float
-    let speed: Float
+    let emit: Float
 }

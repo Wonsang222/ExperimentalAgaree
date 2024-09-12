@@ -9,11 +9,25 @@ import Foundation
 
 final class DefaultTimerRepository: TimerRepository {
     
+    private let timerService: TimerManager
     
-    func countGameTime(gameInfo: GameTimeInfo,
-                       completion: @escaping (Float) -> Void) -> (any TimerUsable)? {
+    init(timerService: TimerManager) {
+        self.timerService = timerService
+    }
+    
+    func countGameTime(
+        gameInfo: Float,
+        completion: @escaping (GameTimeInfo) -> Void
+    ) -> GameJudgeable? {
         <#code#>
     }
     
+    func stopTimer() {
+        <#code#>
+    }
+    
+    func resetTimer() {
+        <#code#>
+    }
     
 }
