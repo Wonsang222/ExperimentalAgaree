@@ -36,7 +36,7 @@ final class DefaultTimerService: TimerManager {
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     {
-        timer = nil             
+        timer = nil
         let innerTimer = setTimer(gameTime: gameSec, config: config, handlerQueue: handlerQueue, completion: completion)
         timer = innerTimer
         queue.asyncExecute {

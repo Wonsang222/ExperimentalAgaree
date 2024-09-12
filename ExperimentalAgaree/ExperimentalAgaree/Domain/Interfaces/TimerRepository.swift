@@ -15,8 +15,6 @@ protocol TimerRepository {
         gameInfo: Float,
         completion: @escaping (GameTimeInfo) -> Void 
     ) -> GameJudgeable?
-    
-    func stopTimer()
-    
+        
     func resetTimer()
 }

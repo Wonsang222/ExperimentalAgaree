@@ -19,13 +19,14 @@ final class DefaultTimerRepository: TimerRepository {
         gameInfo: Float,
         completion: @escaping (GameTimeInfo) -> Void
     ) -> GameJudgeable? {
-        <#code#>
+        
+        let gameTask = 
+        
+        timerService.startTimer(gameSec: gameInfo, handlerQueue: .main) { <#Float#> in
+            <#code#>
+        }
     }
-    
-    func stopTimer() {
-        <#code#>
-    }
-    
+
     func resetTimer() {
         <#code#>
     }

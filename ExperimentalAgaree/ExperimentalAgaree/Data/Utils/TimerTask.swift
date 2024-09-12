@@ -7,7 +7,14 @@
 
 import Foundation
 
-class TimerTask: GameJudgeable {
+final class TimerTask: GameJudgeable {
+    
+    var stack: Float = 0.0
+    let timer: TimerUsable
+    
+    init(timer: TimerUsable) {
+        self.timer = timer
+    }
     
     func right() {
         
