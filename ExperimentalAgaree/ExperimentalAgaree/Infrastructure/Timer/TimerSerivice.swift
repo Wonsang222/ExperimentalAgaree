@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TimerManager {
+    @discardableResult
     func startTimer(
         gameSec:Float,
         handlerQueue: DispatchQueue,
@@ -30,9 +31,10 @@ final class DefaultTimerService: TimerManager {
         self.config = config
     }
     
+    @discardableResult
     func startTimer(
         gameSec:Float,
-        handlerQueue: DispatchQueue = DispatchQueue.main,
+        handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     {

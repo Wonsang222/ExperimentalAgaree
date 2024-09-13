@@ -12,9 +12,9 @@ import Foundation
 protocol TimerRepository {
     
     func countGameTime(
-        gameInfo: Float,
-        completion: @escaping (GameTimeInfo) -> Void 
-    ) -> GameJudgeable?
+        gameTime: Float,
+        completion: @escaping (GameTimeInfo) -> Void
+    ) -> TimerUsable?
         
     func resetTimer()
 }

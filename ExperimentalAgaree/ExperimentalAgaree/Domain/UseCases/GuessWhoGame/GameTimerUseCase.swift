@@ -19,23 +19,16 @@ protocol GameTimerUseCase {
         ,completion: @escaping Completion
     ) -> GameJudgeable?
     
-    func resetTimer()
 }
 
 final class DefaultGameTimerUsecase: GameTimerUseCase {
     
-    private let timerService: 
+    private let timerService: TimerRepository
     
-    func startTimer(
-        gameTimerValue: GameTimerValue,
-        completion: @escaping Completion
-    ) -> GameJudgeable? {
-        
+    init(timerService: TimerRepository) {
+        self.timerService = timerService
     }
-    
-    func resetTimer() {
-        
-    }
+
     
     
 }

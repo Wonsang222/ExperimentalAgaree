@@ -9,15 +9,20 @@ import Foundation
 
 final class TimerTask: GameJudgeable {
     
-    var stack: Float = 0.0
-    let timer: TimerUsable
+    private var ticktock : Float = 0.0 {
+        didSet {
+            wrong()
+        }
+    }
+    private let timer: TimerUsable
     
     init(timer: TimerUsable) {
         self.timer = timer
     }
     
     func right() {
-        
+        timer.invalidate()
+        timer.fire()
     }
     
     func wrong() {

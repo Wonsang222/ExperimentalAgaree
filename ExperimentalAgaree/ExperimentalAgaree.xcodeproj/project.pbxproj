@@ -288,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				C1DFB2D62C8C10F000011058 /* Repositories */,
-				C1DFB2D12C8BC9B900011058 /* DataMapping */,
 				C1DFB2C82C85E57000011058 /* Network */,
 				C1DFB2C52C85E3E900011058 /* Utils */,
 			);
@@ -393,6 +392,7 @@
 			children = (
 				C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */,
 				C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */,
+				C1DFB2D12C8BC9B900011058 /* DataMapping */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";

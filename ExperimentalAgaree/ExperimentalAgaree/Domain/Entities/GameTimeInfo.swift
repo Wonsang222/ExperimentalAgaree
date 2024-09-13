@@ -8,6 +8,5 @@
 import Foundation
 
 struct GameTimeInfo {
-    let gameTime: Float
     let emit: Float
 }
