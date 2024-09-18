@@ -8,5 +8,13 @@
 import Foundation
 
 struct GameTimeInfo {
-    let emit: Float
+     var gameTime: Float
+    
+    init(gameTime: Float) {
+        self.gameTime = gameTime
+    }
+    
+    static func + (lhs: GameTimeInfo, rhs: GameTimeInfo) -> Self {
+        return .init(gameTime: lhs.gameTime + rhs.gameTime )
+    }
 }

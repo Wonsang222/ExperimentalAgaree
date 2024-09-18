@@ -34,9 +34,9 @@ final class DefaultGamesRepository: GamesRepository {
                                                        completion: { [executionQueue] result in
             switch result {
             case .success(let responseDTO):
-                let domain = responseDTO.toDomain()
+                let domainModel = responseDTO.toDomain()
                 executionQueue.asyncExecute {
-                    completion(.success(domain))
+                    completion(.success(domainModel))
                 }
             case .failure(let error):
                 executionQueue.asyncExecute {

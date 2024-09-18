@@ -8,9 +8,10 @@
 import Foundation
 
 protocol STTRepository {
-    func startRecognition(
-        completion: @escaping (SttModel) -> Void
-    )
     
-    func stop()
+    typealias Completion = (Result<SttModel, Error>) -> Void
+    
+    func startRecognition(
+        completion: @escaping Completion
+    ) -> Cancellable?
 }

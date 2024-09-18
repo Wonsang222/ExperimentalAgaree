@@ -30,7 +30,8 @@ protocol SpeechTaskUsable {
     func request(
         on queue: DataTransferDispatchQueue,
         completion: @escaping Completion
-    )
+    ) -> SpeechTaskUsable?
+    
     func stop()
 }
 
@@ -71,7 +72,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
     func request(
                 on queue: any DataTransferDispatchQueue,
                 completion: @escaping Completion
-    ) {
+    ) -> SpeechTaskUsable? {
         
         do {
             setRequest()
@@ -79,7 +80,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
             
             guard let recognitionRequest = recognitionRequest else {
                 completion(.failure(.system))
-                return
+                return nil
             }
             
             self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest,
@@ -105,6 +106,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
         } catch {
             completion(.failure(.generateRecognizer))
         }
+        return self
     }
     
     func stop() {

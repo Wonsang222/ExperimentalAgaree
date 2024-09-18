@@ -8,18 +8,6 @@
 import Foundation
 import AVFoundation
 
-
-
-/// audio engine
-/// 1. inputNode install ^ completion
-/// 2. inputNode output format
-/// 3. stop + remove tap
-///
-/// 4.  prepare()
-/// 5. start() ^ throws
-///
-
-
 protocol AgareeAudio {
     func start() throws
 }
