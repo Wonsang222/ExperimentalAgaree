@@ -8,7 +8,8 @@
 import Foundation
 
 protocol STTUseCase: GameUseCase {
-    func startRecognition(target: GameModel)
+    typealias Completion = (Result<Void, Error>) -> Void
+    func startRecognition(completion: @escaping Completion) -> Cancellable?
 }
 
 final class DefaultSTTUseCase: STTUseCase {
@@ -16,51 +17,51 @@ final class DefaultSTTUseCase: STTUseCase {
     private var sttStack: SttModel = SttModel(word: "")
     private let sttService: STTRepository
     
-    private let rightCompletion: (() -> Void)?
-    private let wrongCompletion: (() -> Void)?
-    private let judgeCompletion: (() -> Bool)?
+    private let rightBlock: (() -> Void)?
+    private let wrongBlock: (() -> Void)?
+    private let judgeBlock: (() -> Bool)?
     
     init(sttService: STTRepository,
-         rightCompletion: (() -> Void)?,
-         wrongCompletion: (() -> Void)?,
-         judgeCompletion: (() -> Bool)?
+         rightBlock: (() -> Void)? = nil,
+         wrongBlock: (() -> Void)? = nil,
+         judgeBlock: (() -> Bool)? = nil
     ) {
         self.sttService = sttService
-        self.rightCompletion = rightCompletion
-        self.wrongCompletion = wrongCompletion
-        self.judgeCompletion = judgeCompletion
+        self.rightBlock = rightBlock
+        self.wrongBlock = wrongBlock
+        self.judgeBlock = judgeBlock
     }
     
-    func startRecognition(target: GameModel) {
-        let task = sttService.startRecognition { [weak self] result in
+    func startRecognition(completion: @escaping Completion) -> Cancellable? {
+        sttService.startRecognition { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let sttModel):
-                sttStack = sttStack + sttModel
-                if judge() {
-                    
+                self.sttStack = self.sttStack + sttModel
+                if self.judge() {
+                    self.right()
                 }
             case .failure(let sttError):
-                print(123)
+                completion(.failure(sttError))
             }
         }
     }
     
     func right() {
-        rightCompletion?()
+        resetSttModel()
+        rightBlock?()
     }
     
     func wrong() {
-        wrongCompletion?()
+        wrongBlock?()
     }
     
     func judge() -> Bool {
-        guard let judgeCompletion = judgeCompletion else { return false }
+        guard let judgeBlock = judgeBlock else { return false }
         
-        if judgeCompletion() {
+        if judgeBlock() {
             return true
         }
-        
         return false
     }
     

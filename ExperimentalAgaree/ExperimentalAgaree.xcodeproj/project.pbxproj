@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
 		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
 		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
 		7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
 		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
 		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */,
 				7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */,
 				C1DFB2E62C966E9600011058 /* STTUseCase.swift */,
+				7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */,
 			);
 			path = GuessWhoGame;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */,
 				C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */,
+				7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */,
 				C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */,
 				C1DFB2F22C997D1200011058 /* SttTask.swift in Sources */,
 				C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */,
