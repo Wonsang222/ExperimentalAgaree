@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GameJudge<T,Bool> {
+enum GameJudge <T> {
     case data(T)
-    case judge(Bool)
+    case wrong
 }

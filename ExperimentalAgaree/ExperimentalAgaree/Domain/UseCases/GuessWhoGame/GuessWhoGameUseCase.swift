@@ -11,17 +11,23 @@ import Foundation
 // gameStart
 
 protocol CommonGameUseCase: GameUseCase {
-    func fetch()
-    func start()
     
+    typealias FetchCompletion = (Result<Void, Error>) -> Void
+    
+    func fetch(requestValue: FetchGameModelUseCaseRequestValue,
+               completion: @escaping FetchCompletion) -> Cancellable?
+    func start()
+    func end()
 }
 
 final class GuessWhoGameUseCase: CommonGameUseCase {
     
     private let fetchUseCase: FetchGameModelUseCase
-    private let timerUseCase: GameTimerUseCase
+    private let timerUseCase: TimerUsecase
     private let sttUseCase: STTUseCase
     
+    private var gameModels: GameModelList?
+    private var currentTargetModel: GameModel?
     // fetch model List
     // ready?
     // go!
@@ -31,7 +37,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     
     init(
         fetchUseCase: FetchGameModelUseCase,
-        timerUseCase: GameTimerUseCase,
+        timerUseCase: TimerUsecase,
         sttUseCase: STTUseCase
     ) {
         self.fetchUseCase = fetchUseCase
@@ -39,7 +45,30 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.sttUseCase = sttUseCase
     }
     
-    func fetch() {
+    func fetch(
+        requestValue: FetchGameModelUseCaseRequestValue,
+        completion: @escaping FetchCompletion
+    ) -> Cancellable? {
+        let fetchTask = fetchUseCase.fetch(requestValue: requestValue) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let modelList):
+                self.gameModels = modelList
+                completion(.success(()))
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
+        return fetchTask
+    }
+    
+    func startTimer(gameTimerValue: GameTimerValue) {
+        let timerTask = timerUseCase.startTimer(gameTimerValue: gameTimerValue) { <#GameJudge<GameTimeInfo>#> in
+            <#code#>
+        }
+    }
+    
+    func startRecognizer() {
         
     }
     
@@ -57,5 +86,9 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     
     func judge() -> Bool {
         return true
+    }
+    
+    func end() {
+        
     }
 }

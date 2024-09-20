@@ -11,29 +11,25 @@ struct GameTimerValue {
     let gameTime: Float
 }
 
+protocol TimerUsecase {
+    
+    typealias Completion = (GameJudge<GameTimeInfo>) -> Void
+    func startTimer(gameTimerValue: GameTimerValue,
+                    completion: @escaping Completion
+    ) -> TimerUsable?
+}
+
 protocol GameUseCase {
     func right()
     func wrong()
     func judge() -> Bool
 }
 
-protocol GameTimerUseCase: GameUseCase {
-    typealias Completion = (GameTimeInfo) -> Void
-    
-    func startTimer(
-        gameTimerValue: GameTimerValue
-        ,completion: @escaping Completion
-    ) -> TimerUsable?
-}
-
-final class DefaultGameTimerUsecase: GameTimerUseCase {
+final class DefaultGameTimerUsecase: TimerUsecase {
     
     private var currentTimer: GameTimeInfo
     private let timerService: TimerRepository
-    
-    private var rightCompletion: (() -> Void)?
-    private var wrongCompletion: (() -> Void)?
-    
+
     init(timerService: TimerRepository, currentTimer: GameTimeInfo) {
         self.timerService = timerService
         self.currentTimer = currentTimer
@@ -46,22 +42,15 @@ final class DefaultGameTimerUsecase: GameTimerUseCase {
             guard let strongSelf = self else  { return }
             strongSelf.currentTimer = strongSelf.currentTimer + timerInfo
             if strongSelf.judge() {
-                completion(timerInfo)
-                return
+                completion(.data(timerInfo))
+            } else {
+                completion(.wrong)
             }
-            strongSelf.wrong()
         }
     }
-    
-    func right() {
-        rightCompletion?()
-    }
-    
-    func wrong() {
-        wrongCompletion?()
-    }
-    
-    func judge() -> Bool {
+
+    private func judge() -> Bool {
+        // time out
         if currentTimer.gameTime >= 1.0 {
             return false
         }
