@@ -18,12 +18,14 @@ final class DefaultTimerRepository: TimerRepository {
     func countGameTime(
         gameTime: Float,
         completion: @escaping (GameTimeInfo) -> Void
-    ) -> TimerUsable? {
+    ) -> Cancellable? {
         
-        return timerService.startTimer(gameSec: gameTime,
+        let timerTask = TimerTask()
+        timerTask.task = timerService.startTimer(gameSec: gameTime,
                                        handlerQueue: .main) { second in
             let timerDomainModel = GameTimeInfo(gameTime: second)
             completion(timerDomainModel)
         }
+        return timerTask
     }
 }

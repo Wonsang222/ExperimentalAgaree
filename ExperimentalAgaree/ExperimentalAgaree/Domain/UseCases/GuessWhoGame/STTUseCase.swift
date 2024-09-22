@@ -8,8 +8,9 @@
 import Foundation
 
 protocol STTUseCase {
-    typealias Completion = (Result<Void, Error>) -> Void
-    func startRecognition(target: GameModel ,completion: @escaping Completion) -> Cancellable?
+    typealias Completion = (Result<GameJudge<Bool>, Error>) -> Void
+    func startRecognition(target: GameModel?,
+                          completion: @escaping Completion) -> Cancellable?
 }
 
 final class DefaultSTTUseCase: STTUseCase {
@@ -22,32 +23,34 @@ final class DefaultSTTUseCase: STTUseCase {
         self.sttService = sttService
     }
     
-    func startRecognition(target: GameModel,
+    func startRecognition(target: GameModel?,
                           completion: @escaping Completion
     ) -> Cancellable? {
         sttService.startRecognition { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let sttModel):
-                // target과 stt 일치할때
                 self.sttStack = self.sttStack + sttModel
-                if self.judge(by: target) {
-                    self.resetSttModel()
-                    completion(.success(()))
-                }
+                let result = judge(by: target)
+                completion(result)
             case .failure(let sttError):
                 completion(.failure(sttError))
             }
         }
     }
-
-    private func judge(by target: GameModel) -> Bool {
-        if sttStack.word.contains(target.name) {
-            return true
-        }
-        return false
-    }
     
+    private func judge(by target: GameModel?) -> Result<GameJudge<Bool>, Error> {
+        // game clear
+        guard let target = target else {
+            return .success(.data(true))
+        }
+        
+        // next model
+        if sttStack.word.contains(target.name) {
+            return .success(.data(false))
+        }
+    }
+
     private func resetSttModel() {
         sttStack = SttModel(word: "")
     }

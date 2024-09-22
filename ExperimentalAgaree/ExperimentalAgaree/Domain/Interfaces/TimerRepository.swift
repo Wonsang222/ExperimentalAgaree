@@ -12,5 +12,5 @@ protocol TimerRepository {
     func countGameTime(
         gameTime: Float,
         completion: @escaping (GameTimeInfo) -> Void
-    ) -> TimerUsable?
+    ) -> Cancellable?
 }

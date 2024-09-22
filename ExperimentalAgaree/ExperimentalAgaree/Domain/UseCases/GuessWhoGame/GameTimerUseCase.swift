@@ -12,11 +12,11 @@ struct GameTimerValue {
 }
 
 protocol TimerUsecase {
-    
     typealias Completion = (GameJudge<GameTimeInfo>) -> Void
+    
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping Completion
-    ) -> TimerUsable?
+    ) -> Cancellable?
 }
 
 protocol GameUseCase {
@@ -37,7 +37,7 @@ final class DefaultGameTimerUsecase: TimerUsecase {
     
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping Completion
-    ) -> (any TimerUsable)? {
+    ) -> Cancellable? {
         timerService.countGameTime(gameTime: gameTimerValue.gameTime) { [weak self] timerInfo in
             guard let strongSelf = self else  { return }
             strongSelf.currentTimer = strongSelf.currentTimer + timerInfo

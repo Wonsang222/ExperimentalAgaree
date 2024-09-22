@@ -52,6 +52,7 @@
 		C1DFB2EF2C96738E00011058 /* GameRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2EC2C96738E00011058 /* GameRequestDTO.swift */; };
 		C1DFB2F02C96738E00011058 /* GameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2ED2C96738E00011058 /* GameResponseDTO.swift */; };
 		C1DFB2F22C997D1200011058 /* SttTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2F12C997D1200011058 /* SttTask.swift */; };
+		C1EA0BD82C9DCF9500CA5CA4 /* TimerTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA0BD72C9DCF9500CA5CA4 /* TimerTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		C1DFB2EC2C96738E00011058 /* GameRequestDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRequestDTO.swift; sourceTree = "<group>"; };
 		C1DFB2ED2C96738E00011058 /* GameResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResponseDTO.swift; sourceTree = "<group>"; };
 		C1DFB2F12C997D1200011058 /* SttTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SttTask.swift; sourceTree = "<group>"; };
+		C1EA0BD72C9DCF9500CA5CA4 /* TimerTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 			children = (
 				C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */,
 				C1DFB2F12C997D1200011058 /* SttTask.swift */,
+				C1EA0BD72C9DCF9500CA5CA4 /* TimerTask.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,
 				C1DFB2E72C966E9600011058 /* STTUseCase.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
+				C1EA0BD82C9DCF9500CA5CA4 /* TimerTask.swift in Sources */,
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
 				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,

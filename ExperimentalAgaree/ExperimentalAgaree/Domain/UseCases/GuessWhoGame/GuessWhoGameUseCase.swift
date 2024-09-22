@@ -13,10 +13,15 @@ import Foundation
 protocol CommonGameUseCase: GameUseCase {
     
     typealias FetchCompletion = (Result<Void, Error>) -> Void
+    typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
+    typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
     
     func fetch(requestValue: FetchGameModelUseCaseRequestValue,
                completion: @escaping FetchCompletion) -> Cancellable?
-    func start()
+    func startTimer(gameTimerValue: GameTimerValue,
+                    completion: @escaping TimerCompletion) -> Cancellable?
+    func startRecognizer(completion: @escaping SttCompletion) -> Cancellable?
+    
     func end()
 }
 
@@ -49,7 +54,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping FetchCompletion
     ) -> Cancellable? {
-        let fetchTask = fetchUseCase.fetch(requestValue: requestValue) { [weak self] result in
+        fetchUseCase.fetch(requestValue: requestValue) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let modelList):
@@ -59,16 +64,45 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
                 completion(.failure(err))
             }
         }
-        return fetchTask
     }
     
-    func startTimer(gameTimerValue: GameTimerValue) {
-        let timerTask = timerUseCase.startTimer(gameTimerValue: gameTimerValue) { <#GameJudge<GameTimeInfo>#> in
-            <#code#>
+    func startTimer(gameTimerValue: GameTimerValue,
+                    completion: @escaping TimerCompletion
+    ) -> Cancellable? {
+        timerUseCase.startTimer(gameTimerValue: gameTimerValue) { gameJudge in
+            switch gameJudge {
+            case .data(let timeInfo):
+                completion(.data(timeInfo))
+            case .wrong:
+                completion(.wrong)
+            }
         }
     }
     
-    func startRecognizer() {
+    func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
+        
+        return sttUseCase.startRecognition(target: <#T##GameModel#>) { result in
+            switch result {
+            case .success(let gameJudge):
+                switch gameJudge {
+                case .data(let answer):
+                    if answer {
+                        print(123)
+                    } else {
+                        print(123)
+                    }
+                case .wrong:
+                    // game clear
+                    print(123)
+                }
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
+    }
+    
+    
+    private func setTargetModel() {
         
     }
     
