@@ -7,10 +7,7 @@
 
 import Foundation
 
-// fetch
-// gameStart
-
-protocol CommonGameUseCase: GameUseCase {
+protocol CommonGameUseCase {
     
     typealias FetchCompletion = (Result<Void, Error>) -> Void
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
@@ -21,8 +18,6 @@ protocol CommonGameUseCase: GameUseCase {
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping TimerCompletion) -> Cancellable?
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable?
-    
-    func end()
 }
 
 final class GuessWhoGameUseCase: CommonGameUseCase {
@@ -33,13 +28,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     
     private var gameModels: GameModelList?
     private var currentTargetModel: GameModel?
-    // fetch model List
-    // ready?
-    // go!
-    // right? -> next
-    // no next? -> clear
-    // timeOut -> fail
-    
+
     init(
         fetchUseCase: FetchGameModelUseCase,
         timerUseCase: TimerUsecase,
@@ -80,20 +69,20 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     }
     
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
-        
-        return sttUseCase.startRecognition(target: <#T##GameModel#>) { result in
+        let target = setTargetModel()
+        return sttUseCase.startRecognition(target: target) { [weak self] result in
             switch result {
             case .success(let gameJudge):
                 switch gameJudge {
-                case .data(let answer):
-                    if answer {
-                        print(123)
-                    } else {
-                        print(123)
+                case .data(let gameStatus):
+                    switch gameStatus {
+                    case .Clear:
+                        completion(.success(.data(true)))
+                    case .Right:
+                        self?.setTargetModel()
                     }
                 case .wrong:
-                    // game clear
-                    print(123)
+                    break
                 }
             case .failure(let err):
                 completion(.failure(err))
@@ -101,28 +90,9 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         }
     }
     
-    
-    private func setTargetModel() {
-        
-    }
-    
-    func start() {
-        
-    }
-    
-    func right() {
-        
-    }
-    
-    func wrong() {
-        
-    }
-    
-    func judge() -> Bool {
-        return true
-    }
-    
-    func end() {
-        
+    @discardableResult
+    private func setTargetModel() -> GameModel? {
+        self.currentTargetModel = gameModels?.last
+        return self.currentTargetModel
     }
 }

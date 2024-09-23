@@ -7,8 +7,13 @@
 
 import Foundation
 
+enum STTGameStatus {
+    case Right
+    case Clear
+}
+
 protocol STTUseCase {
-    typealias Completion = (Result<GameJudge<Bool>, Error>) -> Void
+    typealias Completion = (Result<GameJudge<STTGameStatus>, Error>) -> Void
     func startRecognition(target: GameModel?,
                           completion: @escaping Completion) -> Cancellable?
 }
@@ -39,16 +44,18 @@ final class DefaultSTTUseCase: STTUseCase {
         }
     }
     
-    private func judge(by target: GameModel?) -> Result<GameJudge<Bool>, Error> {
+    private func judge(by target: GameModel?) -> Result<GameJudge<STTGameStatus>, Error> {
         // game clear
         guard let target = target else {
-            return .success(.data(true))
+            return .success(.data(.Clear))
         }
         
         // next model
         if sttStack.word.contains(target.name) {
-            return .success(.data(false))
+            return .success(.data(.Right))
         }
+        
+        return .success(.wrong)
     }
 
     private func resetSttModel() {

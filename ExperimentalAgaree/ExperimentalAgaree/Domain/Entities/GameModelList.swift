@@ -18,10 +18,18 @@ final class GameModel {
     }
 }
 
-struct GameModelList {
-    let gameModels: [GameModel]
+final class GameModelList {
+    private var gameModels: [GameModel]
     
-    var first: GameModel? {
-        return gameModels.first
+    var last: GameModel? {
+        return gameModels.popLast()
+    }
+    
+    var models: [GameModel] {
+        return gameModels
+    }
+    
+    init(gameModels: [GameModel]) {
+        self.gameModels = gameModels
     }
 }
