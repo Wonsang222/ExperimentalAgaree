@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E19186C2CA232F2008986B9 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E19186B2CA232F2008986B9 /* GuessWhoViewModel.swift */; };
+		7E19186E2CA23950008986B9 /* GuessWhoTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E19186D2CA23950008986B9 /* GuessWhoTargetViewModel.swift */; };
 		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
 		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
 		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E19186B2CA232F2008986B9 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoViewModel.swift; sourceTree = "<group>"; };
+		7E19186D2CA23950008986B9 /* GuessWhoTargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoTargetViewModel.swift; sourceTree = "<group>"; };
 		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
 		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
 		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
@@ -136,6 +140,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E1918662CA2328C008986B9 /* GameScenes */ = {
+			isa = PBXGroup;
+			children = (
+				7E1918682CA232AB008986B9 /* GuessWho */,
+			);
+			path = GameScenes;
+			sourceTree = "<group>";
+		};
+		7E1918672CA232A5008986B9 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		7E1918682CA232AB008986B9 /* GuessWho */ = {
+			isa = PBXGroup;
+			children = (
+				7E19186A2CA232D4008986B9 /* View */,
+				7E1918692CA232CA008986B9 /* ViewModel */,
+			);
+			path = GuessWho;
+			sourceTree = "<group>";
+		};
+		7E1918692CA232CA008986B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7E19186A2CA232D4008986B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E19186B2CA232F2008986B9 /* GuessWhoViewModel.swift */,
+				7E19186D2CA23950008986B9 /* GuessWhoTargetViewModel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7E41A1BC2C8E6BC1006060A3 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +209,8 @@
 		7E7B165A2C7D40E800632CBB /* Prentation */ = {
 			isa = PBXGroup;
 			children = (
+				7E1918672CA232A5008986B9 /* Flows */,
+				7E1918662CA2328C008986B9 /* GameScenes */,
 				7E7B16652C7D4E2700632CBB /* Extensions */,
 				7E7B16602C7D4AF200632CBB /* Protocols */,
 				7E7B165B2C7D410200632CBB /* Utils */,
@@ -528,6 +574,7 @@
 				C1DFB2EF2C96738E00011058 /* GameRequestDTO.swift in Sources */,
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
+				7E19186C2CA232F2008986B9 /* GuessWhoViewModel.swift in Sources */,
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
@@ -555,6 +602,7 @@
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */,
+				7E19186E2CA23950008986B9 /* GuessWhoTargetViewModel.swift in Sources */,
 				C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */,
 				7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */,
 				C1DFB2C72C85E3F300011058 /* RepositoryTask.swift in Sources */,
