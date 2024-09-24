@@ -14,6 +14,8 @@ protocol GuessWhoViewModelInput {
 
 protocol GuessWhoViewModelOutput {
     var models: Observable<[GuessWhoTargetViewModel]> { get }
+    var target: Observable<GuessWhoTargetViewModel> { get }
+    
 }
 
 enum GuessWhoViewModelStatus {
@@ -26,7 +28,7 @@ enum GuessWhoViewModelStatus {
 
 struct GuessWhoViewModelAction {
     let showGameResult: (Bool) -> Void
-    
+    let errorHandler: () -> Void
 }
 
 typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput
@@ -34,6 +36,7 @@ typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput
 final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     private let guessWhoUseCase: GuessWhoGameUseCase
+    private let actions: GuessWhoViewModelAction
     private let mainQueue: DispatchQueue
     
     private let fetchGameTask: Cancellable?
@@ -41,5 +44,8 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     private let timerGameTask: Cancellable?
     
     
+    private func handleError(_ error: Error) {
+        
+    }
     
 }
