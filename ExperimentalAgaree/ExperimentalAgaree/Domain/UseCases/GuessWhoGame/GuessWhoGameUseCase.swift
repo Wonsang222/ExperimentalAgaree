@@ -39,6 +39,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.sttUseCase = sttUseCase
     }
     
+    // 중간에 에러나는지 확인학
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping FetchCompletion

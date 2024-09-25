@@ -5,7 +5,7 @@
 //  Created by 황원상 on 9/24/24.
 //
 
-import UIKit.UIImage
+import UIKit
 
 struct GuessWhoTargetViewModel {
     let photo: UIImage
