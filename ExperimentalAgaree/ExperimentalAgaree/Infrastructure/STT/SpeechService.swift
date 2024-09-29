@@ -16,6 +16,17 @@ enum SpeechError: Error {
     case system
 }
 
+extension SpeechError {
+    var description: String {
+        switch self {
+        case .generateAudioEngine:
+            return "오디오 엔진 에러입니다."
+        default:
+            return "오디오 엔진 에러입니다."
+        }
+    }
+}
+
 protocol SttConfigurable {
     var id: String { get }
 }

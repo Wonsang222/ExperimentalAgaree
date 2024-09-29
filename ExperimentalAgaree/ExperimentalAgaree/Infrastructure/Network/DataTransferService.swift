@@ -14,6 +14,12 @@ enum DatatransferError: Error {
     case resolvedNetworkFailure(Error)
 }
 
+extension DatatransferError {
+    var description: String {
+        return "데이터 에러입니다."
+    }
+}
+
 protocol DataTransferDispatchQueue {
     func asyncExecute(work: @escaping () -> Void)
 }

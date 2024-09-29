@@ -19,12 +19,6 @@ protocol TimerUsecase {
     ) -> Cancellable?
 }
 
-protocol GameUseCase {
-    func right()
-    func wrong()
-    func judge() -> Bool
-}
-
 final class DefaultGameTimerUsecase: TimerUsecase {
     
     private var currentTimer: GameTimeInfo

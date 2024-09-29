@@ -25,11 +25,15 @@ final class Observable<T> {
         observers = observers.filter { $0.target !== observer.target }
     }
     
+    func getValue() -> T {
+        return value
+    }
+    
     func setValue(_ newValue: T) {
         value = newValue
         onChange()
     }
-    
+
     private func onChange() {
         observers.forEach { $0.block(value) }
     }

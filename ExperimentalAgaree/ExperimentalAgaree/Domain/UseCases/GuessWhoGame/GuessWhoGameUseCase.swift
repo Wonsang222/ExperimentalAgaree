@@ -13,6 +13,8 @@ protocol CommonGameUseCase {
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
     typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
     
+    var targetModel: Observable<GameModel?> { get }
+    
     func fetch(requestValue: FetchGameModelUseCaseRequestValue,
                completion: @escaping FetchCompletion) -> Cancellable?
     func startTimer(gameTimerValue: GameTimerValue,
@@ -27,7 +29,8 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     private let sttUseCase: STTUseCase
     
     private var gameModels: GameModelList?
-    private var currentTargetModel: GameModel?
+
+    var targetModel: Observable<GameModel?> = Observable(value: nil)
 
     init(
         fetchUseCase: FetchGameModelUseCase,
@@ -49,6 +52,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             switch result {
             case .success(let modelList):
                 self.gameModels = modelList
+                targetModel.setValue(gameModels?.last)
                 completion(.success(()))
             case .failure(let err):
                 completion(.failure(err))
@@ -70,8 +74,9 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     }
     
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
-        let target = setTargetModel()
-        return sttUseCase.startRecognition(target: target) { [weak self] result in
+                
+        return sttUseCase.startRecognition(target: targetModel.getValue()) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let gameJudge):
                 switch gameJudge {
@@ -80,7 +85,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
                     case .Clear:
                         completion(.success(.data(true)))
                     case .Right:
-                        self?.setTargetModel()
+                        self.setTargetModel()
                     }
                 case .wrong:
                     break
@@ -91,9 +96,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         }
     }
     
-    @discardableResult
-    private func setTargetModel() -> GameModel? {
-        self.currentTargetModel = gameModels?.last
-        return self.currentTargetModel
+    private func setTargetModel() {
+        targetModel.setValue(gameModels?.last)
     }
 }

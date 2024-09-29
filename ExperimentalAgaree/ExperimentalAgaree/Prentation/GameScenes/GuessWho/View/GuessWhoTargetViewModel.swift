@@ -8,6 +8,6 @@
 import UIKit
 
 struct GuessWhoTargetViewModel {
-    let photo: UIImage
+    var photo: UIImage?
 }
 
