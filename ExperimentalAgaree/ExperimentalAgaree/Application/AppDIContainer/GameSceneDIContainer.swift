@@ -21,6 +21,8 @@ final class GameSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    
+    func start() {
+        
+    }
     
 }

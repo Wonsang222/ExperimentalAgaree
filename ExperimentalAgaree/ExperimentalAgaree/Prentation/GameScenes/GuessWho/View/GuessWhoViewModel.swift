@@ -137,12 +137,13 @@ extension DefaultGuessWhoViewModel {
     //MARK: - Input
     
     func viewDidLoad() {
-        fetchGameModelList(targets: <#T##FetchGameModelUseCaseRequestValue#>)
+        
     }
     
-    func playAnimation(animation: @escaping (_ completion: @escaping () -> Void) -> Void) {
+    func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void) {
+        fetchGameModelList(targets: <#T##FetchGameModelUseCaseRequestValue#>)
         guessWhoStatus.setValue(.animation)
-        animation(viewDidLoad)
+        block(viewDidLoad)
     }
     
     func viewWillDisappear() {
