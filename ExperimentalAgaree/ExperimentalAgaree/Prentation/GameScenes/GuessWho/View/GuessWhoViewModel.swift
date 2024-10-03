@@ -8,7 +8,6 @@
 import Foundation
 
 protocol GuessWhoViewModelInput {
-    func viewDidLoad()
     func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void)
     func viewWillDisappear() // 리소스 정리
 }
@@ -42,6 +41,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     private let guessWhoUseCase: GuessWhoGameUseCase
     private let actions: GuessWhoViewModelAction
     private let mainQueue: DispatchQueue
+    private let fetchData: FetchGameModelUseCaseRequestValue
     
     private var fetchGameTask: Cancellable?
     private var sttGameTask: Cancellable?
@@ -56,12 +56,14 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     init(
         guessWhoUseCase: GuessWhoGameUseCase,
-        actions: GuessWhoViewModelAction,
-        mainQueue: DispatchQueue = DispatchQueue.main
+         actions: GuessWhoViewModelAction,
+        mainQueue: DispatchQueue = .main,
+        fetchData: FetchGameModelUseCaseRequestValue
     ) {
         self.guessWhoUseCase = guessWhoUseCase
         self.actions = actions
         self.mainQueue = mainQueue
+        self.fetchData = fetchData
     }
     
     private func handleError(_ error: Error) {
@@ -130,20 +132,27 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
             }
         })
     }
+    
+    
+    // 타이머밸류로 wrapping
+    private func gameStart() {
+        if guessWhoStatus.getValue() != .ready {
+            error.setValue("예상하지 못한 에러입니다.")
+            return
+        }
+        startTimer(timerValue: fetchData.gameInfo.gameTime)
+        startRecognizer()
+    }
 }
 
 extension DefaultGuessWhoViewModel {
 
     //MARK: - Input
-    
-    func viewDidLoad() {
-        
-    }
-    
+
     func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void) {
-        fetchGameModelList(targets: <#T##FetchGameModelUseCaseRequestValue#>)
+        fetchGameModelList(targets: fetchData)
         guessWhoStatus.setValue(.animation)
-        block(viewDidLoad)
+        block(gameStart)
     }
     
     func viewWillDisappear() {

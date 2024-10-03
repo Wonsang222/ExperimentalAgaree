@@ -19,6 +19,7 @@ final class AppFlowCoordinator {
     }
     
     func start() {
-        let gameSceneDIContainer = appDIContainer
+        let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
+        let flow = gameSceneDIContainer.
     }
 }

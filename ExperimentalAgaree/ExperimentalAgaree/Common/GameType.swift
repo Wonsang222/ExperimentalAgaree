@@ -7,16 +7,19 @@
 
 import Foundation
 
-class GameInfo {
+final class GameInfo {
     let gamePath: GameType
     let numberOfPlayers: UInt8
+    let gameTime: GameTimerValue
     
     init(
         gamePath: GameType,
-        numberOfPlayers: UInt8
+        numberOfPlayers: UInt8,
+        gameTime: GameTimerValue = GameTimerValue(gameTime: 5.0)
     ) {
         self.gamePath = gamePath
         self.numberOfPlayers = numberOfPlayers
+        self.gameTime = gameTime
     }
 }
 
