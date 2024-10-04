@@ -12,6 +12,9 @@
 		7E2C169C2CAA1EF500A96250 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */; };
 		7E2C169E2CAA273E00A96250 /* GameSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */; };
 		7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */; };
+		7E2D62F92CAF6042001619F0 /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D62F82CAF6042001619F0 /* ResultController.swift */; };
+		7E2D62FD2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */; };
+		7E2D63032CAF748D001619F0 /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D63022CAF748D001619F0 /* PreGameController.swift */; };
 		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
 		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
 		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
@@ -78,6 +81,9 @@
 		7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDIContainer.swift; sourceTree = "<group>"; };
 		7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowCoordinator.swift; sourceTree = "<group>"; };
+		7E2D62F82CAF6042001619F0 /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
+		7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + UpdateLabelFontSize.swift"; sourceTree = "<group>"; };
+		7E2D63022CAF748D001619F0 /* PreGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameController.swift; sourceTree = "<group>"; };
 		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
 		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
 		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
@@ -152,8 +158,10 @@
 		7E1918662CA2328C008986B9 /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
+				7E2D62F62CAF5C50001619F0 /* Flow */,
+				7E2D62FE2CAF6B66001619F0 /* GameSelection */,
 				7E1918682CA232AB008986B9 /* GuessWho */,
-				7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */,
+				7E2D62F72CAF6031001619F0 /* GameResult */,
 			);
 			path = GameScenes;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 		7E1918682CA232AB008986B9 /* GuessWho */ = {
 			isa = PBXGroup;
 			children = (
+				7E2D63012CAF6C52001619F0 /* ViewModel */,
 				7E19186A2CA232D4008986B9 /* View */,
 			);
 			path = GuessWho;
@@ -169,8 +178,6 @@
 		7E19186A2CA232D4008986B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C1EA0BEA2CA43C7400CA5CA4 /* GuessWhoTargetViewModel.swift */,
-				C1EA0BEB2CA43C7400CA5CA4 /* GuessWhoViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +189,71 @@
 				7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */,
 			);
 			path = AppDIContainer;
+			sourceTree = "<group>";
+		};
+		7E2D62F62CAF5C50001619F0 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		7E2D62F72CAF6031001619F0 /* GameResult */ = {
+			isa = PBXGroup;
+			children = (
+				7E2D62FB2CAF6057001619F0 /* ViewModel */,
+				7E2D62FA2CAF6053001619F0 /* View */,
+			);
+			path = GameResult;
+			sourceTree = "<group>";
+		};
+		7E2D62FA2CAF6053001619F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E2D62F82CAF6042001619F0 /* ResultController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E2D62FB2CAF6057001619F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7E2D62FE2CAF6B66001619F0 /* GameSelection */ = {
+			isa = PBXGroup;
+			children = (
+				7E2D63002CAF6C46001619F0 /* ViewModel */,
+				7E2D62FF2CAF6C41001619F0 /* View */,
+			);
+			path = GameSelection;
+			sourceTree = "<group>";
+		};
+		7E2D62FF2CAF6C41001619F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E2D63022CAF748D001619F0 /* PreGameController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E2D63002CAF6C46001619F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7E2D63012CAF6C52001619F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1EA0BEA2CA43C7400CA5CA4 /* GuessWhoTargetViewModel.swift */,
+				C1EA0BEB2CA43C7400CA5CA4 /* GuessWhoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7E41A1BC2C8E6BC1006060A3 /* Infrastructure */ = {
@@ -243,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */,
+				7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -584,17 +657,20 @@
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
 				7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
+				7E2D63032CAF748D001619F0 /* PreGameController.swift in Sources */,
 				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,
 				C1DFB2E92C96734600011058 /* DefaultSTTRepository.swift in Sources */,
 				7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */,
 				C1C692E02C7A0A0B00EF0C45 /* GameModelList.swift in Sources */,
 				7E2C169E2CAA273E00A96250 /* GameSceneDIContainer.swift in Sources */,
+				7E2D62F92CAF6042001619F0 /* ResultController.swift in Sources */,
 				C1DFB2F02C96738E00011058 /* GameResponseDTO.swift in Sources */,
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				C1EA0BEC2CA43C7400CA5CA4 /* GuessWhoViewModel.swift in Sources */,
 				C1EA0BED2CA43C7400CA5CA4 /* GuessWhoTargetViewModel.swift in Sources */,
 				C1DFB2D82C8C138400011058 /* DefaultGamesRepository.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
+				7E2D62FD2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift in Sources */,
 				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				7E2C16992CAA1E5F00A96250 /* AppFlowCoordinator.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
