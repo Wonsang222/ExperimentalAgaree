@@ -12,14 +12,17 @@ final class AppFlowCoordinator {
     var navigationController: UINavigationController
     private let appDIContainer: AppDIContainer
     
-    init(navigationController: UINavigationController,
-         appDIContainer: AppDIContainer) {
+    init(
+        navigationController: UINavigationController,
+         appDIContainer: AppDIContainer
+    ) {
         self.navigationController = navigationController
         self.appDIContainer = appDIContainer
     }
     
     func start() {
         let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
-        let flow = gameSceneDIContainer.
+      
+        
     }
 }

@@ -29,9 +29,6 @@ enum GuessWhoViewModelStatus {
 
 struct GuessWhoViewModelAction {
     let showGameResult: (Bool) -> Void
-    let errorHandler: () -> Void
-    let startTimer: (GameTimerValue) -> Void
-    let fetchGameModelListAction: (FetchGameModelUseCaseRequestValue) -> Void
 }
 
 typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput

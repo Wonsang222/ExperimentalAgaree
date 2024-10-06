@@ -21,8 +21,47 @@ final class GameSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    func makeGameSceneDIContainer(navigation: UINavigationController) -> GameFlowCoordinator {
-        GameFlowCoordinator(navigationController: navigation)
+    //MARK: - VC
+    
+#warning("수정")
+    func makeGuessWhoVC(gamereqInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) {
+        
     }
     
+    //MARK: - ViewModel
+    private func makeGuessWhoViewModel(gameReqInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) -> GuessWhoViewModel {
+        return DefaultGuessWhoViewModel(guessWhoUseCase: makeGuessWhoUseCase(), actions: actions, fetchData: gameReqInfo)
+    }
+    
+    //MARK: - USECASE
+    
+    private func makeGuessWhoUseCase() -> GuessWhoGameUseCase {
+        return GuessWhoGameUseCase(fetchUseCase: makeFetchUseCase(), timerUseCase: makeTimerUseCase(), sttUseCase: makeSTTUseCase())
+    }
+    
+    private func makeFetchUseCase() -> FetchGameModelUseCase {
+        return DefaultFetchGameModelUseCase(gameRespository: makeGameRepository())
+    }
+    
+    private func makeTimerUseCase() -> TimerUsecase {        
+        return DefaultGameTimerUsecase(timerService: makeTimerRepository())
+    }
+    
+    private func makeSTTUseCase() -> STTUseCase {
+        return DefaultSTTUseCase(sttService: makeSTTRepository())
+    }
+    
+    //MARK: - Repository
+    
+    private func makeGameRepository() -> GamesRepository {
+        return DefaultGamesRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    private func makeSTTRepository() -> STTRepository {
+        return DefaultSTTRepository(sttService: dependencies.sttService)
+    }
+    
+    private func makeTimerRepository() -> TimerRepository {
+        return DefaultTimerRepository(timerService: dependencies.timerService)
+    }
 }

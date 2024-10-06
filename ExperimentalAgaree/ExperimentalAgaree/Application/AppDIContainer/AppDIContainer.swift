@@ -25,7 +25,7 @@ final class AppDIContainer {
         return DefaultTimerService(config: config)
     }()
     
-    lazy var sttService: SpeechTaskUsable  = {
+    lazy var sttService: SpeechTaskUsable = {
         let audioConfig = DefaultAudioSessionConfiguration(category: .record, mode: .measurement)
         let audioService = AudioEngineManager(audioSessionConfig: audioConfig)
         let sttConfig = SttConfiguration(id: "ko-KR")

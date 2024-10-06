@@ -14,7 +14,7 @@ final class DefaultGamesRepository: GamesRepository {
     
     init(
         dataTransferService: DataTransferService,
-        executionQueue: DataTransferDispatchQueue
+        executionQueue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated)
     ) {
         self.dataTransferService = dataTransferService
         self.executionQueue = executionQueue

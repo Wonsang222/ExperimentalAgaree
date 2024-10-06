@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GameFlowCoordinatorDependencies {
-    func makeGameSelectionViewController() -> UIViewController
+    func makeGameSelectionViewController() -> PreGameController
     func makeGuessWhoGameViewController(action: GuessWhoViewModelAction) -> UIViewController
     func makeResultController(result: Bool) -> ResultController
     func goBackToRootVC()
@@ -31,13 +31,11 @@ final class GameFlowCoordinator {
     
     func start() {
         
+        
     }
     
     
     private func showResult(result: Bool) {
-        
-        // action goBackTorootVC 주입
-        
         let vc = dependencies.makeResultController(result: result)
         resultVC = vc
         navigationController?.pushViewController(resultVC!, animated: true)
@@ -45,5 +43,9 @@ final class GameFlowCoordinator {
     
     private func goBackToRootVC() {
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    private func goPlayGame(gameInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) -> GuessWhoController {
+        
     }
 }

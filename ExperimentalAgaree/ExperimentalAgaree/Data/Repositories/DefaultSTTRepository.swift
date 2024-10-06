@@ -13,7 +13,7 @@ final class DefaultSTTRepository: STTRepository {
     private let executionQueue: DataTransferDispatchQueue
     
     init(sttService: SpeechTaskUsable,
-         executionQueue: DataTransferDispatchQueue
+         executionQueue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated)
     ) {
         self.sttService = sttService
         self.executionQueue = executionQueue

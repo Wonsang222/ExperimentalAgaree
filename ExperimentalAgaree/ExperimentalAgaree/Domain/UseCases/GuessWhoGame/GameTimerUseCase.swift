@@ -21,12 +21,11 @@ protocol TimerUsecase {
 
 final class DefaultGameTimerUsecase: TimerUsecase {
     
-    private var currentTimer: GameTimeInfo
+    private var currentTimer: GameTimeInfo = GameTimeInfo(gameTime: 0.0)
     private let timerService: TimerRepository
 
-    init(timerService: TimerRepository, currentTimer: GameTimeInfo) {
+    init(timerService: TimerRepository) {
         self.timerService = timerService
-        self.currentTimer = currentTimer
     }
     
     func startTimer(gameTimerValue: GameTimerValue,

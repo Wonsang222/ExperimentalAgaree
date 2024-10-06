@@ -40,6 +40,8 @@
 		7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
 		7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */; };
+		C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA742CB2737C0081CB10 /* PreGameView.swift */; };
+		C178BA772CB2743D0081CB10 /* UILabel + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */; };
 		C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */; };
 		C1C692E02C7A0A0B00EF0C45 /* GameModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */; };
 		C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */; };
@@ -114,6 +116,8 @@
 		7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
+		C178BA742CB2737C0081CB10 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
+		C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + UIButton.swift"; sourceTree = "<group>"; };
 		C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRepository.swift; sourceTree = "<group>"; };
 		C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModelList.swift; sourceTree = "<group>"; };
 		C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 			children = (
 				7E2D63022CAF748D001619F0 /* PreGameController.swift */,
 				7E2D630A2CAFAEF7001619F0 /* HowToPlayView.swift */,
+				C178BA742CB2737C0081CB10 /* PreGameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			children = (
 				7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */,
 				7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */,
+				C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 			files = (
 				7E2C169C2CAA1EF500A96250 /* AppDIContainer.swift in Sources */,
 				7E2D630D2CAFAFD2001619F0 /* GuessWhoController.swift in Sources */,
+				C178BA772CB2743D0081CB10 /* UILabel + UIButton.swift in Sources */,
 				C1DFB2EF2C96738E00011058 /* GameRequestDTO.swift in Sources */,
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
@@ -690,6 +697,7 @@
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,
+				C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */,
 				C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */,
 				C1DFB2C22C85DCE300011058 /* GameTimeInfo.swift in Sources */,
 				C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */,
