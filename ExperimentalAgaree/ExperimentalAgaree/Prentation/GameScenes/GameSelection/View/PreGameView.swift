@@ -59,7 +59,7 @@ final class PreGameView:BaseView{
         return button
     }()
     
-    private func configureTitle(){
+    private func configureTitle() {
         addSubview(labelContainerView)
         
         NSLayoutConstraint.activate([
@@ -70,7 +70,7 @@ final class PreGameView:BaseView{
         ])
     }
     
-    private func configureSeg(){
+    private func configureSeg() {
         addSubview(segment)
         NSLayoutConstraint.activate([
             segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -79,7 +79,7 @@ final class PreGameView:BaseView{
         ])
     }
     
-    private func configureLabel(){
+    private func configureLabel() {
         addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
             howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
@@ -88,7 +88,6 @@ final class PreGameView:BaseView{
     }
     
     override func layoutSubviews() {
-        // 버튼 set up
         super.layoutSubviews()
         addSubview(playButton)
         let height = frame.maxX * 0.3

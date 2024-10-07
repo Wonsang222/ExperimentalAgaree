@@ -23,15 +23,15 @@ final class PreGameController:BaseController{
     
     private let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
-    private var howToPlayView:HowToPlayBaseView?
+    private var howToPlayView:HowToPlayBaseView!
     
     //MARK: - NaviRoot
     
-    override var prefersStatusBarHidden: Bool{
+    override var prefersStatusBarHidden: Bool {
         return false
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
@@ -41,7 +41,6 @@ final class PreGameController:BaseController{
         preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         //        configureTempCache()
         configureNaviBar()
-        howToPlayView = configureHowToPlay()
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
         howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
     }
@@ -83,8 +82,6 @@ final class PreGameController:BaseController{
         navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
 
-    
-    // 여기서 테스트 해봐야함 se 사이즈
     func configureView(){
         view.addSubview(preGameView)
         NSLayoutConstraint.activate([

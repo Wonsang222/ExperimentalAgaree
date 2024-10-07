@@ -19,6 +19,10 @@
 		7E2D630D2CAFAFD2001619F0 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */; };
 		7E2D630F2CAFB013001619F0 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */; };
 		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
+		7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AF9E2CB3523500317604 /* GameNavigationController.swift */; };
+		7E40AFA22CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */; };
+		7E40AFA42CB35AF700317604 /* GameSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA32CB35AF700317604 /* GameSelectionViewModel.swift */; };
+		7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA62CB35E1A00317604 /* GameSelectionUseCase.swift */; };
 		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
 		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
 		7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */; };
@@ -93,6 +97,10 @@
 		7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
+		7E40AF9E2CB3523500317604 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
+		7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackButtonNavigationBarBehavior.swift; sourceTree = "<group>"; };
+		7E40AFA32CB35AF700317604 /* GameSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionViewModel.swift; sourceTree = "<group>"; };
+		7E40AFA62CB35E1A00317604 /* GameSelectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionUseCase.swift; sourceTree = "<group>"; };
 		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
 		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */,
+				7E40AF9E2CB3523500317604 /* GameNavigationController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -257,6 +266,7 @@
 		7E2D63002CAF6C46001619F0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7E40AFA32CB35AF700317604 /* GameSelectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -268,6 +278,33 @@
 				C1EA0BEB2CA43C7400CA5CA4 /* GuessWhoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7E40AFA02CB358E900317604 /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */,
+			);
+			path = Behaviors;
+			sourceTree = "<group>";
+		};
+		7E40AFA52CB35E0B00317604 /* GameSelection */ = {
+			isa = PBXGroup;
+			children = (
+				7E40AFA62CB35E1A00317604 /* GameSelectionUseCase.swift */,
+			);
+			path = GameSelection;
+			sourceTree = "<group>";
+		};
+		7E40AFA82CB362D700317604 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */,
+				7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */,
+				C1DFB2E62C966E9600011058 /* STTUseCase.swift */,
+				7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		7E41A1BC2C8E6BC1006060A3 /* Infrastructure */ = {
@@ -300,9 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				7E1918662CA2328C008986B9 /* GameScenes */,
-				7E7B16652C7D4E2700632CBB /* Extensions */,
-				7E7B16602C7D4AF200632CBB /* Protocols */,
 				7E7B165B2C7D410200632CBB /* Utils */,
+				7E7B16602C7D4AF200632CBB /* Protocols */,
+				7E7B16652C7D4E2700632CBB /* Extensions */,
+				7E40AFA02CB358E900317604 /* Behaviors */,
 			);
 			path = Prentation;
 			sourceTree = "<group>";
@@ -407,10 +445,8 @@
 		7E8DB8DD2C7BFF8A00D9B9F0 /* GuessWhoGame */ = {
 			isa = PBXGroup;
 			children = (
-				7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */,
-				7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */,
-				C1DFB2E62C966E9600011058 /* STTUseCase.swift */,
-				7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */,
+				7E40AFA82CB362D700317604 /* Game */,
+				7E40AFA52CB35E0B00317604 /* GameSelection */,
 			);
 			path = GuessWhoGame;
 			sourceTree = "<group>";
@@ -660,6 +696,7 @@
 				7E2D630D2CAFAFD2001619F0 /* GuessWhoController.swift in Sources */,
 				C178BA772CB2743D0081CB10 /* UILabel + UIButton.swift in Sources */,
 				C1DFB2EF2C96738E00011058 /* GameRequestDTO.swift in Sources */,
+				7E40AFA42CB35AF700317604 /* GameSelectionViewModel.swift in Sources */,
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
@@ -671,6 +708,7 @@
 				C1DFB2E72C966E9600011058 /* STTUseCase.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
 				C1EA0BD82C9DCF9500CA5CA4 /* TimerTask.swift in Sources */,
+				7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */,
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
 				7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
@@ -679,6 +717,7 @@
 				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,
 				C1DFB2E92C96734600011058 /* DefaultSTTRepository.swift in Sources */,
 				7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */,
+				7E40AFA22CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift in Sources */,
 				C1C692E02C7A0A0B00EF0C45 /* GameModelList.swift in Sources */,
 				7E2C169E2CAA273E00A96250 /* GameSceneDIContainer.swift in Sources */,
 				7E2D62F92CAF6042001619F0 /* ResultController.swift in Sources */,
@@ -695,6 +734,7 @@
 				C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */,
 				7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
+				7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,
 				C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */,
