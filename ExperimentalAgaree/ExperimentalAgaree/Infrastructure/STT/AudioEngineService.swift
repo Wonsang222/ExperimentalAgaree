@@ -33,6 +33,11 @@ protocol AudioEngineUsable {
     func stop(engine: AVAudioEngine)
 }
 
+protocol AudioEngineChekcable {
+    func requestAuthorization(completion: @escaping (Bool) -> Void) 
+    func checkAuthorization() -> Bool
+}
+
 protocol AudioSessionCofigurable {
     var category: AVAudioSession.Category { get }
     var mode: AVAudioSession.Mode { get }
@@ -101,6 +106,27 @@ final class AudioEngineManager: AudioEngineUsable {
             return .systemError
         default:
             return .generic
+        }
+    }
+}
+
+extension AudioEngineManager: AudioEngineChekcable {
+    
+    func requestAuthorization(completion: @escaping (Bool) -> Void) {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            completion(granted)
+        }
+    }
+    
+    func checkAuthorization() -> Bool {
+        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+        switch micStatus{
+        case .authorized:
+            return true
+        case .denied, .notDetermined, .restricted:
+            return false
+        @unknown default:
+            return false
         }
     }
 }

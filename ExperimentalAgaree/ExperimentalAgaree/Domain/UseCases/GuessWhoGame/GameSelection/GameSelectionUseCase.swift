@@ -7,6 +7,10 @@
 
 import Foundation
 
+// 1. Auth pre
+// 2. Game  -> Each game has own auths...
+// 3. auth after
+
 protocol GameSelectionUseCase {
     
 }

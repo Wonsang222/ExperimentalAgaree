@@ -45,6 +45,5 @@ final class DefaultGamesRepository: GamesRepository {
             }
         })
         return task
-        
     }
 }

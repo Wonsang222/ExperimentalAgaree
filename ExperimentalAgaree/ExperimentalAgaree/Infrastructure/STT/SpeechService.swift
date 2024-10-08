@@ -46,6 +46,11 @@ protocol SpeechTaskUsable {
     func stop()
 }
 
+protocol SttEngineCheckable {
+    func requestAuthorization(completion: @escaping () -> Void)
+    func checkAuthorization() -> Bool
+}
+
 final class DefaultSpeechService: SpeechTaskUsable {
 
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -126,5 +131,31 @@ final class DefaultSpeechService: SpeechTaskUsable {
         self.recognitionTask = nil
         // bad code....
         (audioengine as? AVAudioEngine)?.agareeStop()
+    }
+}
+
+extension DefaultSpeechService: SttEngineCheckable {
+    
+    func requestAuthorization(completion: @escaping () -> Void) {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            switch authStatus {
+            case .authorized:
+                break
+            default:
+                completion()
+            }
+        }
+    }
+    
+    func checkAuthorization() -> Bool {
+        let speechStatus = SFSpeechRecognizer.authorizationStatus()
+        switch speechStatus{
+        case .authorized:
+            return true
+        case .denied, .notDetermined, .restricted:
+            return false
+        @unknown default:
+            return false
+        }
     }
 }

@@ -484,6 +484,7 @@
 		C1C692DE2C7A0A0100EF0C45 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C1DFB2CF2C87478600011058 /* GameType.swift */,
 				C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */,
 				C1DFB2C12C85DCE300011058 /* GameTimeInfo.swift */,
 				C1DFB2A32C7DED1200011058 /* SttModel.swift */,
@@ -496,7 +497,6 @@
 			isa = PBXGroup;
 			children = (
 				C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */,
-				C1DFB2CF2C87478600011058 /* GameType.swift */,
 				7E75F8AC2C9262B0009E8BC5 /* GameJudgeable.swift */,
 			);
 			path = Common;

@@ -23,7 +23,7 @@ final class GameInfo {
     }
 }
 
-enum GameType: String {
+enum GameType: String, CustomStringConvertible {
     case guessWho
     
     var description: String {
@@ -32,4 +32,19 @@ enum GameType: String {
             return "인물퀴즈"
         }
     }
+    
+    var auths: Set<AuthorizationType> {
+        switch self {
+        case .guessWho:
+            return [.internet, .mic, .stt]
+        }
+    }
 }
+
+enum AuthorizationType {
+    case mic
+    case stt
+    case internet
+}
+
+
