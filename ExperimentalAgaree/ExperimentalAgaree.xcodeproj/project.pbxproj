@@ -47,6 +47,7 @@
 		7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */; };
 		C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA742CB2737C0081CB10 /* PreGameView.swift */; };
 		C178BA772CB2743D0081CB10 /* UILabel + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */; };
+		C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA782CB7FEC30081CB10 /* ErrorHandler.swift */; };
 		C1C692DD2C7A08B500EF0C45 /* GamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */; };
 		C1C692E02C7A0A0B00EF0C45 /* GameModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */; };
 		C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */; };
@@ -129,6 +130,7 @@
 		7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
 		C178BA742CB2737C0081CB10 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
 		C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + UIButton.swift"; sourceTree = "<group>"; };
+		C178BA782CB7FEC30081CB10 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRepository.swift; sourceTree = "<group>"; };
 		C1C692DF2C7A0A0B00EF0C45 /* GameModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModelList.swift; sourceTree = "<group>"; };
 		C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			children = (
 				7E7B165C2C7D42D300632CBB /* Observable.swift */,
 				7E7B165E2C7D455C00632CBB /* LoadingView.swift */,
+				C178BA782CB7FEC30081CB10 /* ErrorHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				7E2D630B2CAFAEF7001619F0 /* HowToPlayView.swift in Sources */,
 				C1DFB2E32C91D70200011058 /* DefaultTimerRepository.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
+				C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */,
 				7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);

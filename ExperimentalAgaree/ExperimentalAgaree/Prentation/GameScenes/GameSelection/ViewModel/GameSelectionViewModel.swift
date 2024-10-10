@@ -16,7 +16,7 @@ protocol GameSelectionViewModelInput {
 
 protocol GameSelectionViewModelOutput {
     var gameTitle: String { get }
-    var errorStr: Observable<String> { get }
+    var errorStr: Observable<ErrorHandler> { get }
 }
 #warning("temporary param is void")
 struct GameSelectionViewModelAction {
@@ -31,7 +31,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     private let action: GameSelectionViewModelAction
     private let executionQueue: DispatchQueue
     
-    let errorStr: Observable<String> = Observable(value: "")
+    let errorStr: Observable<ErrorHandler> = Observable(value: ErrorHandler(errMsg: ""))
     
     init(
         useCase: GameSelectionUseCase,
