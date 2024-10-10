@@ -33,11 +33,6 @@ protocol AudioEngineUsable {
     func stop(engine: AVAudioEngine)
 }
 
-protocol AudioEngineChekcable {
-    func requestAuthorization(completion: @escaping (Bool) -> Void) 
-    func checkAuthorization() -> Bool
-}
-
 protocol AudioSessionCofigurable {
     var category: AVAudioSession.Category { get }
     var mode: AVAudioSession.Mode { get }
@@ -110,11 +105,10 @@ final class AudioEngineManager: AudioEngineUsable {
     }
 }
 
-extension AudioEngineManager: AudioEngineChekcable {
+extension AudioEngineManager: AuthCheckable {
     
-    func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        AVAudioSession.sharedInstance().requestRecordPermission { granted in
-            completion(granted)
+    func requestAuthorization() {
+        AVAudioSession.sharedInstance().requestRecordPermission { _ in
         }
     }
     

@@ -33,7 +33,7 @@ enum GameType: String, CustomStringConvertible {
         }
     }
     
-    var auths: Set<AuthorizationType> {
+    var auths: [AuthorizationType] {
         switch self {
         case .guessWho:
             return [.internet, .mic, .stt]

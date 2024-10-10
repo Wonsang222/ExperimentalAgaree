@@ -23,19 +23,35 @@ struct GameSelectionViewModelAction {
     let goPlayGame: () -> Void
 }
 
-
 typealias GameSelectionViewModel = GameSelectionViewModelInput & GameSelectionViewModelOutput
 
 final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     
-    private let useCase:
+    private let useCase: GameSelectionUseCase
     private let action: GameSelectionViewModelAction
+    private let executionQueue: DispatchQueue
+    
+    let errorStr: Observable<String> = Observable(value: "")
+    
+    init(
+        useCase: GameSelectionUseCase,
+        action: GameSelectionViewModelAction,
+        executionQueue: DispatchQueue = DispatchQueue.main
+    ) {
+        self.useCase = useCase
+        self.action = action
+        self.executionQueue = executionQueue
+    }
     
     func viewDidLoad() {
         
     }
     
     func tapPlayBtn() {
+        
+        if useCase.checkGameAuthrization() {
+            action.goPlayGame()
+        }
         
     }
     
@@ -47,9 +63,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         
     }
     
-    var gameTitle: String
-    
-    var errorStr: Observable<String>
-    
-    
+    var gameTitle: String {
+        return useCase.getGameTitle()
+    }
 }

@@ -46,11 +46,6 @@ protocol SpeechTaskUsable {
     func stop()
 }
 
-protocol SttEngineCheckable {
-    func requestAuthorization(completion: @escaping () -> Void)
-    func checkAuthorization() -> Bool
-}
-
 final class DefaultSpeechService: SpeechTaskUsable {
 
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -134,15 +129,14 @@ final class DefaultSpeechService: SpeechTaskUsable {
     }
 }
 
-extension DefaultSpeechService: SttEngineCheckable {
-    
-    func requestAuthorization(completion: @escaping () -> Void) {
+extension DefaultSpeechService: AuthCheckable {
+    func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             switch authStatus {
             case .authorized:
                 break
             default:
-                completion()
+                break
             }
         }
     }
