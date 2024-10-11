@@ -130,6 +130,11 @@ final class DefaultSpeechService: SpeechTaskUsable {
 }
 
 extension DefaultSpeechService: AuthCheckable {
+    
+    func getDescription() -> String {
+        return SFSpeechRecognizer.description()
+    }
+    
     func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             switch authStatus {
@@ -141,15 +146,15 @@ extension DefaultSpeechService: AuthCheckable {
         }
     }
     
-    func checkAuthorization() -> Bool {
+    func checkAuthorizatio(completion: @escaping (Bool) -> Void) {
         let speechStatus = SFSpeechRecognizer.authorizationStatus()
         switch speechStatus{
         case .authorized:
-            return true
+            completion(true)
         case .denied, .notDetermined, .restricted:
-            return false
+            completion(true)
         @unknown default:
-            return false
+            completion(true)
         }
     }
 }

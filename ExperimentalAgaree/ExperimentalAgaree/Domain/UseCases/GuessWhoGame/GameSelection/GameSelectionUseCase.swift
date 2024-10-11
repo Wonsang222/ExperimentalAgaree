@@ -8,9 +8,11 @@
 import Foundation
 
 protocol GameSelectionUseCase {
+    
     func requestGameAuthorization()
     func checkGameAuthrization() -> Bool
-    func getGameTitle() -> String
+    func getTargetModel() -> GameInfo
+    func setGamePlayer(num: UInt8)
 }
 
 final class DefaultGameSelectionUseCase: GameSelectionUseCase {
@@ -29,22 +31,29 @@ final class DefaultGameSelectionUseCase: GameSelectionUseCase {
         self.instView = instView
     }
     
-    func requestGameAuthorization()  {
+    func requestGameAuthorization() {
         for auth in gameAuths {
             auth.requestAuthorization()
         }
     }
     
     func checkGameAuthrization() -> Bool {
+        var script = ""
         for auth in gameAuths {
-            if !auth.checkAuthorization() {
-                return false
+            auth.checkAuthorizatio { isAuthorized in
+                if !isAuthorized {
+                    
+                }
             }
         }
         return true
     }
     
-    func getGameTitle() -> String {
-        return targetGame.gamePath.description
+    func getTargetModel() -> GameInfo {
+        return targetGame
+    }
+    
+    func setGamePlayer(num: UInt8) {
+        targetGame.setPlayer(num)
     }
 }

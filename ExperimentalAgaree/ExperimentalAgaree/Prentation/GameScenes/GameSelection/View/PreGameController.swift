@@ -39,10 +39,10 @@ final class PreGameController:BaseController{
         super.viewDidLoad()
         configureView()
         preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        //        configureTempCache()
         configureNaviBar()
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
         howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
+        preGameView.segment.addTarget(self, action: #selector(segBtnTapped), for: .valueChanged)
     }
     
     init(gameTitle: String) {
@@ -52,6 +52,10 @@ final class PreGameController:BaseController{
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func segBtnTapped(_ sender: UISegmentedControl) {
+        
     }
     
 

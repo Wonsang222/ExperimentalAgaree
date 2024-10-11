@@ -10,17 +10,16 @@ import Foundation
 protocol GameSelectionViewModelInput {
     func viewDidLoad()
     func tapPlayBtn()
-    func tapInstView()
-    func tapSeg()
+    func tapSeg(_ newValue: UInt8)
 }
 
 protocol GameSelectionViewModelOutput {
-    var gameTitle: String { get }
     var errorStr: Observable<ErrorHandler> { get }
+    var target: Observable<GameInfo> { get }
 }
-#warning("temporary param is void")
+
 struct GameSelectionViewModelAction {
-    let goPlayGame: () -> Void
+    let goPlayGame: (GameInfo) -> Void
 }
 
 typealias GameSelectionViewModel = GameSelectionViewModelInput & GameSelectionViewModelOutput
@@ -32,6 +31,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     private let executionQueue: DispatchQueue
     
     let errorStr: Observable<ErrorHandler> = Observable(value: ErrorHandler(errMsg: ""))
+    let target: Observable<GameInfo>
     
     init(
         useCase: GameSelectionUseCase,
@@ -41,6 +41,11 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         self.useCase = useCase
         self.action = action
         self.executionQueue = executionQueue
+        target = Observable(value: useCase.getTargetModel())
+    }
+    
+    private func reloadTargetModel() {
+        target.setValue(useCase.getTargetModel())
     }
     
     func viewDidLoad() {
@@ -50,20 +55,15 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     func tapPlayBtn() {
         
         if useCase.checkGameAuthrization() {
-            action.goPlayGame()
+            let target = useCase.getTargetModel()
+            action.goPlayGame(target)
+            return
         }
         
     }
-    
-    func tapInstView() {
-        
-    }
-    
-    func tapSeg() {
-        
-    }
-    
-    var gameTitle: String {
-        return useCase.getGameTitle()
+
+    func tapSeg(_ newValue: UInt8) {
+        useCase.setGamePlayer(num: newValue)
+        reloadTargetModel()
     }
 }

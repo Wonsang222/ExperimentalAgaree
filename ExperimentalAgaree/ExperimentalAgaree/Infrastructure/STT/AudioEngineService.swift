@@ -107,20 +107,24 @@ final class AudioEngineManager: AudioEngineUsable {
 
 extension AudioEngineManager: AuthCheckable {
     
+    func getDescription() -> String {
+        return AVAudioSession.description()
+    }
+    
     func requestAuthorization() {
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
         }
     }
-    
-    func checkAuthorization() -> Bool {
+ 
+    func checkAuthorizatio(completion: @escaping (Bool) -> Void) {
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
         switch micStatus{
         case .authorized:
-            return true
+            completion(true)
         case .denied, .notDetermined, .restricted:
-            return false
+            completion(false)
         @unknown default:
-            return false
+            completion(false)
         }
     }
 }

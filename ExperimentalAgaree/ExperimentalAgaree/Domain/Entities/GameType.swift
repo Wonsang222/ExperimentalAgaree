@@ -8,9 +8,10 @@
 import Foundation
 
 final class GameInfo {
-    let gamePath: GameType
-    let numberOfPlayers: UInt8
-    let gameTime: GameTimerValue
+    
+    private let gamePath: GameType
+    private var numberOfPlayers: UInt8
+    private let gameTime: GameTimerValue
     
     init(
         gamePath: GameType,
@@ -20,6 +21,18 @@ final class GameInfo {
         self.gamePath = gamePath
         self.numberOfPlayers = numberOfPlayers
         self.gameTime = gameTime
+    }
+    
+    func getGameTitle() -> String {
+        return gamePath.description
+    }
+    
+    func getNumberOfPlayer() -> UInt8 {
+        return numberOfPlayers
+    }
+    
+    func setPlayer(_ newValue: UInt8) {
+        numberOfPlayers = newValue
     }
 }
 

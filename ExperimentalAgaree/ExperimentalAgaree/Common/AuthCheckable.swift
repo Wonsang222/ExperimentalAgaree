@@ -9,5 +9,6 @@ import Foundation
 
 protocol AuthCheckable {
     func requestAuthorization()
-    func checkAuthorization() -> Bool
+    func checkAuthorizatio(completion: @escaping (Bool) -> Void)
+    func getDescription() -> String
 }

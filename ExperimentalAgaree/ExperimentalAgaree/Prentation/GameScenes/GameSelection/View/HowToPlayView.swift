@@ -17,7 +17,6 @@ class BaseView:UIView{
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
 }
 
@@ -25,8 +24,8 @@ final class HowToPlayBaseView:BaseView {
     
     let mainTitle:UILabel = {
        let label = UILabel()
-        let attributedText = NSAttributedString(string: "게임방법", attributes: [.font : UIFont(name: Global.APPFONT, size: 30)!, .foregroundColor:UIColor.black])
-        label.attributedText = attributedText
+//        let attributedText = NSAttributedString(string: "게임방법", attributes: [.font : UIFont(name: Global.APPFONT, size: 30)!, .foregroundColor:UIColor.black])
+//        label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
