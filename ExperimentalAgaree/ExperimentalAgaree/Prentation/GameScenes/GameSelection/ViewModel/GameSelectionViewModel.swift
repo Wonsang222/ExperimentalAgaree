@@ -43,27 +43,43 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         self.executionQueue = executionQueue
         target = Observable(value: useCase.getTargetModel())
     }
-    
-    private func reloadTargetModel() {
-        target.setValue(useCase.getTargetModel())
-    }
-    
+
     func viewDidLoad() {
-        
+        requestAuthorizations() 
     }
     
     func tapPlayBtn() {
-        
-        if useCase.checkGameAuthrization() {
-            let target = useCase.getTargetModel()
-            action.goPlayGame(target)
-            return
+        checkAuthorization { [weak self] in
+            guard let self = self else { return }
+            self.action.goPlayGame(self.target.getValue())
         }
-        
     }
 
     func tapSeg(_ newValue: UInt8) {
-        useCase.setGamePlayer(num: newValue)
-        reloadTargetModel()
+        var currentTargetValue = target.getValue()
+        let newTargetValue = currentTargetValue.setPlayer(newValue)
+        target.setValue(newTargetValue)
+    }
+    
+    private func buildAuthErrorScript(_ noServices: String) -> String {
+        return "게임 실행을 위한 권한이 없습니다. \n 아래의 권한을 설정해주세요. \n \(noServices) "
+    }
+    
+    private func requestAuthorizations() {
+        useCase.requestGameAuthorization()
+    }
+    
+    private func checkAuthorization(completion: @escaping () -> Void) {
+        useCase.checkGameAuthrization { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .some(let noService):
+                let noAuthScript = self.buildAuthErrorScript(noService)
+                let errorHandler = ErrorHandler(errMsg: noAuthScript)
+                errorStr.setValue(errorHandler)
+            case .none:
+                completion()
+            }
+        }
     }
 }

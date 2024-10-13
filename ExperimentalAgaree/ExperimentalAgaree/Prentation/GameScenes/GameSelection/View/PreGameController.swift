@@ -19,14 +19,35 @@ class BaseController: UIViewController {
     }
 }
 
-final class PreGameController:BaseController{
+final class PreGameController: BaseController{
     
-    private let gameTitle:String
-    lazy var preGameView = PreGameView(gameTitle:gameTitle)
+    private lazy var preGameView = PreGameView()
     private var howToPlayView:HowToPlayBaseView!
-    
+    private let gameSelectionViewModel: GameSelectionViewModel!
+
     //MARK: - NaviRoot
+
+    init(gameSelectionViewModel: GameSelectionViewModel) {
+        self.gameSelectionViewModel = gameSelectionViewModel
+        super.init()
+    }
     
+    @available(*, unavailable)
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind(to viewModel: GameSelectionViewModel) {
+        gameSelectionViewModel.target.addObserver(Observer(block: { [weak self] in self?.updateUI($0)}, target: self))
+    }
+    
+    private func updateUI(_ gameInfo: GameInfo) {
+        let title = gameInfo.getGameTitle()
+        preGameView.titleLabel.text = title
+        
+        
+    }
+   
     override var prefersStatusBarHidden: Bool {
         return false
     }
@@ -39,23 +60,14 @@ final class PreGameController:BaseController{
         super.viewDidLoad()
         configureView()
         preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        configureNaviBar()
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
         howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
         preGameView.segment.addTarget(self, action: #selector(segBtnTapped), for: .valueChanged)
     }
     
-    init(gameTitle: String) {
-        self.gameTitle = gameTitle
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     @objc private func segBtnTapped(_ sender: UISegmentedControl) {
-        
+        let num = sender.selectedSegmentIndex + 2
+        gameSelectionViewModel.tapSeg(UInt8(num))
     }
     
 
@@ -72,21 +84,10 @@ final class PreGameController:BaseController{
             howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
             howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
         ])
-        
         howToPlayView.layoutIfNeeded()
     }
-    
-    func configureNaviBar(){
-        let standard = UINavigationBarAppearance()
-        standard.configureWithTransparentBackground()
-        
-        navigationItem.standardAppearance = standard
-        navigationItem.scrollEdgeAppearance = standard
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
-    }
 
-    func configureView(){
+    private func configureView() {
         view.addSubview(preGameView)
         NSLayoutConstraint.activate([
             preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -96,20 +97,8 @@ final class PreGameController:BaseController{
         ])
     }
     
-    @objc func playButtonTapped() {
+    @objc private func playButtonTapped() {
  
-    }
-    
-    @objc private func showHowToPlay() {
-        guard let howToPlayView = howToPlayView else { return }
-        view.addSubview(howToPlayView)
-        
-        NSLayoutConstraint.activate([
-            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
-            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
     }
 }
 

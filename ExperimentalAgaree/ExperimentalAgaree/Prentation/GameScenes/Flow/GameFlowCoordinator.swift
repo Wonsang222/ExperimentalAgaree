@@ -46,6 +46,6 @@ final class GameFlowCoordinator {
     }
     
     private func goPlayGame(gameInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) -> GuessWhoController {
-        
+        return GuessWhoController()
     }
 }

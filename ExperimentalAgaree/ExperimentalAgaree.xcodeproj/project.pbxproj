@@ -21,7 +21,6 @@
 		7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CBC722CB75DBD00E2AD1D /* AuthCheckable.swift */; };
 		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
 		7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AF9E2CB3523500317604 /* GameNavigationController.swift */; };
-		7E40AFA22CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */; };
 		7E40AFA42CB35AF700317604 /* GameSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA32CB35AF700317604 /* GameSelectionViewModel.swift */; };
 		7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AFA62CB35E1A00317604 /* GameSelectionUseCase.swift */; };
 		7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */; };
@@ -99,10 +98,8 @@
 		7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E3CBC722CB75DBD00E2AD1D /* AuthCheckable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckable.swift; sourceTree = "<group>"; };
-		7E3CBC742CB767F100E2AD1D /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
 		7E40AF9E2CB3523500317604 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
-		7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackButtonNavigationBarBehavior.swift; sourceTree = "<group>"; };
 		7E40AFA32CB35AF700317604 /* GameSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionViewModel.swift; sourceTree = "<group>"; };
 		7E40AFA62CB35E1A00317604 /* GameSelectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionUseCase.swift; sourceTree = "<group>"; };
 		7E41A1C12C8E6C55006060A3 /* NetworkConfigurableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurableMock.swift; sourceTree = "<group>"; };
@@ -288,7 +285,6 @@
 		7E40AFA02CB358E900317604 /* Behaviors */ = {
 			isa = PBXGroup;
 			children = (
-				7E40AFA12CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -411,7 +407,6 @@
 				7E83FBC32C755B6100DF4DD7 /* Main.storyboard */,
 				7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */,
 				7E83FBCB2C755B6300DF4DD7 /* Info.plist */,
-				7E3CBC742CB767F100E2AD1D /* Todo.md */,
 			);
 			path = ExperimentalAgaree;
 			sourceTree = "<group>";
@@ -725,7 +720,6 @@
 				7E7B165F2C7D455C00632CBB /* LoadingView.swift in Sources */,
 				C1DFB2E92C96734600011058 /* DefaultSTTRepository.swift in Sources */,
 				7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */,
-				7E40AFA22CB3595400317604 /* GameBackButtonNavigationBarBehavior.swift in Sources */,
 				C1C692E02C7A0A0B00EF0C45 /* GameModelList.swift in Sources */,
 				7E2C169E2CAA273E00A96250 /* GameSceneDIContainer.swift in Sources */,
 				7E2D62F92CAF6042001619F0 /* ResultController.swift in Sources */,

@@ -10,25 +10,21 @@ import Foundation
 protocol GameSelectionUseCase {
     
     func requestGameAuthorization()
-    func checkGameAuthrization() -> Bool
+    func checkGameAuthrization(completion: @escaping (String?) -> Void)
     func getTargetModel() -> GameInfo
-    func setGamePlayer(num: UInt8)
 }
 
 final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     
     private let targetGame: GameInfo
     private let gameAuths: [AuthCheckable]
-    private let instView: BaseView
     
     init(
         targetGame: GameInfo,
-        gameAuths: [AuthCheckable],
-        instView: BaseView
+        gameAuths: [AuthCheckable]
     ) {
         self.targetGame = targetGame
         self.gameAuths = gameAuths
-        self.instView = instView
     }
     
     func requestGameAuthorization() {
@@ -37,23 +33,25 @@ final class DefaultGameSelectionUseCase: GameSelectionUseCase {
         }
     }
     
-    func checkGameAuthrization() -> Bool {
-        var script = ""
+    func checkGameAuthrization(completion: @escaping (String?) -> Void) {
+        var noAuthService = [String]()
         for auth in gameAuths {
             auth.checkAuthorizatio { isAuthorized in
                 if !isAuthorized {
-                    
+                    noAuthService.append(auth.getDescription())
                 }
             }
         }
-        return true
+        
+        if !noAuthService.isEmpty {
+            let noServices = noAuthService.joined(separator: ",")
+            completion(noServices)
+            return
+        }
+        completion(nil)
     }
     
     func getTargetModel() -> GameInfo {
         return targetGame
-    }
-    
-    func setGamePlayer(num: UInt8) {
-        targetGame.setPlayer(num)
     }
 }

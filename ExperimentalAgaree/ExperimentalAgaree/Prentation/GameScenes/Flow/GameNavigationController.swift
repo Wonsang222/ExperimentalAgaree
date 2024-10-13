@@ -18,5 +18,12 @@ final class CustomUINavigationController: UINavigationController{
     }
     
     override func viewDidLoad() {
+        // minimum sdk ios 15
+        let standard = UINavigationBarAppearance()
+        standard.configureWithTransparentBackground()
+        standard.setBackIndicatorImage(UIImage(named: "back_icon"), transitionMaskImage: UIImage(named: "back_icon"))
+        
+        navigationBar.standardAppearance = standard
+        navigationBar.scrollEdgeAppearance = standard
     }
 }

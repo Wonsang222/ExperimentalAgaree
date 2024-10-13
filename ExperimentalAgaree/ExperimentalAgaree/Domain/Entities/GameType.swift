@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GameInfo {
+struct GameInfo {
     
     private let gamePath: GameType
     private var numberOfPlayers: UInt8
@@ -23,16 +23,24 @@ final class GameInfo {
         self.gameTime = gameTime
     }
     
-    func getGameTitle() -> String {
-        return gamePath.description
+    var gameTimeValue: GameTimerValue {
+        return gameTime
     }
     
-    func getNumberOfPlayer() -> UInt8 {
+    func getGamePath() -> GameType {
+        return gamePath
+    }
+    
+    func getNumberOfPlayers() -> UInt8 {
         return numberOfPlayers
     }
-    
-    func setPlayer(_ newValue: UInt8) {
+
+    func getGameTitle() -> String {
+        return gamePath.description
+    }    
+    mutating func setPlayer(_ newValue: UInt8) -> Self {
         numberOfPlayers = newValue
+        return self
     }
 }
 
@@ -51,6 +59,10 @@ enum GameType: String, CustomStringConvertible {
         case .guessWho:
             return [.internet, .mic, .stt]
         }
+    }
+    
+    var instView: BaseView {
+        
     }
 }
 

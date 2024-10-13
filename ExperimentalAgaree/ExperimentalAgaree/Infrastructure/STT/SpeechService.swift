@@ -132,7 +132,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
 extension DefaultSpeechService: AuthCheckable {
     
     func getDescription() -> String {
-        return SFSpeechRecognizer.description()
+        return "STT"
     }
     
     func requestAuthorization() {

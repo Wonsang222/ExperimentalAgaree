@@ -137,7 +137,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
             error.setValue("예상하지 못한 에러입니다.")
             return
         }
-        startTimer(timerValue: fetchData.gameInfo.gameTime)
+        startTimer(timerValue: fetchData.gameInfo.gameTimeValue)
         startRecognizer()
     }
 }

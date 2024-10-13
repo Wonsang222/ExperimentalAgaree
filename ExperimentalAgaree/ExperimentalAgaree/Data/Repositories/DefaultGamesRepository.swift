@@ -25,7 +25,7 @@ final class DefaultGamesRepository: GamesRepository {
     ) -> (any Cancellable)? {
         let task = RepositoryTask()
         
-        let requestDTO = GameRequestDTO(game: query.gamePath, numberOfPlayers: query.numberOfPlayers)
+        let requestDTO = GameRequestDTO(game: query.getGamePath(), numberOfPlayers: query.getNumberOfPlayers())
         
         let responseDTO = APIEndpoints.getGames(with: requestDTO)
         

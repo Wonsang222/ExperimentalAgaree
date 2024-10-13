@@ -108,7 +108,7 @@ final class AudioEngineManager: AudioEngineUsable {
 extension AudioEngineManager: AuthCheckable {
     
     func getDescription() -> String {
-        return AVAudioSession.description()
+        return "마이크"
     }
     
     func requestAuthorization() {
