@@ -61,8 +61,11 @@ enum GameType: String, CustomStringConvertible {
         }
     }
     
-    var instView: BaseView {
-        
+    var instView: HowToPlayBaseView {
+        switch self {
+        case .guessWho:
+            return GuessWhoHTPV()
+        }
     }
 }
 

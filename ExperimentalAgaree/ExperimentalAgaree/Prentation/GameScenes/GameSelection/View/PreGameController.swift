@@ -30,6 +30,7 @@ final class PreGameController: BaseController{
     init(gameSelectionViewModel: GameSelectionViewModel) {
         self.gameSelectionViewModel = gameSelectionViewModel
         super.init()
+        bind(to: self.gameSelectionViewModel)
     }
     
     @available(*, unavailable)
@@ -43,9 +44,10 @@ final class PreGameController: BaseController{
     
     private func updateUI(_ gameInfo: GameInfo) {
         let title = gameInfo.getGameTitle()
+        let instView = gameInfo.getGamePath().instView
+        
         preGameView.titleLabel.text = title
-        
-        
+        howToPlayView = instView
     }
    
     override var prefersStatusBarHidden: Bool {
@@ -63,6 +65,8 @@ final class PreGameController: BaseController{
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
         howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
         preGameView.segment.addTarget(self, action: #selector(segBtnTapped), for: .valueChanged)
+        
+        gameSelectionViewModel.viewDidLoad()
     }
     
     @objc private func segBtnTapped(_ sender: UISegmentedControl) {
@@ -70,7 +74,6 @@ final class PreGameController: BaseController{
         gameSelectionViewModel.tapSeg(UInt8(num))
     }
     
-
     @objc private func innerButtonTapped(){
         howToPlayView?.removeFromSuperview()
     }
@@ -98,7 +101,7 @@ final class PreGameController: BaseController{
     }
     
     @objc private func playButtonTapped() {
- 
+        gameSelectionViewModel.tapPlayBtn()
     }
 }
 

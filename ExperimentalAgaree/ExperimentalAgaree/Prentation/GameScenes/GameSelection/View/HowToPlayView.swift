@@ -20,7 +20,7 @@ class BaseView:UIView {
     }
 }
 
-final class HowToPlayBaseView:BaseView {
+class HowToPlayBaseView:BaseView {
     
     let mainTitle:UILabel = {
        let label = UILabel()

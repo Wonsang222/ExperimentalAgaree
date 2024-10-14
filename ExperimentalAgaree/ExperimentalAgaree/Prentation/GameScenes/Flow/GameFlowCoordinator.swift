@@ -9,7 +9,7 @@ import UIKit
 
 protocol GameFlowCoordinatorDependencies {
     func makeGameSelectionViewController() -> PreGameController
-    func makeGuessWhoGameViewController(action: GuessWhoViewModelAction) -> UIViewController
+    func makeGuessWhoGameViewController(action: GuessWhoViewModelAction) -> GuessWhoController
     func makeResultController(result: Bool) -> ResultController
     func goBackToRootVC()
 }
@@ -22,7 +22,7 @@ final class GameFlowCoordinator {
     private weak var resultVC: ResultController?
     
     init(
-        navigationController: UINavigationController? = nil,
+        navigationController: UINavigationController?,
          dependencies: GameFlowCoordinatorDependencies
     ) {
         self.navigationController = navigationController
@@ -33,7 +33,6 @@ final class GameFlowCoordinator {
         
         
     }
-    
     
     private func showResult(result: Bool) {
         let vc = dependencies.makeResultController(result: result)

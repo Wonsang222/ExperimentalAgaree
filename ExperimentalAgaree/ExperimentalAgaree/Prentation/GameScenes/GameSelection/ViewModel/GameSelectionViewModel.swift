@@ -49,9 +49,11 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     }
     
     func tapPlayBtn() {
-        checkAuthorization { [weak self] in
+        checkAuthorization { [weak self] granted in
             guard let self = self else { return }
-            self.action.goPlayGame(self.target.getValue())
+            if granted {
+                self.action.goPlayGame(self.target.getValue())
+            }
         }
     }
 
@@ -69,7 +71,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         useCase.requestGameAuthorization()
     }
     
-    private func checkAuthorization(completion: @escaping () -> Void) {
+    private func checkAuthorization(completion: @escaping (Bool) -> Void) {
         useCase.checkGameAuthrization { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -77,8 +79,9 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
                 let noAuthScript = self.buildAuthErrorScript(noService)
                 let errorHandler = ErrorHandler(errMsg: noAuthScript)
                 errorStr.setValue(errorHandler)
+                completion(false)
             case .none:
-                completion()
+                completion(true)
             }
         }
     }

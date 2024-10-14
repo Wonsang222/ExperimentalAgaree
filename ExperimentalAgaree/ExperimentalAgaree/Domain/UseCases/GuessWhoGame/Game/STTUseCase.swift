@@ -52,9 +52,9 @@ final class DefaultSTTUseCase: STTUseCase {
         
         // next model
         if sttStack.word.contains(target.name) {
+            resetSttModel()
             return .success(.data(.Right))
         }
-        
         return .success(.wrong)
     }
 

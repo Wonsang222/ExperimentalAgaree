@@ -18,6 +18,7 @@
 		7E2D630B2CAFAEF7001619F0 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D630A2CAFAEF7001619F0 /* HowToPlayView.swift */; };
 		7E2D630D2CAFAFD2001619F0 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */; };
 		7E2D630F2CAFB013001619F0 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */; };
+		7E3B5ED52CBC98950010FA0F /* GuessWhoHTPV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B5ED42CBC98950010FA0F /* GuessWhoHTPV.swift */; };
 		7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CBC722CB75DBD00E2AD1D /* AuthCheckable.swift */; };
 		7E3D954E2C9B9A37006144F2 /* GuessWhoGameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */; };
 		7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AF9E2CB3523500317604 /* GameNavigationController.swift */; };
@@ -97,6 +98,7 @@
 		7E2D630A2CAFAEF7001619F0 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
+		7E3B5ED42CBC98950010FA0F /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E3CBC722CB75DBD00E2AD1D /* AuthCheckable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckable.swift; sourceTree = "<group>"; };
 		7E3D954D2C9B9A37006144F2 /* GuessWhoGameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoGameUseCase.swift; sourceTree = "<group>"; };
 		7E40AF9E2CB3523500317604 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		7E2D62FF2CAF6C41001619F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E3B5ED32CBC987D0010FA0F /* InstView */,
 				7E2D63022CAF748D001619F0 /* PreGameController.swift */,
 				7E2D630A2CAFAEF7001619F0 /* HowToPlayView.swift */,
 				C178BA742CB2737C0081CB10 /* PreGameView.swift */,
@@ -280,6 +283,14 @@
 				C1EA0BEB2CA43C7400CA5CA4 /* GuessWhoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7E3B5ED32CBC987D0010FA0F /* InstView */ = {
+			isa = PBXGroup;
+			children = (
+				7E3B5ED42CBC98950010FA0F /* GuessWhoHTPV.swift */,
+			);
+			path = InstView;
 			sourceTree = "<group>";
 		};
 		7E40AFA02CB358E900317604 /* Behaviors */ = {
@@ -710,6 +721,7 @@
 				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,
 				C1DFB2E72C966E9600011058 /* STTUseCase.swift in Sources */,
 				C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */,
+				7E3B5ED52CBC98950010FA0F /* GuessWhoHTPV.swift in Sources */,
 				C1EA0BD82C9DCF9500CA5CA4 /* TimerTask.swift in Sources */,
 				7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */,
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,

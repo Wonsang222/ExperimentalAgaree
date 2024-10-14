@@ -37,7 +37,6 @@ final class Observable<T> {
     private func onChange() {
         observers.forEach { $0.block(value) }
     }
-    
 }
 
 
