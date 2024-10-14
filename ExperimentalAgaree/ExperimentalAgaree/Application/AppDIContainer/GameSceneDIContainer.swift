@@ -13,6 +13,7 @@ final class GameSceneDIContainer {
         let apiDataTransferService: DataTransferService
         let sttService: SpeechTaskUsable
         let timerService: TimerManager
+        let audioService: AudioEngineUsable
     }
     
     private let dependencies: Dependencies
@@ -22,8 +23,6 @@ final class GameSceneDIContainer {
     }
     
     //MARK: - VC
-    
-#warning("수정")
     func makeGuessWhoVC(gamereqInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) {
         
     }
@@ -63,5 +62,9 @@ final class GameSceneDIContainer {
     
     private func makeTimerRepository() -> TimerRepository {
         return DefaultTimerRepository(timerService: dependencies.timerService)
+    }
+    
+    private func makeMICAuthRepository() -> AuthCheckable {
+        return AudioEngineManager(audioSessionConfig: <#T##any AudioSessionCofigurable#>)
     }
 }

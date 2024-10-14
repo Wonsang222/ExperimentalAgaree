@@ -43,7 +43,9 @@ struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
     var mode: AVAudioSession.Mode
 }
 
-final class AudioEngineManager: AudioEngineUsable {
+typealias AudioEngineService = AudioEngineUsable & AuthCheckable
+
+final class AudioEngineManager: AudioEngineService {
     
     private let audioSessionConfig: AudioSessionCofigurable
     
@@ -105,7 +107,7 @@ final class AudioEngineManager: AudioEngineUsable {
     }
 }
 
-extension AudioEngineManager: AuthCheckable {
+extension AudioEngineManager {
     
     func getDescription() -> String {
         return "마이크"

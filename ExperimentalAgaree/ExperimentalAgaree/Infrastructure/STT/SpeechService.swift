@@ -35,7 +35,7 @@ struct SttConfiguration: SttConfigurable {
     let id: String
 }
 
-protocol SpeechTaskUsable {
+protocol SttService {
     typealias Completion = (Result<String,SpeechError>) -> Void
     
     func request(
@@ -46,6 +46,8 @@ protocol SpeechTaskUsable {
     func stop()
 }
 
+typealias SpeechTaskUsable = SttService & AuthCheckable
+
 final class DefaultSpeechService: SpeechTaskUsable {
 
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -53,8 +55,8 @@ final class DefaultSpeechService: SpeechTaskUsable {
     private var speechRecognizer: SFSpeechRecognizer?
     private var audioengine: AgareeAudio?
     
-    let config: SttConfigurable
-    let audioEngine: AudioEngineUsable
+    private let config: SttConfigurable
+    private let audioEngine: AudioEngineUsable
 
     init(
         audioEngine: AudioEngineUsable,
@@ -77,7 +79,6 @@ final class DefaultSpeechService: SpeechTaskUsable {
             throw SpeechError.generateRecognizer
         }
     }
-    
     
 #warning("코드 정리. -> Result 및 catch 연속 보기 안좋다")
     func request(
@@ -129,7 +130,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
     }
 }
 
-extension DefaultSpeechService: AuthCheckable {
+extension DefaultSpeechService {
     
     func getDescription() -> String {
         return "STT"
