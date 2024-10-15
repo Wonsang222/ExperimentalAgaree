@@ -41,7 +41,9 @@ protocol SttService {
     func request(
         on queue: DataTransferDispatchQueue,
         completion: @escaping Completion
-    ) -> SpeechTaskUsable?
+    ) -> SttService?
+    
+    func appendRecogRequest(_ buffer: AudioBufferDTO) throws
     
     func stop()
 }
@@ -53,7 +55,6 @@ final class DefaultSpeechService: SpeechTaskUsable {
     private var recognitionTask: SFSpeechRecognitionTask?
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
     private var speechRecognizer: SFSpeechRecognizer?
-    private var audioengine: AgareeAudio?
     
     private let config: SttConfigurable
     private let audioEngine: AudioEngineUsable
@@ -66,26 +67,11 @@ final class DefaultSpeechService: SpeechTaskUsable {
         self.config = config
         }
     
-    private func setRequest()  {
-        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        self.recognitionRequest!.shouldReportPartialResults = true
-    }
-    
-    private func generateRecognizer(config: SttConfigurable) throws {
-        
-        self.speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))
-        
-        if self.speechRecognizer == nil {
-            throw SpeechError.generateRecognizer
-        }
-    }
-    
-#warning("코드 정리. -> Result 및 catch 연속 보기 안좋다")
     func request(
                 on queue: any DataTransferDispatchQueue,
                 completion: @escaping Completion
-    ) -> SpeechTaskUsable? {
-        
+    ) -> SttService? {
+    
         do {
             setRequest()
             try generateRecognizer(config: config)
@@ -106,34 +92,66 @@ final class DefaultSpeechService: SpeechTaskUsable {
                     }
                 }
             })
-            
-            self.audioengine = audioEngine.activateAudioEngine() { result in
-                switch result {
-                case .success(let buffer):
-                    recognitionRequest.append(buffer)
-                case .failure:
-                    completion(.failure(.generateAudioEngine))
-                }
-            }
         } catch {
             completion(.failure(.generateRecognizer))
         }
         return self
     }
     
+    func appendRecogRequest(_ buffer: AudioBufferDTO) throws {
+        let pcmBuffer = try convertToPCMBuffer(from: buffer)
+        recognitionRequest?.append(pcmBuffer)
+    }
+    
     func stop() {
         self.recognitionTask?.cancel()
         self.recognitionRequest  = nil
         self.recognitionTask = nil
-        // bad code....
-        (audioengine as? AVAudioEngine)?.agareeStop()
+    }
+    
+    private func convertToPCMBuffer(from dto: AudioBufferDTO) throws -> AVAudioPCMBuffer {
+        // AVAudioFormat을 생성합니다.
+        guard let audioFormat = AVAudioFormat(standardFormatWithSampleRate: dto.format.sampleRate,
+                                              channels: AVAudioChannelCount(dto.format.channelCount)) else {
+            throw AudioError.generic
+        }
+        
+        // AVAudioPCMBuffer를 생성합니다.
+        guard let pcmBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: AVAudioFrameCount(dto.data.count) / audioFormat.streamDescription.pointee.mBytesPerFrame) else {
+            throw AudioError.generic
+        }
+        
+        pcmBuffer.frameLength = pcmBuffer.frameCapacity
+
+        // Data의 바이트를 pcmBuffer에 복사합니다.
+        let audioBuffer = pcmBuffer.audioBufferList.pointee.mBuffers
+        dto.data.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
+            if let baseAddress = bufferPointer.baseAddress {
+                memcpy(audioBuffer.mData, baseAddress, Int(audioBuffer.mDataByteSize))
+            }
+        }
+        return pcmBuffer
+    }
+    
+    private func setRequest()  {
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        self.recognitionRequest!.shouldReportPartialResults = true
+    }
+    
+    private func generateRecognizer(config: SttConfigurable) throws {
+        
+        self.speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))
+        
+        if self.speechRecognizer == nil {
+            throw SpeechError.generateRecognizer
+        }
     }
 }
 
 extension DefaultSpeechService {
     
     func getDescription() -> String {
-        return "STT"
+        return "음성인식"
     }
     
     func requestAuthorization() {

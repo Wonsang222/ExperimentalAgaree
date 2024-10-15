@@ -9,7 +9,7 @@ import Foundation
 
 class SttTask: Cancellable {
     
-    var task: SpeechTaskUsable? = nil
+    var task: SttService? = nil
     
     func cancel() {
         task?.stop()

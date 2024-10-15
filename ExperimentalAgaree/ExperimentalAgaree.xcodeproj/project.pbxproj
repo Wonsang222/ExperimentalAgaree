@@ -44,6 +44,9 @@
 		7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */; };
 		7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
+		7E85224F2CBDDF6F00481710 /* AudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E85224E2CBDDF6F00481710 /* AudioRepository.swift */; };
+		7E8522522CBDEB7A00481710 /* DefaultAudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */; };
+		7E8522542CBDF7A200481710 /* AudioTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8522532CBDF7A200481710 /* AudioTask.swift */; };
 		7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */; };
 		C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA742CB2737C0081CB10 /* PreGameView.swift */; };
 		C178BA772CB2743D0081CB10 /* UILabel + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */; };
@@ -126,6 +129,9 @@
 		7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7E85224E2CBDDF6F00481710 /* AudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRepository.swift; sourceTree = "<group>"; };
+		7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAudioRepository.swift; sourceTree = "<group>"; };
+		7E8522532CBDF7A200481710 /* AudioTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTask.swift; sourceTree = "<group>"; };
 		7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
 		C178BA742CB2737C0081CB10 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
 		C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + UIButton.swift"; sourceTree = "<group>"; };
@@ -437,6 +443,7 @@
 		7E83FBD32C755CB900DF4DD7 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				7E8522502CBDDF7600481710 /* Audio */,
 				C1DFB2B82C82246100011058 /* STT */,
 				C1DFB2B32C80ABE000011058 /* Timer */,
 				7E83FBD42C755CD400DF4DD7 /* Network */,
@@ -453,6 +460,14 @@
 				7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7E8522502CBDDF7600481710 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		7E8DB8DD2C7BFF8A00D9B9F0 /* GuessWhoGame */ = {
@@ -490,6 +505,7 @@
 				C1C692DC2C7A08B500EF0C45 /* GamesRepository.swift */,
 				7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */,
 				C1DFB2A12C7DEBB000011058 /* STTRepository.swift */,
+				7E85224E2CBDDF6F00481710 /* AudioRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -546,7 +562,6 @@
 		C1DFB2B82C82246100011058 /* STT */ = {
 			isa = PBXGroup;
 			children = (
-				C1DFB2BD2C82F97D00011058 /* AudioEngineService.swift */,
 				C1DFB2BF2C84239200011058 /* SpeechService.swift */,
 			);
 			path = STT;
@@ -558,6 +573,7 @@
 				C1DFB2C62C85E3F300011058 /* RepositoryTask.swift */,
 				C1DFB2F12C997D1200011058 /* SttTask.swift */,
 				C1EA0BD72C9DCF9500CA5CA4 /* TimerTask.swift */,
+				7E8522532CBDF7A200481710 /* AudioTask.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -575,6 +591,7 @@
 			children = (
 				C1DFB2E82C96734600011058 /* DefaultSTTRepository.swift */,
 				C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */,
+				7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */,
 				C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */,
 				C1DFB2C82C85E57000011058 /* Network */,
 			);
@@ -725,6 +742,7 @@
 				C1EA0BD82C9DCF9500CA5CA4 /* TimerTask.swift in Sources */,
 				7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */,
 				C1DFB2BE2C82F97D00011058 /* AudioEngineService.swift in Sources */,
+				7E85224F2CBDDF6F00481710 /* AudioRepository.swift in Sources */,
 				7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
 				7E2D630F2CAFB013001619F0 /* GuessWhoView.swift in Sources */,
@@ -739,6 +757,7 @@
 				7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */,
 				C1EA0BEC2CA43C7400CA5CA4 /* GuessWhoViewModel.swift in Sources */,
 				C1EA0BED2CA43C7400CA5CA4 /* GuessWhoTargetViewModel.swift in Sources */,
+				7E8522542CBDF7A200481710 /* AudioTask.swift in Sources */,
 				C1DFB2D82C8C138400011058 /* DefaultGamesRepository.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E2D62FD2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift in Sources */,
@@ -765,6 +784,7 @@
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */,
 				7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */,
+				7E8522522CBDEB7A00481710 /* DefaultAudioRepository.swift in Sources */,
 				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

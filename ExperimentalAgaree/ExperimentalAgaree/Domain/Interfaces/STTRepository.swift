@@ -7,7 +7,12 @@
 
 import Foundation
 
-protocol STTRepository {
+protocol AuthRepository {
+    func checkAuth(completion: @escaping (Bool) -> Void)
+    func reqAuth()
+}
+
+protocol STTRepository: AuthRepository {
     
     typealias Completion = (Result<SttModel, Error>) -> Void
     

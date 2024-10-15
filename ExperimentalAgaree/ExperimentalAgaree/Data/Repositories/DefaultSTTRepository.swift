@@ -8,7 +8,7 @@
 import Foundation
 
 final class DefaultSTTRepository: STTRepository {
-    
+
     private var sttService: SpeechTaskUsable?
     private let executionQueue: DataTransferDispatchQueue
     
@@ -22,21 +22,23 @@ final class DefaultSTTRepository: STTRepository {
     func startRecognition(completion: @escaping Completion) -> Cancellable?
     {
         let sttTask = SttTask()
-        sttTask.task = sttService?.request(on: executionQueue) { [weak self, executionQueue] result in
-            guard let self = self else { return }
+        sttTask.task = sttService?.request(on: executionQueue, completion: { result in
             switch result {
-            case .success(let word):
-                let domainModel = self.convertDomainModel(word)
-                executionQueue.asyncExecute {
-                    completion(.success(domainModel))
-                }
+            case .success(let onOffModel):
+                print(123)
             case .failure(let err):
-                executionQueue.asyncExecute {
-                    completion(.failure(err))
-                }
+                print(123)
             }
-        }
+        })
         return sttTask
+    }
+    
+    func checkAuth(completion: @escaping (Bool) -> Void) {
+        sttService?.checkAuthorizatio(completion: completion)
+    }
+    
+    func reqAuth() {
+        sttService?.requestAuthorization()
     }
     
     private func convertDomainModel(_ char: String) -> SttModel {

@@ -8,16 +8,14 @@
 import Foundation
 import AVFoundation
 
-protocol AgareeAudio {
-    func start() throws
+struct AudioBufferDTO {
+    let data: Data
+    let format: AudioFormat
 }
 
-// 수정
-extension AgareeAudio where Self: AVAudioEngine {
-    func agareeStop() {
-        self.stop()
-        self.inputNode.removeTap(onBus: 0)
-    }
+struct AudioFormat {
+    let sampleRate: Double
+    let channelCount: Int
 }
 
 enum AudioError: Error {
@@ -26,11 +24,9 @@ enum AudioError: Error {
     case generic
 }
 
-extension AVAudioEngine: AgareeAudio {}
-
 protocol AudioEngineUsable {
-    func activateAudioEngine(completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void) -> AgareeAudio?
-    func stop(engine: AVAudioEngine)
+    func activateAudioEngine(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void) -> AudioEngineUsable?
+    func stop()
 }
 
 protocol AudioSessionCofigurable {
@@ -48,43 +44,54 @@ typealias AudioEngineService = AudioEngineUsable & AuthCheckable
 final class AudioEngineManager: AudioEngineService {
     
     private let audioSessionConfig: AudioSessionCofigurable
+    private var engine: AVAudioEngine!
     
     init(audioSessionConfig: AudioSessionCofigurable) {
         self.audioSessionConfig = audioSessionConfig
     }
 
     func activateAudioEngine(
-                 completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void
-    ) -> AgareeAudio? {
+                 completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void
+    ) -> AudioEngineUsable? {
         do {
             try setAudioSession()
-            let engine = AVAudioEngine()
+            engine = AVAudioEngine()
             checkActivation(engine: engine)
             let inputNode = engine.inputNode
             let recordingFormat = inputNode.outputFormat(forBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
-                completion(.success(buffer))
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
+                if let dto = try? self?.convertDTO(buffer, format: recordingFormat) {
+                    completion(.success(dto))
+                }
             }
             engine.prepare()
             try engine.start()
             
-            return engine
+            return self
         } catch {
             let resolvedError = resolveError(err: error)
             completion(.failure(resolvedError))
             return nil
         }
     }
-    
-    func stop(engine: AVAudioEngine) {
+    func stop() {
         engine.stop()
         engine.inputNode.removeTap(onBus: 0)
     }
     
    private func checkActivation(engine: AVAudioEngine) {
         if engine.isRunning {
-            stop(engine: engine)
+            stop()
         }
+    }
+    
+    private func convertDTO(_ buffer: AVAudioPCMBuffer, format: AVAudioFormat) throws -> AudioBufferDTO {
+        let audioData = buffer.audioBufferList.pointee.mBuffers.mData
+        let dataSize = Int(buffer.audioBufferList.pointee.mBuffers.mDataByteSize)
+        let data = Data(bytes: audioData!, count: dataSize)
+        let format = AudioFormat(sampleRate: format.sampleRate, channelCount: Int(format.channelCount))
+        let dto = AudioBufferDTO(data: data, format: format)
+        return dto
     }
     
     // Result로 만들 수 있다
