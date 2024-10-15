@@ -22,10 +22,11 @@ final class DefaultSTTRepository: STTRepository {
     func startRecognition(completion: @escaping Completion) -> Cancellable?
     {
         let sttTask = SttTask()
-        sttTask.task = sttService?.request(on: executionQueue, completion: { result in
+        sttTask.task = sttService?.request(on: executionQueue, completion: { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success(let onOffModel):
-                print(123)
+            case .success(let str):
+                completion(.success(self.convertDomainModel(str)))
             case .failure(let err):
                 print(123)
             }
