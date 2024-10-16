@@ -9,7 +9,7 @@ import Foundation
 
 final class DefaultSTTRepository: STTRepository {
 
-    private var sttService: SpeechTaskUsable?
+    private var sttService: SpeechTaskUsable
     private let executionQueue: DataTransferDispatchQueue
     
     init(sttService: SpeechTaskUsable,
@@ -19,27 +19,37 @@ final class DefaultSTTRepository: STTRepository {
         self.executionQueue = executionQueue
     }
     
-    func startRecognition(completion: @escaping Completion) -> Cancellable?
+    func startRecognition(buffer: AudioBufferDTO,completion: @escaping Completion) -> Cancellable?
     {
-        let sttTask = SttTask()
-        sttTask.task = sttService?.request(on: executionQueue, completion: { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let str):
-                completion(.success(self.convertDomainModel(str)))
-            case .failure(let err):
-                print(123)
-            }
-        })
-        return sttTask
+    
+        do {
+            try appendAudioBufferToSttRequest(buffer: buffer)
+            let sttTask = SttTask()
+            sttTask.task = sttService.request(on: executionQueue, completion: { result in
+                switch result {
+                case .success(let char):
+                    completion(.success(.init(word: char)))
+                case .failure(let sttErr):
+                    completion(.failure(sttErr))
+                }
+            })
+            return sttTask
+        } catch {
+            completion(.failure(error))
+            return nil
+        }
+    }
+    
+    private func appendAudioBufferToSttRequest(buffer: AudioBufferDTO) throws {
+        try sttService.appendRecogRequest(buffer)
     }
     
     func checkAuth(completion: @escaping (Bool) -> Void) {
-        sttService?.checkAuthorizatio(completion: completion)
+        sttService.checkAuthorizatio(completion: completion)
     }
     
     func reqAuth() {
-        sttService?.requestAuthorization()
+        sttService.requestAuthorization()
     }
     
     private func convertDomainModel(_ char: String) -> SttModel {

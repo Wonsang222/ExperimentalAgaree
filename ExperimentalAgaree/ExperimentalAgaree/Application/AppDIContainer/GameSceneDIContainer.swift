@@ -13,7 +13,6 @@ final class GameSceneDIContainer {
         let apiDataTransferService: DataTransferService
         let sttService: SpeechTaskUsable
         let timerService: TimerManager
-        let audioService: AudioEngineUsable
     }
     
     private let dependencies: Dependencies
@@ -64,7 +63,5 @@ final class GameSceneDIContainer {
         return DefaultTimerRepository(timerService: dependencies.timerService)
     }
     
-    private func makeMICAuthRepository() -> AuthCheckable {
-        return AudioEngineManager(audioSessionConfig: <#T##any AudioSessionCofigurable#>)
-    }
+    
 }

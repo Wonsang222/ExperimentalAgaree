@@ -9,10 +9,10 @@ import Foundation
 
 class SttTask: Cancellable {
     
-    var task: SttService? = nil
+    var task: SttTaskCancellable? = nil
     
     func cancel() {
-        task?.stop()
+        task?.cancel()
         task = nil
     }
 }

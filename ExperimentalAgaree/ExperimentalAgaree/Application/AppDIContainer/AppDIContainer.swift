@@ -25,19 +25,19 @@ final class AppDIContainer {
         return DefaultTimerService(config: config)
     }()
     
-    lazy var sttService: SpeechTaskUsable = {
-        let audioConfig = DefaultAudioSessionConfiguration(category: .record, mode: .measurement)
-        let audioService = AudioEngineManager(audioSessionConfig: audioConfig)
-        let sttConfig = SttConfiguration(id: "ko-KR")
-        let sttservice = DefaultSpeechService(audioEngine: audioService, config: sttConfig)
-        return sttservice
-    }()
+//    lazy var sttService: SpeechTaskUsable = {
+//        let audioConfig = DefaultAudioSessionConfiguration(category: .record, mode: .measurement)
+//        let audioService = AudioEngineManager(audioSessionConfig: audioConfig)
+//        let sttConfig = SttConfiguration(id: "ko-KR")
+//        let sttservice = DefaultSpeechService(audioEngine: audioService, config: sttConfig)
+//        return sttservice
+//    }()
     
-    func makeGameSceneDIContainer() -> GameSceneDIContainer {
-        let dependencies = GameSceneDIContainer.Dependencies(
-            apiDataTransferService: apiDataTransferService,
-            sttService: sttService,
-            timerService: timerService)
-        return GameSceneDIContainer(dependencies: dependencies)
-    }
+//    func makeGameSceneDIContainer() -> GameSceneDIContainer {
+//        let dependencies = GameSceneDIContainer.Dependencies(
+//            apiDataTransferService: apiDataTransferService,
+//            sttService: sttService,
+//            timerService: timerService)
+//        return GameSceneDIContainer(dependencies: dependencies)
+//    }
 }

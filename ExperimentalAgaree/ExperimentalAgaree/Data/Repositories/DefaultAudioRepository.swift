@@ -9,29 +9,30 @@ import Foundation
 
 final class DefaultAudioRepository: AudioRepository {
     
-    private let service: AudioEngineService
-    private var audioEngine: AudioEngineUsable?
+    private let service: AudioEngineBuilderService
     
-    init(service: AudioEngineService) {
+    init(service: AudioEngineBuilderService) {
         self.service = service
     }
     
-    func startRecognition(completion: @escaping Completion) -> Cancellable? {
+    func startRecognition(completion: @escaping Completion) {
         
-        let audio = AudioTask()
-        
-        audioEngine = service.activateAudioEngine(completion: { result in
-            switch result {
-            case .success(let audioBufferDTO):
-                completion(.success(audioBufferDTO))
-            case .failure(let err):
-                completion(.failure(err))
+        checkAuth { [weak self] isAuthorized in
+            if isAuthorized {
+                self?.service.start { result in
+                    switch result {
+                    case .success(let audioBufferDTO):
+                        completion(.success(audioBufferDTO))
+                    case .failure(let audioErr):
+                        completion(.failure(audioErr))
+                    }
+                }
             }
-        })
-        
-        audio.task = audioEngine
-        
-        return audio
+        }
+    }
+    
+    func stop() {
+        service.stop()
     }
     
     func checkAuth(completion: @escaping (Bool) -> Void) {

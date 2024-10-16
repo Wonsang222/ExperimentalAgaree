@@ -9,7 +9,7 @@ import Foundation
 
 final class AudioTask: Cancellable {
     
-    var task: AgareeAudio? = nil
+    var task: AudioEngineBuilder? = nil
     
     func cancel() {
         

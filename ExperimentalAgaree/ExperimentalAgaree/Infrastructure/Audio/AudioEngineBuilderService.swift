@@ -1,8 +1,8 @@
 //
-//  AudioEngineService.swift
+//  AudioEngineBuilderService.swift
 //  ExperimentalAgaree
 //
-//  Created by 황원상 on 8/31/24.
+//  Created by Wonsang Hwang on 10/16/24.
 //
 
 import Foundation
@@ -24,68 +24,70 @@ enum AudioError: Error {
     case generic
 }
 
-protocol AudioEngineUsable {
-    func activateAudioEngine(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void) -> AudioEngineUsable?
-    func stop()
-}
-
 protocol AudioSessionCofigurable {
     var category: AVAudioSession.Category { get }
     var mode: AVAudioSession.Mode { get }
+    var bus: Int { get }
 }
 
 struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
-    var category: AVAudioSession.Category
-    var mode: AVAudioSession.Mode
+   let category: AVAudioSession.Category
+   let mode: AVAudioSession.Mode
+   let bus: Int
 }
 
-typealias AudioEngineService = AudioEngineUsable & AuthCheckable
+protocol AudioEngineBuilder {
+    func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void)
+    func stop()
+}
 
-final class AudioEngineManager: AudioEngineService {
+final class AudioEngineBuilderService: AudioEngineBuilder {
     
-    private let audioSessionConfig: AudioSessionCofigurable
-    private var engine: AVAudioEngine!
+    private let config: AudioSessionCofigurable
+    private let engine = AVAudioEngine()
     
-    init(audioSessionConfig: AudioSessionCofigurable) {
-        self.audioSessionConfig = audioSessionConfig
+    init(config: AudioSessionCofigurable) {
+        self.config = config
     }
-
-    func activateAudioEngine(
-                 completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void
-    ) -> AudioEngineUsable? {
+    
+    func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void) {
         do {
             try setAudioSession()
-            engine = AVAudioEngine()
             checkActivation(engine: engine)
             let inputNode = engine.inputNode
-            let recordingFormat = inputNode.outputFormat(forBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
-                if let dto = try? self?.convertDTO(buffer, format: recordingFormat) {
+            let recordingFormat = inputNode.outputFormat(forBus: config.bus)
+            inputNode.installTap(onBus: config.bus, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
+                if let dto =  self?.convertDTO(buffer, format: recordingFormat) {
                     completion(.success(dto))
                 }
             }
             engine.prepare()
             try engine.start()
-            
-            return self
         } catch {
-            let resolvedError = resolveError(err: error)
-            completion(.failure(resolvedError))
-            return nil
+            completion(.failure(resolveError(err: error)))
         }
     }
+
     func stop() {
         engine.stop()
-        engine.inputNode.removeTap(onBus: 0)
+        engine.inputNode.removeTap(onBus: config.bus)
     }
     
-   private func checkActivation(engine: AVAudioEngine) {
-        if engine.isRunning {
-            stop()
-        }
+    
+    private func checkActivation(engine: AVAudioEngine) {
+         if engine.isRunning {
+             stop()
+         }
+     }
+    
+    private func setAudioSession() throws {
+        let session = AVAudioSession.sharedInstance()
+        try session.setCategory(config.category)
+        try session.setMode(config.mode)
+        try session.setActive(true, options: .notifyOthersOnDeactivation)
     }
     
-    private func convertDTO(_ buffer: AVAudioPCMBuffer, format: AVAudioFormat) throws -> AudioBufferDTO {
+    private func convertDTO(_ buffer: AVAudioPCMBuffer, format: AVAudioFormat) -> AudioBufferDTO {
         let audioData = buffer.audioBufferList.pointee.mBuffers.mData
         let dataSize = Int(buffer.audioBufferList.pointee.mBuffers.mDataByteSize)
         let data = Data(bytes: audioData!, count: dataSize)
@@ -93,14 +95,6 @@ final class AudioEngineManager: AudioEngineService {
         let dto = AudioBufferDTO(data: data, format: format)
         return dto
     }
-    
-    // Result로 만들 수 있다
-    private func setAudioSession() throws {
-        let session = AVAudioSession.sharedInstance()
-        try session.setCategory(audioSessionConfig.category)
-        try session.setMode(audioSessionConfig.mode)
-        try session.setActive(true, options: .notifyOthersOnDeactivation)
-}
     
     private func resolveError(err: Error) -> AudioError {
         let code = AVAudioSession.ErrorCode(rawValue: (err as NSError).code)
@@ -114,8 +108,7 @@ final class AudioEngineManager: AudioEngineService {
     }
 }
 
-extension AudioEngineManager {
-    
+extension AudioEngineBuilderService: AuthCheckable {
     func getDescription() -> String {
         return "마이크"
     }
@@ -137,5 +130,3 @@ extension AudioEngineManager {
         }
     }
 }
-
-

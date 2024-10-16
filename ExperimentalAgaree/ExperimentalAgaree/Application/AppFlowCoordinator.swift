@@ -20,9 +20,9 @@ final class AppFlowCoordinator {
         self.appDIContainer = appDIContainer
     }
     
-    func start() {
-        let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
-      
-        
-    }
+//    func start() {
+//        let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
+//      
+//        
+//    }
 }

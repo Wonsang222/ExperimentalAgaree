@@ -13,6 +13,8 @@ protocol AudioRepository: AuthRepository {
     
     func startRecognition(
         completion: @escaping Completion
-    ) -> Cancellable?
+    )
+    
+    func stop()
 
 }

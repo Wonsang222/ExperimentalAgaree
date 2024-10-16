@@ -16,7 +16,5 @@ protocol STTRepository: AuthRepository {
     
     typealias Completion = (Result<SttModel, Error>) -> Void
     
-    func startRecognition(
-        completion: @escaping Completion
-    ) -> Cancellable?
+    func startRecognition(buffer: AudioBufferDTO,completion: @escaping Completion) -> Cancellable?
 }

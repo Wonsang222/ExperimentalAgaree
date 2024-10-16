@@ -5,10 +5,15 @@
 //  Created by 황원상 on 9/1/24.
 //
 
-
-
 import Foundation
 import Speech
+
+
+protocol SttTaskCancellable {
+    func cancel()
+}
+
+extension SFSpeechRecognitionTask: SttTaskCancellable {}
 
 enum SpeechError: Error {
     case generateRecognizer
@@ -22,7 +27,7 @@ extension SpeechError {
         case .generateAudioEngine:
             return "오디오 엔진 에러입니다."
         default:
-            return "오디오 엔진 에러입니다."
+            return "오디오 엔진(Generic) 에러입니다."
         }
     }
 }
@@ -39,9 +44,9 @@ protocol SttService {
     typealias Completion = (Result<String,SpeechError>) -> Void
     
     func request(
-        on queue: DataTransferDispatchQueue,
-        completion: @escaping Completion
-    ) -> SttService?
+                on queue: any DataTransferDispatchQueue,
+                completion: @escaping Completion
+    ) -> SttTaskCancellable?
     
     func appendRecogRequest(_ buffer: AudioBufferDTO) throws
     
@@ -51,37 +56,24 @@ protocol SttService {
 typealias SpeechTaskUsable = SttService & AuthCheckable
 
 final class DefaultSpeechService: SpeechTaskUsable {
-
-    private var recognitionTask: SFSpeechRecognitionTask?
-    private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
-    private var speechRecognizer: SFSpeechRecognizer?
     
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest = SFSpeechAudioBufferRecognitionRequest()
     private let config: SttConfigurable
-    private let audioEngine: AudioEngineUsable
 
     init(
-        audioEngine: AudioEngineUsable,
         config: SttConfigurable
         ) {
-        self.audioEngine = audioEngine
         self.config = config
+        self.recognitionRequest.shouldReportPartialResults = true
         }
     
     func request(
                 on queue: any DataTransferDispatchQueue,
                 completion: @escaping Completion
-    ) -> SttService? {
+    ) -> SttTaskCancellable? {
     
-        do {
-            setRequest()
-            try generateRecognizer(config: config)
-            
-            guard let recognitionRequest = recognitionRequest else {
-                completion(.failure(.system))
-                return nil
-            }
-            
-            self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest,
+            let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))!
+            let task = recognizer.recognitionTask(with: recognitionRequest,
                                                                           resultHandler: { result, error in
                 
                 if result != nil {
@@ -92,21 +84,15 @@ final class DefaultSpeechService: SpeechTaskUsable {
                     }
                 }
             })
-        } catch {
-            completion(.failure(.generateRecognizer))
-        }
-        return self
+            return task
     }
     
     func appendRecogRequest(_ buffer: AudioBufferDTO) throws {
         let pcmBuffer = try convertToPCMBuffer(from: buffer)
-        recognitionRequest?.append(pcmBuffer)
+        recognitionRequest.append(pcmBuffer)
     }
     
     func stop() {
-        self.recognitionTask?.cancel()
-        self.recognitionRequest  = nil
-        self.recognitionTask = nil
     }
     
     private func convertToPCMBuffer(from dto: AudioBufferDTO) throws -> AVAudioPCMBuffer {
@@ -131,20 +117,6 @@ final class DefaultSpeechService: SpeechTaskUsable {
             }
         }
         return pcmBuffer
-    }
-    
-    private func setRequest()  {
-        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        self.recognitionRequest!.shouldReportPartialResults = true
-    }
-    
-    private func generateRecognizer(config: SttConfigurable) throws {
-        
-        self.speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))
-        
-        if self.speechRecognizer == nil {
-            throw SpeechError.generateRecognizer
-        }
     }
 }
 
@@ -171,9 +143,9 @@ extension DefaultSpeechService {
         case .authorized:
             completion(true)
         case .denied, .notDetermined, .restricted:
-            completion(true)
+            completion(false)
         @unknown default:
-            completion(true)
+            completion(false)
         }
     }
 }
