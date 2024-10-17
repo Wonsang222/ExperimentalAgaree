@@ -21,47 +21,37 @@ final class GameSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    //MARK: - VC
-    func makeGuessWhoVC(gamereqInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) {
+    //MARK: - Game Selection
+    
+    func makeGameSelectionVC() {
         
     }
     
-    //MARK: - ViewModel
-    private func makeGuessWhoViewModel(gameReqInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) -> GuessWhoViewModel {
-        return DefaultGuessWhoViewModel(guessWhoUseCase: makeGuessWhoUseCase(), actions: actions, fetchData: gameReqInfo)
+    func makeGameSelectionVM() {
+        
     }
     
-    //MARK: - USECASE
+    func makeGameSelectionUseCase() {
+        
+    }
+   
+    //MARK: - Repositories
     
-    private func makeGuessWhoUseCase() -> GuessWhoGameUseCase {
-        return GuessWhoGameUseCase(fetchUseCase: makeFetchUseCase(), timerUseCase: makeTimerUseCase(), sttUseCase: makeSTTUseCase())
+    func makeSTTRepository() {
+        
     }
     
-    private func makeFetchUseCase() -> FetchGameModelUseCase {
-        return DefaultFetchGameModelUseCase(gameRespository: makeGameRepository())
+    func makeAudioRepository() {
+        
     }
     
-    private func makeTimerUseCase() -> TimerUsecase {        
-        return DefaultGameTimerUsecase(timerService: makeTimerRepository())
+    func makeFetchGameRepository() {
+        
     }
     
-    private func makeSTTUseCase() -> STTUseCase {
-        return DefaultSTTUseCase(sttService: makeSTTRepository())
+    //MARK: - Flow Coordinator
+    
+    func makeGameFlowCoordinator() {
+        
     }
-    
-    //MARK: - Repository
-    
-    private func makeGameRepository() -> GamesRepository {
-        return DefaultGamesRepository(dataTransferService: dependencies.apiDataTransferService)
-    }
-    
-    private func makeSTTRepository() -> STTRepository {
-        return DefaultSTTRepository(sttService: dependencies.sttService)
-    }
-    
-    private func makeTimerRepository() -> TimerRepository {
-        return DefaultTimerRepository(timerService: dependencies.timerService)
-    }
-    
-    
 }

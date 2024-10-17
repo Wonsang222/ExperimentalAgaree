@@ -32,45 +32,32 @@ final class DefaultSTTUseCase: STTUseCase {
     func startRecognition(target: GameModel?,
                           completion: @escaping Completion
     ) -> Cancellable? {
-        audioService.startRecognition { [weak self] result in
-            switch result {
-            case .success(let audioBufferDTO):
-                let task = sttService.startRecognition(buffer: audioBufferDTO) { result in
-                    
-                }
-                
-            case .failure(let audioErr):
-                print(123)
-            }
-        }
+        
+        var stt = SttTask()
 
-        
-        
-//        sttService.startRecognition { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(let sttModel):
-//                self.sttStack = self.sttStack + sttModel
-//                let result = judge(by: target)
-//                completion(result)
-//            case .failure(let sttError):
-//                completion(.failure(sttError))
-//            }
-//        }
-        return nil
-    }
-    
-    private func startAudioEngine(completion: @escaping () -> Void) {
-        audioService.startRecognition { result in
+        audioService.startRecognition { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let audioBufferDTO):
-                print(123)
-            case .failure(let audioErr):
-                print(123)
+                stt = self.sttService.startRecognition(buffer: audioBufferDTO, completion: { sttResult in
+                    switch sttResult {
+                    case .success(let sttModel):
+                        self.sttStack = self.sttStack + sttModel
+                        let finalResult = self.judge(by: target)
+                        completion(finalResult)
+                    case .failure(let sttError):
+                        completion(.failure(sttError))
+                    }
+                }) as! SttTask
+
+            case .failure(let err):
+                completion(.failure(err))
             }
         }
+        return stt
     }
-    
+
     private func judge(by target: GameModel?) -> Result<GameJudge<STTGameStatus>, Error> {
         // game clear
         guard let target = target else {
