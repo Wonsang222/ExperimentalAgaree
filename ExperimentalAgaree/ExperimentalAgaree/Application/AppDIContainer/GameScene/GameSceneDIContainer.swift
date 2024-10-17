@@ -22,6 +22,10 @@ final class GameSceneDIContainer {
         self.dependencies = dependencies
     }
     
+    private func getAuths(for: GameInfo) -> [AuthorizationType] {
+        
+    }
+    
     //MARK: - Game Selection
     
     func makeGameSelectionVC() {
@@ -32,8 +36,8 @@ final class GameSceneDIContainer {
         
     }
     
-    func makeGameSelectionUseCase() {
-        
+    func makeGameSelectionUseCase(gameInfo: GameInfo) -> GameSelectionUseCase {
+        return DefaultGameSelectionUseCase(targetGame: gameInfo, gameAuths: <#T##[any AuthCheckable]#>)
     }
     
     //MARK: - GameResult
@@ -50,7 +54,7 @@ final class GameSceneDIContainer {
         
     }
     
-    //MARK: - Repositories
+    //MARK: - Game (GuessWho)
     
     func makeGuessWhoVC() {
         
