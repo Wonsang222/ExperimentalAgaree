@@ -36,7 +36,7 @@ struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
    let bus: Int
 }
 
-protocol AudioEngineBuilder {
+protocol AudioEngineBuilder: AuthCheckable {
     func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void)
     func stop()
 }

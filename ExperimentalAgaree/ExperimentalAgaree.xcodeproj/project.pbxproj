@@ -212,11 +212,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7E24F6CE2CC0E8D000628C0F /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
 		7E2C169A2CAA1EE800A96250 /* AppDIContainer */ = {
 			isa = PBXGroup;
 			children = (
+				7E24F6CE2CC0E8D000628C0F /* GameScene */,
 				7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */,
-				7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */,
+				7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */,
 			);
 			path = AppDIContainer;
 			sourceTree = "<group>";
@@ -432,7 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				7E2C169A2CAA1EE800A96250 /* AppDIContainer */,
-				7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */,
 				7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */,
 				7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */,
 				7E2C16982CAA1E5F00A96250 /* AppFlowCoordinator.swift */,

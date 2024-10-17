@@ -9,9 +9,9 @@ import Foundation
 
 final class DefaultAudioRepository: AudioRepository {
     
-    private let service: AudioEngineBuilderService
+    private let service: AudioEngineBuilder
     
-    init(service: AudioEngineBuilderService) {
+    init(service: AudioEngineBuilder) {
         self.service = service
     }
     

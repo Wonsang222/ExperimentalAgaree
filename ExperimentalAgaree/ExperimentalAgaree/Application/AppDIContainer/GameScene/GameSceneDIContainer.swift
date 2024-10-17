@@ -13,6 +13,7 @@ final class GameSceneDIContainer {
         let apiDataTransferService: DataTransferService
         let sttService: SpeechTaskUsable
         let timerService: TimerManager
+        let audioService: AudioEngineBuilder
     }
     
     private let dependencies: Dependencies
@@ -34,19 +35,47 @@ final class GameSceneDIContainer {
     func makeGameSelectionUseCase() {
         
     }
-   
+    
+    //MARK: - GameResult
+    
+    func makeGameResultVC() {
+        
+    }
+    
+    func makeGameResultVM() {
+        
+    }
+    
+    func makeGameResultUsecase() {
+        
+    }
+    
     //MARK: - Repositories
     
-    func makeSTTRepository() {
+    func makeGuessWhoVC() {
         
     }
     
-    func makeAudioRepository() {
+    func makeGuessWhoVM() {
         
     }
     
-    func makeFetchGameRepository() {
+    func makeGuessWhoUseCase() {
         
+    }
+    
+    //MARK: - Repositories
+    
+    func makeSTTRepository() -> STTRepository  {
+        return DefaultSTTRepository(sttService: dependencies.sttService)
+    }
+    
+    func makeAudioRepository() -> AudioRepository {
+        return DefaultAudioRepository(service: dependencies.audioService)
+    }
+    
+    func makeFetchGameRepository() -> GamesRepository {
+        return DefaultGamesRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
     //MARK: - Flow Coordinator
