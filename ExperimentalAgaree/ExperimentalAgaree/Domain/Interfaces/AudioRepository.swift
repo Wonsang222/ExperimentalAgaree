@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol AudioRepository: AuthRepository {
+typealias AudioRepository = AudioRecognizationRepository & AuthRepository
+
+protocol AudioRecognizationRepository {
     
     typealias Completion = (Result<AudioBufferDTO, Error>) -> Void
     

@@ -73,7 +73,6 @@ final class AudioEngineBuilderService: AudioEngineBuilder {
         engine.inputNode.removeTap(onBus: config.bus)
     }
     
-    
     private func checkActivation(engine: AVAudioEngine) {
          if engine.isRunning {
              stop()

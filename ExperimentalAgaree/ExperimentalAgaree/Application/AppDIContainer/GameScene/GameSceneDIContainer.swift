@@ -22,22 +22,34 @@ final class GameSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    private func getAuths(for: GameInfo) -> [AuthorizationType] {
-        
-    }
-    
     //MARK: - Game Selection
     
-    func makeGameSelectionVC() {
+    func makeGameSelectionVC() -> PreGameController {
         
     }
     
-    func makeGameSelectionVM() {
-        
+    func makeGameSelectionVM(game: GameInfo, action: GameSelectionViewModelAction) -> GameSelectionViewModel {
+        return DefaultGameSelectionViewModel(useCase: makeGameSelectionUseCase(gameInfo: game), action: action)
     }
     
     func makeGameSelectionUseCase(gameInfo: GameInfo) -> GameSelectionUseCase {
-        return DefaultGameSelectionUseCase(targetGame: gameInfo, gameAuths: <#T##[any AuthCheckable]#>)
+        return DefaultGameSelectionUseCase(targetGame: gameInfo, gameAuths: makeGameAuths(by: gameInfo))
+    }
+    
+    private func makeGameAuths(by gameInfo: GameInfo) -> [AuthRepository] {
+        var authList = [AuthRepository]()
+        let auths = gameInfo.getGamePath().auths
+        for auth in auths {
+            switch auth {
+            case .internet:
+                break
+            case .mic:
+                authList.append(makeAudioRepository() as AuthRepository)
+            case .stt:
+                authList.append(makeSTTRepository() as AuthRepository)
+            }
+        }
+        return authList
     }
     
     //MARK: - GameResult

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol GameSelectionUseCase {
-    
     func requestGameAuthorization()
     func checkGameAuthrization(completion: @escaping (String?) -> Void)
     func getTargetModel() -> GameInfo
@@ -17,11 +16,11 @@ protocol GameSelectionUseCase {
 final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     
     private let targetGame: GameInfo
-    private let gameAuths: [AuthCheckable]
+    private let gameAuths: [AuthRepository]
     
     init(
         targetGame: GameInfo,
-        gameAuths: [AuthCheckable]
+        gameAuths: [AuthRepository]
     ) {
         self.targetGame = targetGame
         self.gameAuths = gameAuths
@@ -29,23 +28,23 @@ final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     
     func requestGameAuthorization() {
         for auth in gameAuths {
-            auth.requestAuthorization()
+            auth.reqAuth()
         }
     }
     
     func checkGameAuthrization(completion: @escaping (String?) -> Void) {
-        var noAuthService = [String]()
+        var noAuthServiceDescription = [String]()
         for auth in gameAuths {
-            auth.checkAuthorizatio { isAuthorized in
+            auth.checkAuth { isAuthorized in
                 if !isAuthorized {
-                    noAuthService.append(auth.getDescription())
+                    noAuthServiceDescription.append(auth.description)
                 }
             }
         }
         
-        if !noAuthService.isEmpty {
-            let noServices = noAuthService.joined(separator: ",")
-            completion(noServices)
+        if !noAuthServiceDescription.isEmpty {
+            let description = noAuthServiceDescription.joined(separator: ",")
+            completion(description)
             return
         }
         completion(nil)
