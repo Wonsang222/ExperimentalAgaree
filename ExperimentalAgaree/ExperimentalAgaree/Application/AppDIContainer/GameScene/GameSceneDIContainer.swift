@@ -24,8 +24,8 @@ final class GameSceneDIContainer {
     
     //MARK: - Game Selection
     
-    func makeGameSelectionVC() -> PreGameController {
-        
+    func makeGameSelectionVC(game: GameInfo, action: GameSelectionViewModelAction) -> PreGameController {
+        return PreGameController(gameSelectionViewModel: makeGameSelectionVM(game: game, action: action))
     }
     
     func makeGameSelectionVM(game: GameInfo, action: GameSelectionViewModelAction) -> GameSelectionViewModel {
