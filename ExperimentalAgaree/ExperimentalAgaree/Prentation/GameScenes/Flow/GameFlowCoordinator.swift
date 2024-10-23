@@ -8,18 +8,13 @@
 import UIKit
 
 protocol GameFlowCoordinatorDependencies {
-    func makeGameSelectionViewController() -> PreGameController
-    func makeGuessWhoGameViewController(action: GuessWhoViewModelAction) -> GuessWhoController
-    func makeResultController(result: Bool) -> ResultController
-    func goBackToRootVC()
+    func makeGameSelectionVC(game: GameInfo, action: GameSelectionViewModelAction) -> PreGameController
 }
 
 final class GameFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
     private let dependencies: GameFlowCoordinatorDependencies
-    
-    private weak var resultVC: ResultController?
     
     init(
         navigationController: UINavigationController?,
@@ -29,22 +24,21 @@ final class GameFlowCoordinator {
         self.dependencies = dependencies
     }
     
-    func start() {
-        
-        
-    }
-    
-    private func showResult(result: Bool) {
-        let vc = dependencies.makeResultController(result: result)
-        resultVC = vc
-        navigationController?.pushViewController(resultVC!, animated: true)
+    func start(with game: GameInfo = GameInfo(gamePath: .guessWho, numberOfPlayers: 2)) {
+        let gameSelectionAction = GameSelectionViewModelAction(goPlayGame: goPlayGame)
+        let gameSelectionVC = dependencies.makeGameSelectionVC(game: game, action: gameSelectionAction)
+        navigationController?.pushViewController(gameSelectionVC, animated: true)
     }
     
     private func goBackToRootVC() {
         navigationController?.popToRootViewController(animated: true)
     }
     
-    private func goPlayGame(gameInfo: FetchGameModelUseCaseRequestValue, actions: GuessWhoViewModelAction) -> GuessWhoController {
-        return GuessWhoController()
+    private func goPlayGame(gameInfo: GameInfo) {
+        
+    }
+    
+    private func showResultVC(isWin: Bool) {
+        
     }
 }
