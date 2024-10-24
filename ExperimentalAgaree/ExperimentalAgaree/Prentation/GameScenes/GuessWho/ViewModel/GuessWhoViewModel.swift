@@ -78,9 +78,10 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     private func bind() {
         let vm: Observer<GameModel?> = Observer(block: { [weak self] value in
-            let photoImg = value?.photo
-            let guessWhoTargetViewModel = GuessWhoTargetViewModel(photo: photoImg)
-            self?.target.setValue(guessWhoTargetViewModel)
+            
+//            let photoImg = value?.photo
+//            let guessWhoTargetViewModel = GuessWhoTargetViewModel(photo: photoImg)
+//            self?.target.setValue(guessWhoTargetViewModel)
         }, target: self)
         
         guessWhoUseCase.targetModel.addObserver(vm)

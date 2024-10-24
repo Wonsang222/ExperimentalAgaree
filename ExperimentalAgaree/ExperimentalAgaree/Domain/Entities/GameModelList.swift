@@ -8,11 +8,11 @@
 import UIKit
 
 final class GameModel {
-    let name: String
-    let photoUrl: String
+    let name: String?
+    let photoUrl: String?
     var photo: UIImage? = nil
     
-    init(name: String, photoUrl: String) {
+    init(name: String?, photoUrl: String?) {
         self.name = name
         self.photoUrl = photoUrl
     }

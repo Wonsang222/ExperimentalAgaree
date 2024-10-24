@@ -8,6 +8,19 @@
 import UIKit
 
 struct GuessWhoTargetViewModel {
-    var photo: UIImage?
+    let name: String
+    let url: String
+    var photo: UIImage? = nil
+    
+    init?(target: GameModel) {
+        if let targetName = target.name,
+           let targetUrl = target.photoUrl {
+            name = targetName
+            url = targetUrl
+        }
+        return nil
+    }
 }
+
+
 

@@ -13,7 +13,7 @@ protocol CommonGameUseCase {
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
     typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
     
-    var targetModel: Observable<GameModel?> { get }
+    var targetModel: Observable<GuessWhoTargetViewModel?> { get }
     
     func fetch(requestValue: FetchGameModelUseCaseRequestValue,
                completion: @escaping FetchCompletion) -> Cancellable?
