@@ -32,6 +32,7 @@ struct GuessWhoViewModelAction {
 }
 
 typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput
+typealias InnerGuessWhoViewModel = SttGameModelable & PhotoGameModelable
 
 final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
@@ -75,25 +76,13 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         }
         self.error.setValue(description)
     }
-    
-    private func bind() {
-        let vm: Observer<GameModel?> = Observer(block: { [weak self] value in
-            
-//            let photoImg = value?.photo
-//            let guessWhoTargetViewModel = GuessWhoTargetViewModel(photo: photoImg)
-//            self?.target.setValue(guessWhoTargetViewModel)
-        }, target: self)
-        
-        guessWhoUseCase.targetModel.addObserver(vm)
-    }
-    
+
     private func fetchGameModelList(targets: FetchGameModelUseCaseRequestValue) {
         fetchGameTask = guessWhoUseCase.fetch(requestValue: targets,
                                               completion: { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success():
-                self.bind()
                 self.guessWhoStatus.setValue(.ready)
             case .failure(let err):
                 self.handleError(err)
@@ -144,7 +133,6 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
 }
 
 extension DefaultGuessWhoViewModel {
-
     //MARK: - Input
 
     func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void) {

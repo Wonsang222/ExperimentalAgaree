@@ -7,18 +7,20 @@
 
 import UIKit
 
-struct GuessWhoTargetViewModel {
+protocol SttGameModelable {
+    var name: String { get }
+}
+protocol PhotoGameModelable {
+    var photo: UIImage { get }
+}
+
+struct GuessWhoTargetViewModel: SttGameModelable, PhotoGameModelable {
     let name: String
-    let url: String
-    var photo: UIImage? = nil
+    var photo: UIImage
     
-    init?(target: GameModel) {
-        if let targetName = target.name,
-           let targetUrl = target.photoUrl {
-            name = targetName
-            url = targetUrl
-        }
-        return nil
+    init(name: String, photo: UIImage) {
+        self.name = name
+        self.photo = photo
     }
 }
 
