@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         appFlowCoordinator = AppFlowCoordinator(
             navigationController: navigation,
-            appDIContainer: appDIContainer
+            appDIContainer: appDIContainer,
+            window: window!
         )
         appFlowCoordinator?.start()
         window?.makeKeyAndVisible()
