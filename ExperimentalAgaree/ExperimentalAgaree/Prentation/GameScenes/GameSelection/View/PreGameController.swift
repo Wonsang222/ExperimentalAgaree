@@ -31,6 +31,7 @@ final class PreGameController: BaseController{
         self.gameSelectionViewModel = gameSelectionViewModel
         super.init(nibName: nil, bundle: nil)
         bind(to: self.gameSelectionViewModel)
+        
     }
     
     @available(*, unavailable)

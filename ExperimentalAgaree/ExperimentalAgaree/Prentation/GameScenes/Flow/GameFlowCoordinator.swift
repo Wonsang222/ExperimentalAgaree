@@ -27,7 +27,8 @@ final class GameFlowCoordinator {
     func start(with game: GameInfo = GameInfo(gamePath: .guessWho, numberOfPlayers: 2)) {
         let gameSelectionAction = GameSelectionViewModelAction(goPlayGame: goPlayGame)
         let gameSelectionVC = dependencies.makeGameSelectionVC(game: game, action: gameSelectionAction)
-        navigationController?.pushViewController(gameSelectionVC, animated: true)
+        let tem = ViewController()
+        navigationController?.pushViewController(tem, animated: true)
     }
     
     private func goBackToRootVC() {
