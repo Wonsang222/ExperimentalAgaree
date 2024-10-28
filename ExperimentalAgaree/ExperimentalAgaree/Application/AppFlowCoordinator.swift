@@ -9,20 +9,20 @@ import UIKit
 
 final class AppFlowCoordinator {
     
-    var navigationController: UINavigationController
+    var navigationController: CustomUINavigationController
     private let appDIContainer: AppDIContainer
     
     init(
-        navigationController: UINavigationController,
+        navigationController: CustomUINavigationController,
          appDIContainer: AppDIContainer
     ) {
         self.navigationController = navigationController
         self.appDIContainer = appDIContainer
     }
     
-//    func start() {
-//        let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
-//      
-//        
-//    }
+    func start() {
+        let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
+        let flow = gameSceneDIContainer.makeGameFlowCoordinator(navigationController: navigationController)
+        flow.start()
+    }
 }

@@ -29,7 +29,7 @@ final class PreGameController: BaseController{
 
     init(gameSelectionViewModel: GameSelectionViewModel) {
         self.gameSelectionViewModel = gameSelectionViewModel
-        super.init()
+        super.init(nibName: nil, bundle: nil)
         bind(to: self.gameSelectionViewModel)
     }
     

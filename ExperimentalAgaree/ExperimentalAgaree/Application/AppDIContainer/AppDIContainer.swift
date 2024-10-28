@@ -41,7 +41,8 @@ final class AppDIContainer {
         let dependencies = GameSceneDIContainer.Dependencies(
             apiDataTransferService: apiDataTransferService,
             sttService: sttService,
-            timerService: timerService, audioService: audioService)
+            timerService: timerService,
+            audioService: audioService)
         return GameSceneDIContainer(dependencies: dependencies)
     }
 }

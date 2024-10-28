@@ -14,7 +14,7 @@ protocol PhotoGameModelable {
     var photo: UIImage { get }
 }
 
-struct GuessWhoTargetViewModel: SttGameModelable, PhotoGameModelable {
+final class GuessWhoTargetViewModel: SttGameModelable, PhotoGameModelable {
     let name: String
     var photo: UIImage
     

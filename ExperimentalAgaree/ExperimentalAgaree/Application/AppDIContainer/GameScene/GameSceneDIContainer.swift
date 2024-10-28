@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GameSceneDIContainer {
+final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -96,7 +96,10 @@ final class GameSceneDIContainer {
     
     //MARK: - Flow Coordinator
     
-    func makeGameFlowCoordinator() {
-        
+    func makeGameFlowCoordinator(navigationController: CustomUINavigationController) -> GameFlowCoordinator {
+        return GameFlowCoordinator(
+            navigationController: navigationController,
+            dependencies: self
+        )
     }
 }
