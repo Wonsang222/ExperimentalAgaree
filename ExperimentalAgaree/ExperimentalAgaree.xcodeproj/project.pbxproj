@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -616,7 +616,6 @@
 		C1DFB2DB2C8F1AD400011058 /* Etc */ = {
 			isa = PBXGroup;
 			children = (
-				C1D0719E2CD10D94007734EE /* Font */,
 				C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */,
 			);
 			path = Etc;
@@ -645,9 +644,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				C1D0719E2CD10D94007734EE /* Font */,
 			);
 			name = ExperimentalAgaree;
 			productName = ExperimentalAgaree;

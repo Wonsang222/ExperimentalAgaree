@@ -26,11 +26,9 @@ final class PreGameView:BaseView{
     //MARK: - SegmentControl
     let segment:UISegmentedControl = {
        let sc = UISegmentedControl(items: ["2인", "3인", "4인", "5인"])
-        sc.tintColor = .white
         sc.selectedSegmentTintColor = .systemBlue
-//        let font = UIFont(name: Global.APPFONT, size: 13)
-//        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, .font:font as Any], for: .selected)
-//        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, .font:font as Any], for: .normal)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc

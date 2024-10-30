@@ -40,7 +40,6 @@ class HowToPlayBaseView:BaseView {
         return view
     }()
     
-    
     let button:UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "checkmark"), for: .normal)

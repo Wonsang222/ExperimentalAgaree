@@ -28,19 +28,16 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     
     private let useCase: GameSelectionUseCase
     private let action: GameSelectionViewModelAction
-    private let executionQueue: DispatchQueue
     
     let errorStr: Observable<ErrorHandler> = Observable(value: ErrorHandler(errMsg: ""))
     let target: Observable<GameInfo>
     
     init(
         useCase: GameSelectionUseCase,
-        action: GameSelectionViewModelAction,
-        executionQueue: DispatchQueue = DispatchQueue.main
+        action: GameSelectionViewModelAction
     ) {
         self.useCase = useCase
         self.action = action
-        self.executionQueue = executionQueue
         target = Observable(value: useCase.getTargetModel())
     }
 
@@ -49,10 +46,12 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     }
     
     func tapPlayBtn() {
+        
         checkAuthorization { [weak self] granted in
             guard let self = self else { return }
             if granted {
                 self.action.goPlayGame(self.target.getValue())
+                return
             }
         }
     }
@@ -75,8 +74,8 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         useCase.checkGameAuthrization { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .some(let noService):
-                let noAuthScript = self.buildAuthErrorScript(noService)
+            case .some(let noServices):
+                let noAuthScript = self.buildAuthErrorScript(noServices)
                 let errorHandler = ErrorHandler(errMsg: noAuthScript)
                 errorStr.setValue(errorHandler)
                 completion(false)

@@ -64,7 +64,6 @@ final class PreGameController: BaseController{
         configureView()
         preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
-        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
         preGameView.segment.addTarget(self, action: #selector(segBtnTapped), for: .valueChanged)
         
         gameSelectionViewModel.viewDidLoad()
@@ -75,12 +74,11 @@ final class PreGameController: BaseController{
         gameSelectionViewModel.tapSeg(UInt8(num))
     }
     
-    @objc private func innerButtonTapped(){
-        howToPlayView?.removeFromSuperview()
+    @objc private func innerButtonTapped() {
+        howToPlayView.removeFromSuperview()
     }
     
     @objc private func outerButtonTapped() {
-        guard let howToPlayView = howToPlayView else { return }
         view.addSubview(howToPlayView)
         NSLayoutConstraint.activate([
             howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -89,6 +87,7 @@ final class PreGameController: BaseController{
             howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
         ])
         howToPlayView.layoutIfNeeded()
+        howToPlayView.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
     }
 
     private func configureView() {

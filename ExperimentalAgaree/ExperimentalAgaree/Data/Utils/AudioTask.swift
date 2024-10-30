@@ -12,7 +12,6 @@ final class AudioTask: Cancellable {
     var task: AudioEngineBuilder? = nil
     
     func cancel() {
-        
         task = nil
     }
 }
