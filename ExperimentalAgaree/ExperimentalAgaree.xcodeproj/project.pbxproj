@@ -402,6 +402,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7E8084CE2CD301E100018238 /* GameResult */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GameResult;
+			sourceTree = "<group>";
+		};
 		7E83FBB12C755B6100DF4DD7 = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +489,7 @@
 		7E8DB8DD2C7BFF8A00D9B9F0 /* GuessWhoGame */ = {
 			isa = PBXGroup;
 			children = (
+				7E8084CE2CD301E100018238 /* GameResult */,
 				7E40AFA82CB362D700317604 /* Game */,
 				7E40AFA52CB35E0B00317604 /* GameSelection */,
 			);

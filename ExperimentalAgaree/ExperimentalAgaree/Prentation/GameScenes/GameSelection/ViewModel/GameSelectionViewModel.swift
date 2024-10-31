@@ -46,7 +46,6 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     }
     
     func tapPlayBtn() {
-        
         checkAuthorization { [weak self] granted in
             guard let self = self else { return }
             if granted {

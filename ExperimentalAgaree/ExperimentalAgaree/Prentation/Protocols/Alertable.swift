@@ -28,9 +28,11 @@ extension Ext where T: UIViewController {
         completion: (() -> Void)? = nil
     ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-        let action = UIAlertAction(title: "OK", style: .default)
+        let action = UIAlertAction(title: "확인", style: .default) { _ in
+            completion?()
+        }
         alert.addAction(action)
-        ext.present(alert, animated: true, completion: completion)
+        ext.present(alert, animated: true)
     }
 }
 

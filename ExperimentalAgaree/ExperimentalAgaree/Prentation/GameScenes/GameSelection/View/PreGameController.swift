@@ -41,6 +41,7 @@ final class PreGameController: BaseController{
     
     private func bind(to viewModel: GameSelectionViewModel) {
         gameSelectionViewModel.target.addObserver(Observer(block: { [weak self] in self?.updateUI($0)}, target: self))
+        gameSelectionViewModel.errorStr.addObserver(Observer(block: { [weak self] in self?.handleError($0)}, target: self))
     }
     
     private func updateUI(_ gameInfo: GameInfo) {
@@ -49,6 +50,15 @@ final class PreGameController: BaseController{
         
         preGameView.titleLabel.text = title
         howToPlayView = instView
+    }
+    
+    private func handleError(_ errorHandler: ErrorHandler) {
+        let script = errorHandler.errMsg
+        let appSetting = URL(string: UIApplication.openSettingsURLString)!
+        let completion = {
+            UIApplication.shared.open(appSetting)
+        }
+        ext.showAlert(title: "알림", message: script, completion: completion)
     }
    
     override var prefersStatusBarHidden: Bool {
