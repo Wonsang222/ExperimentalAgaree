@@ -120,6 +120,7 @@
 		7E7B16612C7D4BC000632CBB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionBase.swift; sourceTree = "<group>"; };
 		7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC + AddBehaviors.swift"; sourceTree = "<group>"; };
+		7E8084CF2CD3025C00018238 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentalAgaree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 				7E83FBC32C755B6100DF4DD7 /* Main.storyboard */,
 				7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */,
 				7E83FBCB2C755B6300DF4DD7 /* Info.plist */,
+				7E8084CF2CD3025C00018238 /* README.md */,
 			);
 			path = ExperimentalAgaree;
 			sourceTree = "<group>";
