@@ -9,24 +9,20 @@ import UIKit
 
 final class AppFlowCoordinator {
     
-    var navigationController: CustomUINavigationController
-    var window: UIWindow
+    weak var navigationController: CustomUINavigationController?
     private let appDIContainer: AppDIContainer
     
     init(
         navigationController: CustomUINavigationController,
-         appDIContainer: AppDIContainer,
-        window: UIWindow
+         appDIContainer: AppDIContainer
     ) {
         self.navigationController = navigationController
         self.appDIContainer = appDIContainer
-        self.window = window
     }
     
     func start() {
-        window.rootViewController = navigationController
         let gameSceneDIContainer = appDIContainer.makeGameSceneDIContainer()
-        let flow = gameSceneDIContainer.makeGameFlowCoordinator(navigationController: navigationController)
+        let flow = gameSceneDIContainer.makeGameFlowCoordinator(navigationController: navigationController!)
         flow.start()
     }
 }

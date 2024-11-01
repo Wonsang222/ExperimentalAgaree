@@ -11,6 +11,9 @@ final class GuessWhoController: UIViewController {
     
     //MARK: - Properties
     
+    private let gameViewModel: GuessWhoViewModel
+    private let guessView = GuessWhoView()
+
     let countView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -28,7 +31,14 @@ final class GuessWhoController: UIViewController {
         return pv
     }()
     
-    private let guessView = GuessWhoView()
+    init(gameViewModel: GuessWhoViewModel) {
+        self.gameViewModel = gameViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Lifecycle
     

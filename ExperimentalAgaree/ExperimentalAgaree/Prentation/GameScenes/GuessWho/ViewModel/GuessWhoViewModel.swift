@@ -15,7 +15,7 @@ protocol GuessWhoViewModelInput {
 protocol GuessWhoViewModelOutput {
     var target: Observable<GuessWhoTargetViewModel?> { get }
     var time: Observable<Float> { get }
-    var error: Observable<String?> { get }
+    var error: Observable<ErrorHandler?> { get }
     var guessWhoStatus: Observable<GuessWhoViewModelStatus> { get }
 }
 
@@ -29,6 +29,7 @@ enum GuessWhoViewModelStatus {
 
 struct GuessWhoViewModelAction {
     let showGameResult: (Bool) -> Void
+    let popToRoot: () -> Void
 }
 
 typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput
@@ -49,7 +50,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     let target: Observable<GuessWhoTargetViewModel?> = Observable(value: nil)
     let time: Observable<Float> = Observable(value: 0)
-    let error: Observable<String?> = Observable(value: nil)
+    let error: Observable<ErrorHandler?> = Observable(value: nil)
     let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .preparation)
     
     init(
@@ -62,6 +63,16 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.actions = actions
         self.mainQueue = mainQueue
         self.fetchData = fetchData
+        
+        setNotification()
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInactiveAction), name: .sceneResignActive, object: nil)
+    }
+    
+    @objc private func handleInactiveAction() {
+        
     }
     
     private func handleError(_ error: Error) {
@@ -74,7 +85,8 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         default:
             description = "알수 없는 에러입니다."
         }
-        self.error.setValue(description)
+        let errorHandler = ErrorHandler(errMsg: description)
+        self.error.setValue(errorHandler)
     }
 
     private func fetchGameModelList(targets: FetchGameModelUseCaseRequestValue) {
@@ -120,11 +132,11 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         })
     }
     
-    
     // 타이머밸류로 wrapping
     private func gameStart() {
         if guessWhoStatus.getValue() != .ready {
-            error.setValue("예상하지 못한 에러입니다.")
+            let errHandler = ErrorHandler(errMsg: "예상하지 못한 에러입니다.", completion: actions.popToRoot)
+            error.setValue(errHandler)
             return
         }
         startTimer(timerValue: fetchData.gameInfo.gameTimeValue)

@@ -19,28 +19,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigation = CustomUINavigationController()
         window = UIWindow(windowScene: scene)
+        window?.rootViewController = navigation
         appFlowCoordinator = AppFlowCoordinator(
             navigationController: navigation,
-            appDIContainer: appDIContainer,
-            window: window!
+            appDIContainer: appDIContainer
         )
         appFlowCoordinator?.start()
         window?.makeKeyAndVisible()
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
     func sceneWillResignActive(_ scene: UIScene) {
+        NotificationCenter.default.post(name: .sceneResignActive, object: nil)
     }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
+}
 
-    func sceneDidEnterBackground(_ scene: UIScene) {
-    }
+public extension Notification.Name {
+    static let sceneResignActive = Notification.Name("SceneResignActive")
 }
 
