@@ -29,9 +29,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
+        handleInActiveScene()
+    }
+}
+
+extension SceneDelegate {    
+    private func handleInActiveScene() {
         NotificationCenter.default.post(name: .sceneResignActive, object: nil)
     }
-
 }
 
 public extension Notification.Name {

@@ -28,7 +28,7 @@ class NetworkServiceTest: XCTestCase {
              headerParameters: [String : String] = [:],
              queryParameter: Encodable,
              bodyParameter: Encodable? = nil,
-             bodyEncoder: ExperimentalAgaree.BodyEncoder
+             bodyEncoder: ExperimentalAgaree.BodyEncoder = DefaultBodyEncoder()
         ) {
             self.path = path
             self.method = method
@@ -39,22 +39,33 @@ class NetworkServiceTest: XCTestCase {
         }
     }
     
-    func test_whenDeviceInternetIsNotAvailable_shouldReturnCancelledError() {
+    func test_whenCancelErrorReturned_shouldReturnCancelledError() {
         //given
+        
         let config = NetworkConfigurableMock()
         var completionCallsCount = 0
         
+        let canceleedError = NSError(domain: "network", code: NSURLErrorCancelled)
         
-        let cancelledError = NSError(domain: "network", code: NSURLErrorCancelled)
-        let session = NetworkSessionManagerMock(response: nil, data: nil, error: cancelledError)
+        let sut = DefaultNetworkService(config: config, session: NetworkSessionManagerMock(response: nil, data: nil, error: canceleedError))
+        let gameReqDTO = GameRequestDTO(game: .guessWho, numberOfPlayers: 2)
+        let endPoint = EndpointMock(queryParameter: gameReqDTO)
+        // when
         
-        let endPoint = EndpointMock(queryParameter: <#T##Encodable#>, bodyEncoder: <#T##BodyEncoder#>)
+        _ = sut.request(endpoint: endPoint, completion: { result in
+            do {
+                _ = try result.get()
+                XCTFail("오류")
+            } catch (let err) {
+                if case NetworkError.cancelled = err {
+                    completionCallsCount += 1
+                    XCTAssertEqual(completionCallsCount, 1)
+                } else {
+                    XCTFail("오류2")
+                    return
+                }
+            }
+        })
         
-        let sut = DefaultNetworkService(config: config, session: session)
-        //when
-        
-        _ = sut.request(endpoint: <#T##Requestable#>, completion: <#T##DefaultNetworkService.Completion##DefaultNetworkService.Completion##(Result<Data?, NetworkError>) -> Void#>)
-        
-        //then
     }
 }
