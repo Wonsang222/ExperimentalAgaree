@@ -58,6 +58,7 @@ class NetworkServiceTest: XCTestCase {
                 XCTFail("오류")
             } catch (let err) {
                 if case NetworkError.cancelled = err {
+                    // then
                     completionCallsCount += 1
                     XCTAssertEqual(completionCallsCount, 1)
                 } else {
@@ -66,6 +67,9 @@ class NetworkServiceTest: XCTestCase {
                 }
             }
         })
+    }
+    
+    func test_dsifj_sdklfj() {
         
     }
 }
