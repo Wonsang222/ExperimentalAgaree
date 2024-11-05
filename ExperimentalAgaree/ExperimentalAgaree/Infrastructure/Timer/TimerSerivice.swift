@@ -24,7 +24,7 @@ final class DefaultTimerService: TimerManager {
     private let config: TimerConfigurable
     
     init(
-        queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated),
+        queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInteractive),
         config: TimerConfigurable
     ) {
         self.queue = queue

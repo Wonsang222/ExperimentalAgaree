@@ -49,8 +49,6 @@ protocol SttService {
     ) -> SttTaskCancellable?
     
     func appendRecogRequest(_ buffer: AudioBufferDTO) throws
-    
-    func stop()
 }
 
 typealias SpeechTaskUsable = SttService & AuthCheckable
@@ -91,10 +89,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
         let pcmBuffer = try convertToPCMBuffer(from: buffer)
         recognitionRequest.append(pcmBuffer)
     }
-    
-    func stop() {
-    }
-    
+
     private func convertToPCMBuffer(from dto: AudioBufferDTO) throws -> AVAudioPCMBuffer {
         // AVAudioFormat을 생성합니다.
         guard let audioFormat = AVAudioFormat(standardFormatWithSampleRate: dto.format.sampleRate,

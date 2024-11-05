@@ -68,8 +68,4 @@ class NetworkServiceTest: XCTestCase {
             }
         })
     }
-    
-    func test_dsifj_sdklfj() {
-        
-    }
 }

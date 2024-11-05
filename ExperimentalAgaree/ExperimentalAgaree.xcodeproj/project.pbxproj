@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E28F2082CD9D58600DD7A2D /* DataTransferServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */; };
+		7E28F20B2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */; };
+		7E28F20D2CD9F09E00DD7A2D /* AsyncNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */; };
+		7E28F20F2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */; };
 		7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */; };
 		7E2C16992CAA1E5F00A96250 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C16982CAA1E5F00A96250 /* AppFlowCoordinator.swift */; };
 		7E2C169C2CAA1EF500A96250 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */; };
@@ -57,7 +61,6 @@
 		C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C692E42C7A0FF000EF0C45 /* Cancellable.swift */; };
 		C1DFB2A22C7DEBB000011058 /* STTRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2A12C7DEBB000011058 /* STTRepository.swift */; };
 		C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2A32C7DED1200011058 /* SttModel.swift */; };
-		C1DFB2AC2C7E105E00011058 /* ExperimentalAgareeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */; };
 		C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */; };
 		C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */; };
 		C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2BF2C84239200011058 /* SpeechService.swift */; };
@@ -66,7 +69,6 @@
 		C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2C92C85E58300011058 /* APIEndpoints.swift */; };
 		C1DFB2D02C87478600011058 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2CF2C87478600011058 /* GameType.swift */; };
 		C1DFB2D82C8C138400011058 /* DefaultGamesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */; };
-		C1DFB2DD2C8F1B0200011058 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */; };
 		C1DFB2E12C91D1B800011058 /* GameJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2E02C91D1B800011058 /* GameJudge.swift */; };
 		C1DFB2E32C91D70200011058 /* DefaultTimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */; };
 		C1DFB2E72C966E9600011058 /* STTUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB2E62C966E9600011058 /* STTUseCase.swift */; };
@@ -90,6 +92,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferServiceTest.swift; sourceTree = "<group>"; };
+		7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoUseCaseTests.swift; sourceTree = "<group>"; };
+		7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncNetworkService.swift; sourceTree = "<group>"; };
+		7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncDataTransferService.swift; sourceTree = "<group>"; };
 		7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		7E2C16982CAA1E5F00A96250 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -144,7 +150,6 @@
 		C1DFB2A12C7DEBB000011058 /* STTRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTRepository.swift; sourceTree = "<group>"; };
 		C1DFB2A32C7DED1200011058 /* SttModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SttModel.swift; sourceTree = "<group>"; };
 		C1DFB2A92C7E105E00011058 /* ExperimentalAgareeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExperimentalAgareeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalAgareeTests.swift; sourceTree = "<group>"; };
 		C1DFB2B42C80AC5500011058 /* TimerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfiguration.swift; sourceTree = "<group>"; };
 		C1DFB2B62C80ACB200011058 /* TimerSerivice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSerivice.swift; sourceTree = "<group>"; };
 		C1DFB2BF2C84239200011058 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
@@ -153,7 +158,6 @@
 		C1DFB2C92C85E58300011058 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		C1DFB2CF2C87478600011058 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 		C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGamesRepository.swift; sourceTree = "<group>"; };
-		C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
 		C1DFB2E02C91D1B800011058 /* GameJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameJudge.swift; sourceTree = "<group>"; };
 		C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTimerRepository.swift; sourceTree = "<group>"; };
 		C1DFB2E62C966E9600011058 /* STTUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTUseCase.swift; sourceTree = "<group>"; };
@@ -219,6 +223,14 @@
 				7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */,
 			);
 			path = GameScene;
+			sourceTree = "<group>";
+		};
+		7E28F2092CD9D7DB00DD7A2D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		7E2C169A2CAA1EE800A96250 /* AppDIContainer */ = {
@@ -349,6 +361,7 @@
 			children = (
 				7E41A1C02C8E6C45006060A3 /* Mock */,
 				7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */,
+				7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -476,6 +489,8 @@
 				7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */,
 				7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */,
 				7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */,
+				7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */,
+				7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -561,9 +576,8 @@
 		C1DFB2AA2C7E105E00011058 /* ExperimentalAgareeTests */ = {
 			isa = PBXGroup;
 			children = (
+				7E28F2092CD9D7DB00DD7A2D /* Domain */,
 				7E41A1BC2C8E6BC1006060A3 /* Infrastructure */,
-				C1DFB2DA2C8C939200011058 /* Domain */,
-				C1DFB2AB2C7E105E00011058 /* ExperimentalAgareeTests.swift */,
 			);
 			path = ExperimentalAgareeTests;
 			sourceTree = "<group>";
@@ -616,17 +630,9 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		C1DFB2DA2C8C939200011058 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		C1DFB2DB2C8F1AD400011058 /* Etc */ = {
 			isa = PBXGroup;
 			children = (
-				C1DFB2DC2C8F1B0200011058 /* AppInfo.plist */,
 			);
 			path = Etc;
 			sourceTree = "<group>";
@@ -721,7 +727,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DFB2DD2C8F1B0200011058 /* AppInfo.plist in Resources */,
 				7E83FBC72C755B6300DF4DD7 /* Assets.xcassets in Resources */,
 				7E83FBC52C755B6100DF4DD7 /* Main.storyboard in Resources */,
 			);
@@ -784,8 +789,10 @@
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
 				C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */,
 				7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */,
+				7E28F20F2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */,
+				7E28F20D2CD9F09E00DD7A2D /* AsyncNetworkService.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,
 				C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */,
@@ -811,7 +818,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DFB2AC2C7E105E00011058 /* ExperimentalAgareeTests.swift in Sources */,
+				7E28F20B2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift in Sources */,
+				7E28F2082CD9D58600DD7A2D /* DataTransferServiceTest.swift in Sources */,
 				7E41A1C22C8E6C55006060A3 /* NetworkConfigurableMock.swift in Sources */,
 				7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */,
 				7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */,
@@ -895,7 +903,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -955,7 +963,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
