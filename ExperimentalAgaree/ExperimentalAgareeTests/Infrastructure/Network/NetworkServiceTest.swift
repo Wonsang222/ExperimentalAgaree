@@ -9,7 +9,7 @@ import Foundation
 @testable import ExperimentalAgaree
 import XCTest
 
-class NetworkServiceTest: XCTestCase {
+final class NetworkServiceTest: XCTestCase {
     
     private enum NetworkMockError: Error {
         case mockError
@@ -37,6 +37,14 @@ class NetworkServiceTest: XCTestCase {
             self.bodyParameter = bodyParameter
             self.bodyEncoder = bodyEncoder
         }
+    }
+    
+    private var config: NetworkConfigurableMock!
+    private var count: Int!
+    
+    override func setUp() {
+        config = NetworkConfigurableMock()
+        count = 0
     }
     
     func test_whenCancelErrorReturned_shouldReturnCancelledError() {
@@ -67,5 +75,32 @@ class NetworkServiceTest: XCTestCase {
                 }
             }
         })
+    }
+    
+    func test_whenErrorWithNoConnectedWithInternet_shouldReturnNotConnectedError() {
+        // given
+        let causedError = NSError(domain: "network", code: NSURLErrorNotConnectedToInternet)
+        let session = NetworkSessionManagerMock(response: nil, data: nil, error: causedError)
+        let sut = DefaultNetworkService(config: config, session: session)
+        let gameReqDTO = GameRequestDTO(game: .guessWho, numberOfPlayers: 2)
+        let endPoint = EndpointMock(queryParameter: gameReqDTO)
+        
+        // when
+        _ = sut.request(endpoint: endPoint, completion: { [weak self] result in
+            do {
+                _ = try result.get()
+                XCTFail("Should Not Happen")
+            } catch (let error) {
+                if case NetworkError.notConnected = error {
+                    self?.count = 1
+                } else {
+                    XCTFail("Wrong Error")
+                }
+            }
+        })
+        // then
+        
+        XCTAssertEqual(count, 1)
+        
     }
 }
