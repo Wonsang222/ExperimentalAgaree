@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class GameModel {
+struct NullGameModel {
+    let name = "조커"
+    let photo = #imageLiteral(resourceName: "joker")
+}
+
+struct GameModel {
     let name: String?
     let photoUrl: String?
     var photo: UIImage? = nil
