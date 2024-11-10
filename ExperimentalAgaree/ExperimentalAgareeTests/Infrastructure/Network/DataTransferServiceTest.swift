@@ -36,7 +36,7 @@ final class DataTransferServiceTest: XCTestCase {
         case someError
     }
     
-    func test_whenReceivedInvalidResponse_ShouldReturnDecodingError() {
+    func test_whenReceivedValidResponse_ShouldReturnGameModel() {
         // given
         
         let responsedData = #"{"손흥민":"null", "민지":"https://www.naver.com"}"#.data(using: .utf8)
@@ -45,15 +45,19 @@ final class DataTransferServiceTest: XCTestCase {
         let sut = DefaultDataTransferService(networkService: netService)
         let gameReqDTO = GameRequestDTO(game: .guessWho, numberOfPlayers: 2)
         let endPoint = APIEndpoints.getGames(with: gameReqDTO)
-        // then
+        // when
         
-        _ = sut.request(with: endPoint, on: queueMock, completion: { result in
-            
+        _ = sut.request(with: endPoint, on: queueMock, completion: { [weak self] result in
+            do {
+                let obj = try result.get().toDomain()
+                XCTAssertEqual(2, obj.models.count)
+                self?.count += 1
+            } catch {
+                XCTFail("Parsing Error")
+                return
+            }
         })
-        //when
-    }
-    
-    func test_whenReceivedValidResponse_ShouldReturnDecodingError() {
-        
+        //then
+        XCTAssertEqual(count, 1)
     }
 }

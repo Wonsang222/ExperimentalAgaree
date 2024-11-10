@@ -983,6 +983,8 @@
 				DEVELOPMENT_TEAM = ZD5K45Y4NW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "게임 진행을 위해 해당 디바이스의 스피치 기능을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1015,6 +1017,8 @@
 				DEVELOPMENT_TEAM = ZD5K45Y4NW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "게임 진행을 위해 해당 디바이스의 스피치 기능을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
