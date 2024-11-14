@@ -25,7 +25,7 @@ protocol CommonGameUseCase {
 final class GuessWhoGameUseCase: CommonGameUseCase {
     
     private let fetchUseCase: FetchGameModelUseCase
-    private let timerUseCase: TimerUsecase
+    private let _timerUseCase: TimerUseCase
     private let sttUseCase: STTUseCase
     
     private var gameModels: GameModelList?
@@ -34,11 +34,11 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
 
     init(
         fetchUseCase: FetchGameModelUseCase,
-        timerUseCase: TimerUsecase,
+        timerUseCase: TimerUseCase,
         sttUseCase: STTUseCase
     ) {
         self.fetchUseCase = fetchUseCase
-        self.timerUseCase = timerUseCase
+        self._timerUseCase = timerUseCase
         self.sttUseCase = sttUseCase
     }
     
@@ -63,7 +63,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping TimerCompletion
     ) -> Cancellable? {
-        timerUseCase.startTimer(gameTimerValue: gameTimerValue) { gameJudge in
+        _timerUseCase.startTimer(gameTimerValue: gameTimerValue) { gameJudge in
             switch gameJudge {
             case .data(let timeInfo):
                 completion(.data(timeInfo))

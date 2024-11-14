@@ -8,27 +8,24 @@
 import Foundation
 
 protocol TimerManager {
-    @discardableResult
     func startTimer(
         gameSec:Float,
         handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
-    func stopTimer()
 }
 
 final class DefaultTimerService: TimerManager {
 
-    private var timer: TimerUsable?
-    private let queue: DataTransferDispatchQueue
-    private let config: TimerConfigurable
+    private let _queue: DataTransferDispatchQueue
+    private let _config: TimerConfigurable
     
     init(
         queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInteractive),
         config: TimerConfigurable
     ) {
-        self.queue = queue
-        self.config = config
+        self._queue = queue
+        self._config = config
     }
     
     @discardableResult
@@ -38,22 +35,19 @@ final class DefaultTimerService: TimerManager {
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     {
-        timer = nil
-        let innerTimer = setTimer(gameTime: gameSec, config: config, handlerQueue: handlerQueue, completion: completion)
-        timer = innerTimer
-        queue.asyncExecute {
-            RunLoop.current.add(innerTimer, forMode: .common)
-            innerTimer.fire()
+        let timer = setTimer(gameTime: gameSec,
+                                  config: _config,
+                                  handlerQueue: handlerQueue,
+                                  completion: completion)
+        _queue.asyncExecute {
+            RunLoop.current.add(timer, forMode: .common)
+            timer.fire()
             RunLoop.current.run()
         }
         return timer
     }
     
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
+
     private func setTimer(
         gameTime: Float,
         config: TimerConfigurable,

@@ -15,26 +15,26 @@ protocol GameSelectionUseCase {
 
 final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     
-    private let targetGame: GameInfo
-    private let gameAuths: [AuthRepository]
+    private let _targetGame: GameInfo
+    private let _gameAuths: [AuthRepository]
     
     init(
         targetGame: GameInfo,
         gameAuths: [AuthRepository]
     ) {
-        self.targetGame = targetGame
-        self.gameAuths = gameAuths
+        self._targetGame = targetGame
+        self._gameAuths = gameAuths
     }
     
     func requestGameAuthorization() {
-        for auth in gameAuths {
+        for auth in _gameAuths {
             auth.reqAuth()
         }
     }
     
     func checkGameAuthrization(completion: @escaping (String?) -> Void) {
         var noAuthServiceDescription = [String]()
-        for auth in gameAuths {
+        for auth in _gameAuths {
             auth.checkAuth { isAuthorized in
                 if !isAuthorized {
                     noAuthServiceDescription.append(auth.description)
@@ -51,6 +51,6 @@ final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     }
     
     func getTargetModel() -> GameInfo {
-        return targetGame
+        return _targetGame
     }
 }

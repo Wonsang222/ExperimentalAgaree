@@ -20,19 +20,19 @@ struct FetchGameModelUseCaseRequestValue {
 
 final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
     
-    let gameRespository: GamesRepository
+    private let _gameRespository: GamesRepository
     
     init(
         gameRespository: GamesRepository
     ) {
-        self.gameRespository = gameRespository
+        self._gameRespository = gameRespository
     }
     
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable? {
-        gameRespository.fetchCharacterList(query: requestValue.gameInfo,
+        _gameRespository.fetchCharacterList(query: requestValue.gameInfo,
                                            completion: completion)
     }
 }

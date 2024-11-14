@@ -43,46 +43,46 @@ protocol AudioEngineBuilder: AuthCheckable {
 
 final class AudioEngineBuilderService: AudioEngineBuilder {
     
-    private let config: AudioSessionCofigurable
-    private let engine = AVAudioEngine()
+    private let _config: AudioSessionCofigurable
+    private let _engine = AVAudioEngine()
     
-    init(config: AudioSessionCofigurable) {
-        self.config = config
+    init(_config: AudioSessionCofigurable) {
+        self._config = _config
     }
     
     func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void) {
         do {
             try setAudioSession()
-            checkActivation(engine: engine)
-            let inputNode = engine.inputNode
-            let recordingFormat = inputNode.outputFormat(forBus: config.bus)
-            inputNode.installTap(onBus: config.bus, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
+            checkActivation(_engine: _engine)
+            let inputNode = _engine.inputNode
+            let recordingFormat = inputNode.outputFormat(forBus: _config.bus)
+            inputNode.installTap(onBus: _config.bus, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
                 if let dto =  self?.convertDTO(buffer, format: recordingFormat) {
                     completion(.success(dto))
                 }
             }
-            engine.prepare()
-            try engine.start()
+            _engine.prepare()
+            try _engine.start()
         } catch {
             completion(.failure(resolveError(err: error)))
         }
     }
 
     func stop() {
-        engine.stop()
-        engine.inputNode.removeTap(onBus: config.bus)
+        _engine.stop()
+        _engine.inputNode.removeTap(onBus: _config.bus)
     }
     
-    private func checkActivation(engine: AVAudioEngine) {
-         if engine.isRunning {
+    private func checkActivation(_engine: AVAudioEngine) {
+         if _engine.isRunning {
              stop()
          }
      }
     
     private func setAudioSession() throws {
         let session = AVAudioSession.sharedInstance()
-        try session.setCategory(config.category)
-        try session.setMode(config.mode)
+        try session.setCategory(_config.category)
+        try session.setMode(_config.mode)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
     }
     

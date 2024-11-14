@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-extension SceneDelegate {    
+fileprivate extension SceneDelegate {    
     private func handleInActiveScene() {
         NotificationCenter.default.post(name: .sceneResignActive, object: nil)
     }
