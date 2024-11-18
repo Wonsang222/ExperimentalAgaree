@@ -19,7 +19,7 @@ import UIKit
 
 extension UIViewController {
     
-    func addBehaviors(_ behaviors: ViewControllerLifeCycleBehavior) {
+    func addBehaviors(_ behaviors: [ViewControllerLifeCycleBehavior]) {
         let innerVC = LifeCycleBehaviorViewController(behaviors: behaviors)
         addChild(innerVC)
         view.addSubview(innerVC.view)
@@ -27,9 +27,9 @@ extension UIViewController {
     }
     
     private final class LifeCycleBehaviorViewController: UIViewController {
-        private let behaviors: ViewControllerLifeCycleBehavior
+        private let behaviors: [ViewControllerLifeCycleBehavior]
         
-        init(behaviors: ViewControllerLifeCycleBehavior) {
+        init(behaviors: [ViewControllerLifeCycleBehavior]) {
             self.behaviors = behaviors
             super.init(nibName: nil, bundle: nil)
         }
@@ -45,27 +45,43 @@ extension UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             view.isHidden = true
-            behaviors.viewDidLoad?(vc: outerParent)
+            applyBehaviours { behavior, vc in
+                behavior.viewDidLoad?(vc: vc)
+            }
         }
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            behaviors.viewWillAppear?(vc: outerParent)
+            applyBehaviours { behavior, vc in
+                behavior.viewWillAppear?(vc: vc)
+            }
         }
         
         override func viewWillLayoutSubviews() {
             super.viewWillLayoutSubviews()
-            behaviors.viewWillLayoutSubviews?(vc: outerParent)
+            applyBehaviours { behavior, vc in
+                behavior.viewWillLayoutSubviews?(vc: vc)
+            }
         }
         
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
-            behaviors.viewDidLayoutSubviews?(vc: outerParent)
+            applyBehaviours { behavior, vc in
+                behavior.viewDidLayoutSubviews?(vc: vc)
+            }
         }
 
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
-            behaviors.viewWillDisappear?(vc: outerParent)
+            applyBehaviours { behavior, vc in
+                behavior.viewWillDisappear?(vc: vc)
+            }
+        }
+        
+        private func applyBehaviours(body: (_ behavior:ViewControllerLifeCycleBehavior,_ vc: UIViewController) -> Void) {
+            for behavior in behaviors {
+                body(behavior, outerParent)
+            }
         }
     }
 }
