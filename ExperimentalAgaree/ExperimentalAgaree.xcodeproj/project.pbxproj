@@ -121,6 +121,7 @@
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGameModelUseCase.swift; sourceTree = "<group>"; };
 		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		7E69C8202CEF0A7600C55064 /* AsyncNetworkRequest */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AsyncNetworkRequest; path = ../OuterFrameWork/AsyncNetworkRequest; sourceTree = "<group>"; };
 		7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimerUseCase.swift; sourceTree = "<group>"; };
 		7E75F8AC2C9262B0009E8BC5 /* GameJudgeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameJudgeable.swift; sourceTree = "<group>"; };
 		7E7B165C2C7D42D300632CBB /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -432,6 +433,7 @@
 		7E83FBB12C755B6100DF4DD7 = {
 			isa = PBXGroup;
 			children = (
+				7E69C8202CEF0A7600C55064 /* AsyncNetworkRequest */,
 				7E83FBBC2C755B6100DF4DD7 /* ExperimentalAgaree */,
 				C1DFB2AA2C7E105E00011058 /* ExperimentalAgareeTests */,
 				7E83FBBB2C755B6100DF4DD7 /* Products */,
