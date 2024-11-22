@@ -33,6 +33,8 @@
 		7E41A1C42C8E6F90006060A3 /* NetworkSessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */; };
 		7E41A1C62C8E7074006060A3 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */; };
 		7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */; };
+		7E5633402CEFF26A00D13013 /* AsyncNetworkRequest in Frameworks */ = {isa = PBXBuildFile; productRef = 7E56333F2CEFF26A00D13013 /* AsyncNetworkRequest */; };
+		7E5633432CF00B9400D13013 /* CommonNetworkModel in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5633422CF00B9400D13013 /* CommonNetworkModel */; };
 		7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */; };
 		7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */; };
 		7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75F8AC2C9262B0009E8BC5 /* GameJudgeable.swift */; };
@@ -120,6 +122,7 @@
 		7E41A1C32C8E6F90006060A3 /* NetworkSessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManagerMock.swift; sourceTree = "<group>"; };
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGameModelUseCase.swift; sourceTree = "<group>"; };
+		7E5633412CF00B7B00D13013 /* CommonNetworkModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommonNetworkModel; path = ../OuterFrameWork/CommonNetworkModel; sourceTree = "<group>"; };
 		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		7E69C8202CEF0A7600C55064 /* AsyncNetworkRequest */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AsyncNetworkRequest; path = ../OuterFrameWork/AsyncNetworkRequest; sourceTree = "<group>"; };
 		7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimerUseCase.swift; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E5633432CF00B9400D13013 /* CommonNetworkModel in Frameworks */,
+				7E5633402CEFF26A00D13013 /* AsyncNetworkRequest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +378,13 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		7E56333E2CEFF26A00D13013 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7E7B165A2C7D40E800632CBB /* Prentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,10 +445,12 @@
 		7E83FBB12C755B6100DF4DD7 = {
 			isa = PBXGroup;
 			children = (
+				7E5633412CF00B7B00D13013 /* CommonNetworkModel */,
 				7E69C8202CEF0A7600C55064 /* AsyncNetworkRequest */,
 				7E83FBBC2C755B6100DF4DD7 /* ExperimentalAgaree */,
 				C1DFB2AA2C7E105E00011058 /* ExperimentalAgareeTests */,
 				7E83FBBB2C755B6100DF4DD7 /* Products */,
+				7E56333E2CEFF26A00D13013 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -670,6 +684,10 @@
 			dependencies = (
 			);
 			name = ExperimentalAgaree;
+			packageProductDependencies = (
+				7E56333F2CEFF26A00D13013 /* AsyncNetworkRequest */,
+				7E5633422CF00B9400D13013 /* CommonNetworkModel */,
+			);
 			productName = ExperimentalAgaree;
 			productReference = 7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */;
 			productType = "com.apple.product-type.application";
@@ -997,8 +1015,8 @@
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "게임 진행을 위해 해당 디바이스의 스피치 기능을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1031,8 +1049,8 @@
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "게임 진행을 위해 해당 디바이스의 스피치 기능을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1124,6 +1142,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E56333F2CEFF26A00D13013 /* AsyncNetworkRequest */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AsyncNetworkRequest;
+		};
+		7E5633422CF00B9400D13013 /* CommonNetworkModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonNetworkModel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7E83FBB22C755B6100DF4DD7 /* Project object */;
 }
