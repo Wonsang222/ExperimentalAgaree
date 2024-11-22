@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		7E28F2082CD9D58600DD7A2D /* DataTransferServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */; };
 		7E28F20B2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */; };
-		7E28F20D2CD9F09E00DD7A2D /* AsyncNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */; };
-		7E28F20F2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */; };
 		7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */; };
 		7E2C16992CAA1E5F00A96250 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C16982CAA1E5F00A96250 /* AppFlowCoordinator.swift */; };
 		7E2C169C2CAA1EF500A96250 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */; };
@@ -50,8 +48,6 @@
 		7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBC12C755B6100DF4DD7 /* ViewController.swift */; };
 		7E83FBC52C755B6100DF4DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E83FBC32C755B6100DF4DD7 /* Main.storyboard */; };
 		7E83FBC72C755B6300DF4DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */; };
-		7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */; };
-		7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
 		7E85224F2CBDDF6F00481710 /* AudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E85224E2CBDDF6F00481710 /* AudioRepository.swift */; };
 		7E8522522CBDEB7A00481710 /* DefaultAudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */; };
@@ -98,8 +94,6 @@
 /* Begin PBXFileReference section */
 		7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferServiceTest.swift; sourceTree = "<group>"; };
 		7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoUseCaseTests.swift; sourceTree = "<group>"; };
-		7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncNetworkService.swift; sourceTree = "<group>"; };
-		7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncDataTransferService.swift; sourceTree = "<group>"; };
 		7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		7E2C16982CAA1E5F00A96250 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -142,8 +136,6 @@
 		7E83FBC42C755B6100DF4DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E83FBCB2C755B6300DF4DD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
-		7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7E85224E2CBDDF6F00481710 /* AudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRepository.swift; sourceTree = "<group>"; };
 		7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAudioRepository.swift; sourceTree = "<group>"; };
@@ -507,12 +499,8 @@
 		7E83FBD42C755CD400DF4DD7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7E83FBD52C755CE900DF4DD7 /* NetworkConfig.swift */,
-				7E83FBD72C755DB600DF4DD7 /* Endpoint.swift */,
 				7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */,
 				7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */,
-				7E28F20C2CD9F09E00DD7A2D /* AsyncNetworkService.swift */,
-				7E28F20E2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -811,15 +799,12 @@
 				C1DFB2D82C8C138400011058 /* DefaultGamesRepository.swift in Sources */,
 				7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */,
 				7E2D62FD2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift in Sources */,
-				7E83FBD62C755CE900DF4DD7 /* NetworkConfig.swift in Sources */,
 				7E2C16992CAA1E5F00A96250 /* AppFlowCoordinator.swift in Sources */,
 				C1C692E52C7A0FF000EF0C45 /* Cancellable.swift in Sources */,
 				C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */,
 				7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */,
-				7E28F20F2CD9F2BB00DD7A2D /* AsyncDataTransferService.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
 				7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */,
-				7E28F20D2CD9F09E00DD7A2D /* AsyncNetworkService.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,
 				C178BA752CB2737C0081CB10 /* PreGameView.swift in Sources */,
@@ -838,7 +823,6 @@
 				C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */,
 				7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */,
 				7E8522522CBDEB7A00481710 /* DefaultAudioRepository.swift in Sources */,
-				7E83FBD82C755DB600DF4DD7 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

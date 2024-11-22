@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkConfigurable {
+public protocol NetworkConfigurable {
     var baseURL: URL { get }
     var baseHeaders: [String:String] { get }
     var queryParameter: [String:String] { get }
@@ -16,10 +16,10 @@ protocol NetworkConfigurable {
 
 public struct ApiDataNetworkConfig: NetworkConfigurable {
     
-    let baseURL: URL
-    let baseHeaders: [String : String]
-    let queryParameter: [String : String]
-    let networkServiceType: NetworkServiceType
+    public let baseURL: URL
+    public let baseHeaders: [String : String]
+    public let queryParameter: [String : String]
+    public let networkServiceType: NetworkServiceType
     
     init(
         baseURL: URL,

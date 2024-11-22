@@ -1,30 +1,30 @@
 //
-//  Endpoint.swift
-//  ExperimentalAgaree
+//  File.swift
+//  
 //
-//  Created by 황원상 on 8/21/24.
+//  Created by WISA Mobile on 11/22/24.
 //
 
 import Foundation
 
-enum RequestError: Error {
+public enum RequestError: Error {
     case urlComponent
 }
 
-enum NetworkServiceType: Int {
+public enum NetworkServiceType: Int {
     case responsive = 6
 }
 
-enum HttpMethod: String {
+public enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
 }
 
-protocol BodyEncoder {
+public protocol BodyEncoder {
     func encode(parameters: [String:Any]) -> Data?
 }
 
-protocol Requestable {
+public protocol Requestable {
     var path: String?  { get }
     var method: HttpMethod { get }
     var headerParameters: [String : String] { get }
@@ -35,9 +35,9 @@ protocol Requestable {
     func urlRequest(with: NetworkConfigurable) throws -> URLRequest
 }
 
-extension Requestable {
+public extension Requestable {
     
-    func urlConfiguration(with config: NetworkConfigurable) -> URLSessionConfiguration {
+   func urlConfiguration(with config: NetworkConfigurable) -> URLSessionConfiguration {
         let configuration = URLSessionConfiguration.default
         let serviceType = UInt(config.networkServiceType.rawValue)
         configuration.networkServiceType = NSURLRequest.NetworkServiceType(rawValue: serviceType) ?? .responsiveData
@@ -86,48 +86,34 @@ extension Requestable {
     }
 }
 
-protocol ResponseDecoder {
+public protocol ResponseDecoder {
     func decode<T>(_ data: Data) throws -> T where T: Decodable
 }
 
-final class DefaultResponseDecoder: ResponseDecoder {
-    func decode<T>(_ data: Data) throws -> T where T : Decodable {
-        let dic = try JSONSerialization.jsonObject(with: data)
-        
-        if let dic = dic as? [String:String] {
-            let gameModelList = dic.map{ GameModelInfo(name: $0, url: $1) }
-            return GameResponseDTO(gameModelList: gameModelList) as! T
-        } else {
-            throw DatatransferError.noResponse
-        }
-    }
-}
-
-protocol ResponseRequestable: Requestable {
+public protocol ResponseRequestable: Requestable {
     associatedtype Response
     
     var responseDecoder: ResponseDecoder { get }
 }
 
-final class Endpoint<T>: ResponseRequestable {
-        typealias Response = T
+public final class Endpoint<T>: ResponseRequestable {
+    public typealias Response = T
     
-        let path: String?
-       let responseDecoder: ResponseDecoder
-       let method: HttpMethod
-       let headerParameters: [String : String]
-       let queryParameter: Encodable
-       let bodyParameter: Encodable?
-       let bodyEncoder: BodyEncoder
+    public let path: String?
+    public let responseDecoder: ResponseDecoder
+    public let method: HttpMethod
+    public let headerParameters: [String : String]
+    public let queryParameter: Encodable
+    public let bodyParameter: Encodable?
+    public var bodyEncoder: BodyEncoder = DefaultBodyEncoder()
     
-    init(
+    public init(
         path: String?,
-        responseDecoder: ResponseDecoder = DefaultResponseDecoder(),
+        responseDecoder: ResponseDecoder,
          method: HttpMethod,
         headerParameters: [String : String] = [:],
          queryParameter: Encodable,
-         bodyParameter: Encodable?,
-         bodyEncoder: BodyEncoder = DefaultBodyEncoder()
+         bodyParameter: Encodable?
     ) {
         self.path = path
         self.responseDecoder = responseDecoder
@@ -135,17 +121,16 @@ final class Endpoint<T>: ResponseRequestable {
         self.headerParameters = headerParameters
         self.queryParameter = queryParameter
         self.bodyParameter = bodyParameter
-        self.bodyEncoder = bodyEncoder
     }
 }
 
-final class DefaultBodyEncoder: BodyEncoder {
+fileprivate final class DefaultBodyEncoder: BodyEncoder {
     func encode(parameters: [String : Any]) -> Data? {
         return try? JSONSerialization.data(withJSONObject: parameters)
     }
 }
 
-extension Encodable {
+fileprivate extension Encodable {
     func toDic() throws -> [String:Any]? {
         let data = try JSONEncoder().encode(self)
         let dic = try JSONSerialization.jsonObject(with: data)

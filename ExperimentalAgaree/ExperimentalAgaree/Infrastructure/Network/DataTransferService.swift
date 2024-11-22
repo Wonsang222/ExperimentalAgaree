@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonNetworkModel
 
 enum DatatransferError: Error {
     case noResponse
@@ -115,5 +116,19 @@ final class DefaultJsonResponseDecoder: ResponseDecoder {
     let decoder = JSONDecoder()
     func decode<T>(_ data: Data) throws -> T where T : Decodable {
         return try decoder.decode(T.self, from: data)
+    }
+}
+
+
+final class DefaultResponseDecoder: ResponseDecoder {
+    func decode<T>(_ data: Data) throws -> T where T : Decodable {
+        let dic = try JSONSerialization.jsonObject(with: data)
+        
+        if let dic = dic as? [String:String] {
+            let gameModelList = dic.map{ GameModelInfo(name: $0, url: $1) }
+            return GameResponseDTO(gameModelList: gameModelList) as! T
+        } else {
+            throw DatatransferError.noResponse
+        }
     }
 }
