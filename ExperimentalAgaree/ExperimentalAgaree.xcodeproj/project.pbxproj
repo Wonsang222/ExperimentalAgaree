@@ -33,6 +33,9 @@
 		7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */; };
 		7E5633402CEFF26A00D13013 /* AsyncNetworkRequest in Frameworks */ = {isa = PBXBuildFile; productRef = 7E56333F2CEFF26A00D13013 /* AsyncNetworkRequest */; };
 		7E5633432CF00B9400D13013 /* CommonNetworkModel in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5633422CF00B9400D13013 /* CommonNetworkModel */; };
+		7E5633482CF0208700D13013 /* ResultVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5633462CF0208700D13013 /* ResultVCViewController.m */; };
+		7E5633492CF0208700D13013 /* ResultVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5633472CF0208700D13013 /* ResultVCViewController.xib */; };
+		7E56334E2CF0255700D13013 /* ResultViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E56334D2CF0255700D13013 /* ResultViewModel.m */; };
 		7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */; };
 		7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */; };
 		7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75F8AC2C9262B0009E8BC5 /* GameJudgeable.swift */; };
@@ -117,6 +120,12 @@
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGameModelUseCase.swift; sourceTree = "<group>"; };
 		7E5633412CF00B7B00D13013 /* CommonNetworkModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommonNetworkModel; path = ../OuterFrameWork/CommonNetworkModel; sourceTree = "<group>"; };
+		7E5633442CF0208700D13013 /* ExperimentalAgaree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExperimentalAgaree-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E5633452CF0208700D13013 /* ResultVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultVCViewController.h; sourceTree = "<group>"; };
+		7E5633462CF0208700D13013 /* ResultVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultVCViewController.m; sourceTree = "<group>"; };
+		7E5633472CF0208700D13013 /* ResultVCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultVCViewController.xib; sourceTree = "<group>"; };
+		7E56334D2CF0255700D13013 /* ResultViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultViewModel.m; sourceTree = "<group>"; };
+		7E56334F2CF0256700D13013 /* ResultViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultViewModel.h; sourceTree = "<group>"; };
 		7E60BD302C76B3CE0070BA0A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		7E69C8202CEF0A7600C55064 /* AsyncNetworkRequest */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AsyncNetworkRequest; path = ../OuterFrameWork/AsyncNetworkRequest; sourceTree = "<group>"; };
 		7E75F8AA2C925EDC009E8BC5 /* GameTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimerUseCase.swift; sourceTree = "<group>"; };
@@ -257,7 +266,7 @@
 		7E2D62F72CAF6031001619F0 /* GameResult */ = {
 			isa = PBXGroup;
 			children = (
-				7E2D62FB2CAF6057001619F0 /* ViewModel */,
+				7E56334C2CF0254A00D13013 /* ViewModel */,
 				7E2D62FA2CAF6053001619F0 /* View */,
 			);
 			path = GameResult;
@@ -267,15 +276,12 @@
 			isa = PBXGroup;
 			children = (
 				7E2D62F82CAF6042001619F0 /* ResultController.swift */,
+				7E5633452CF0208700D13013 /* ResultVCViewController.h */,
+				7E5633462CF0208700D13013 /* ResultVCViewController.m */,
+				7E5633472CF0208700D13013 /* ResultVCViewController.xib */,
+				7E5633442CF0208700D13013 /* ExperimentalAgaree-Bridging-Header.h */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7E2D62FB2CAF6057001619F0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7E2D62FE2CAF6B66001619F0 /* GameSelection */ = {
@@ -375,6 +381,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E56334C2CF0254A00D13013 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7E56334D2CF0255700D13013 /* ResultViewModel.m */,
+				7E56334F2CF0256700D13013 /* ResultViewModel.h */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7E7B165A2C7D40E800632CBB /* Prentation */ = {
@@ -710,6 +725,7 @@
 				TargetAttributes = {
 					7E83FBB92C755B6100DF4DD7 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 					};
 					C1DFB2A82C7E105E00011058 = {
 						CreatedOnToolsVersion = 15.4;
@@ -742,6 +758,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E83FBC72C755B6300DF4DD7 /* Assets.xcassets in Resources */,
+				7E5633492CF0208700D13013 /* ResultVCViewController.xib in Resources */,
 				7E83FBC52C755B6100DF4DD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,6 +787,7 @@
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */,
 				7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */,
+				7E5633482CF0208700D13013 /* ResultVCViewController.m in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
 				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,
@@ -780,6 +798,7 @@
 				7E40AF9F2CB3523500317604 /* GameNavigationController.swift in Sources */,
 				7E85224F2CBDDF6F00481710 /* AudioRepository.swift in Sources */,
 				7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */,
+				7E56334E2CF0255700D13013 /* ResultViewModel.m in Sources */,
 				7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */,
 				7E2D630F2CAFB013001619F0 /* GuessWhoView.swift in Sources */,
 				7E2D63032CAF748D001619F0 /* PreGameController.swift in Sources */,
@@ -922,6 +941,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExperimentalAgaree-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -981,6 +1001,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "ExperimentalAgaree-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -990,6 +1011,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZD5K45Y4NW;
@@ -1014,6 +1036,8 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ExperimentalAgaree/Prentation/GameScenes/GameResult/View/ExperimentalAgaree-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1024,6 +1048,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZD5K45Y4NW;
@@ -1048,6 +1073,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ExperimentalAgaree/Prentation/GameScenes/GameResult/View/ExperimentalAgaree-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

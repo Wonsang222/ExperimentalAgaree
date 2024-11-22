@@ -9,7 +9,7 @@ import UIKit
 
 final class GameEndBtnBehavior: ViewControllerLifeCycleBehavior {
     func viewDidLoad(vc: UIViewController) {
-        vc.navigationItem.leftBarButtonItem = nil
+        vc.navigationItem.hidesBackButton = true
         vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .done, target: nil, action: nil)
     }
 }
