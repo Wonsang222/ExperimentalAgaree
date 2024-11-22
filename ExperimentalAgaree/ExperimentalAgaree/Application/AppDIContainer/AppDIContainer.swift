@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonNetworkModel
 
 final class AppDIContainer {
     lazy var appConfiguration = AppConfiguration()
@@ -27,7 +28,7 @@ final class AppDIContainer {
     
     lazy var audioService: AudioEngineBuilder = {
         let config:AudioSessionCofigurable = DefaultAudioSessionConfiguration(category: .record, mode: .measurement, bus: 0)
-        let service = AudioEngineBuilderService(config: config)
+        let service = AudioEngineBuilderService(_config: config)
         return service
     }()
     

@@ -21,7 +21,7 @@ public struct ApiDataNetworkConfig: NetworkConfigurable {
     public let queryParameter: [String : String]
     public let networkServiceType: NetworkServiceType
     
-    init(
+    public init(
         baseURL: URL,
         baseHeaders: [String : String] = [:],
         queryParameter: [String : String] = [:],

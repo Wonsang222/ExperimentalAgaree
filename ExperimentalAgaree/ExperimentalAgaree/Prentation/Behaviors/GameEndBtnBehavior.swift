@@ -6,10 +6,10 @@
 //
 
 import UIKit
-#warning("작업중")
+
 final class GameEndBtnBehavior: ViewControllerLifeCycleBehavior {
     func viewDidLoad(vc: UIViewController) {
         vc.navigationItem.leftBarButtonItem = nil
-        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .done, target: <#T##Any?#>, action: <#T##Selector?#>)
+        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .done, target: nil, action: nil)
     }
 }
