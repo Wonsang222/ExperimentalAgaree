@@ -1,6 +1,13 @@
 import Foundation
 
-public final class AsyncNetworkSessionManager {
+public protocol AsyncSessionManager {
+    func request(
+        req: URLRequest,
+        config: URLSessionConfiguration
+    ) async throws -> (Data, URLResponse)
+}
+
+public final class AsyncNetworkSessionManager: AsyncSessionManager {
     
     public init() {}
     public func request(
