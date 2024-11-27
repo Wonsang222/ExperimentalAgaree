@@ -28,7 +28,7 @@ public protocol Requestable {
     var path: String?  { get }
     var method: HttpMethod { get }
     var headerParameters: [String : String] { get }
-    var queryParameter: Encodable { get }
+    var queryParameter: Encodable? { get }
     var bodyParameter: Encodable? { get }
     var bodyEncoder: BodyEncoder { get }
     
@@ -60,6 +60,16 @@ public extension Requestable {
     }
     
     func url(with config: NetworkConfigurable) throws -> URL {
+        
+        if config.baseURL.absoluteString == " " {
+            
+            let url = URL(string: path ?? "")
+            guard let url = url else {
+                throw RequestError.urlComponent
+            }
+            return url
+        }
+        
         var stringURL = config.baseURL.absoluteString.last == "/"
         ? config.baseURL.absoluteString
         : config.baseURL.absoluteString + "/"
@@ -72,7 +82,8 @@ public extension Requestable {
         
         var query = [URLQueryItem]()
         
-        try queryParameter.toDic()?
+        try queryParameter?
+            .toDic()?
             .forEach { query.append(URLQueryItem(name: $0, value: "\($1)")) }
         
         if !query.isEmpty {
@@ -87,7 +98,7 @@ public extension Requestable {
 }
 
 public protocol ResponseDecoder {
-    func decode<T>(_ data: Data) throws -> T where T: Decodable
+    func decode<T: Decodable>(_ data: Data) throws -> T
 }
 
 public protocol ResponseRequestable: Requestable {
@@ -103,7 +114,7 @@ public final class Endpoint<T>: ResponseRequestable {
     public let responseDecoder: ResponseDecoder
     public let method: HttpMethod
     public let headerParameters: [String : String]
-    public let queryParameter: Encodable
+    public let queryParameter: Encodable?
     public let bodyParameter: Encodable?
     public var bodyEncoder: BodyEncoder = DefaultBodyEncoder()
     
@@ -112,7 +123,7 @@ public final class Endpoint<T>: ResponseRequestable {
         responseDecoder: ResponseDecoder,
          method: HttpMethod,
         headerParameters: [String : String] = [:],
-         queryParameter: Encodable,
+         queryParameter: Encodable?,
          bodyParameter: Encodable?
     ) {
         self.path = path

@@ -14,6 +14,8 @@
 		7E2C169C2CAA1EF500A96250 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */; };
 		7E2C169E2CAA273E00A96250 /* GameSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */; };
 		7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */; };
+		7E2C8D742CF69F0B0093C4BD /* GameModelImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C8D732CF69F0B0093C4BD /* GameModelImageRepository.swift */; };
+		7E2C8D762CF6A2000093C4BD /* DefaultGameModelImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C8D752CF6A2000093C4BD /* DefaultGameModelImageRepository.swift */; };
 		7E2D62F92CAF6042001619F0 /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D62F82CAF6042001619F0 /* ResultController.swift */; };
 		7E2D62FD2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */; };
 		7E2D63032CAF748D001619F0 /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2D63022CAF748D001619F0 /* PreGameController.swift */; };
@@ -103,6 +105,8 @@
 		7E2C169B2CAA1EF500A96250 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		7E2C169D2CAA273E00A96250 /* GameSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDIContainer.swift; sourceTree = "<group>"; };
 		7E2C169F2CAA2AA300A96250 /* GameFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowCoordinator.swift; sourceTree = "<group>"; };
+		7E2C8D732CF69F0B0093C4BD /* GameModelImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModelImageRepository.swift; sourceTree = "<group>"; };
+		7E2C8D752CF6A2000093C4BD /* DefaultGameModelImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGameModelImageRepository.swift; sourceTree = "<group>"; };
 		7E2D62F82CAF6042001619F0 /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
 		7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + UpdateLabelFontSize.swift"; sourceTree = "<group>"; };
 		7E2D63022CAF748D001619F0 /* PreGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameController.swift; sourceTree = "<group>"; };
@@ -568,6 +572,7 @@
 				7E8DB8D82C7BF85000D9B9F0 /* TimerRepository.swift */,
 				C1DFB2A12C7DEBB000011058 /* STTRepository.swift */,
 				7E85224E2CBDDF6F00481710 /* AudioRepository.swift */,
+				7E2C8D732CF69F0B0093C4BD /* GameModelImageRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -653,6 +658,7 @@
 				C1DFB2D72C8C138400011058 /* DefaultGamesRepository.swift */,
 				7E8522512CBDEB7A00481710 /* DefaultAudioRepository.swift */,
 				C1DFB2E22C91D70200011058 /* DefaultTimerRepository.swift */,
+				7E2C8D752CF6A2000093C4BD /* DefaultGameModelImageRepository.swift */,
 				C1DFB2C82C85E57000011058 /* Network */,
 			);
 			path = Repositories;
@@ -787,6 +793,7 @@
 				7E40AFA42CB35AF700317604 /* GameSelectionViewModel.swift in Sources */,
 				7E60BD312C76B3CE0070BA0A /* DataTransferService.swift in Sources */,
 				7E7B165D2C7D42D300632CBB /* Observable.swift in Sources */,
+				7E2C8D762CF6A2000093C4BD /* DefaultGameModelImageRepository.swift in Sources */,
 				7E8DB8D92C7BF85000D9B9F0 /* TimerRepository.swift in Sources */,
 				7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */,
 				7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */,
@@ -826,6 +833,7 @@
 				C1DFB2C02C84239200011058 /* SpeechService.swift in Sources */,
 				7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */,
 				7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */,
+				7E2C8D742CF69F0B0093C4BD /* GameModelImageRepository.swift in Sources */,
 				7E40AFA72CB35E1A00317604 /* GameSelectionUseCase.swift in Sources */,
 				C1DFB2CA2C85E58300011058 /* APIEndpoints.swift in Sources */,
 				7E75F8AB2C925EDC009E8BC5 /* GameTimerUseCase.swift in Sources */,

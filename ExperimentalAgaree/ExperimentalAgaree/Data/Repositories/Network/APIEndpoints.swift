@@ -22,4 +22,12 @@ struct APIEndpoints {
             queryParameter: gameReqDTO,
             bodyParameter: nil)
     }
+    
+    static func getImage(with path: String) -> Endpoint<Data> {
+        return Endpoint(path: path,
+                        responseDecoder: RawDataResponseDecoder(),
+                        method: .get,
+                        queryParameter: nil,
+                        bodyParameter: nil)
+    }
 }
