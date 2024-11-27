@@ -27,19 +27,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appFlowCoordinator?.start()
         window?.makeKeyAndVisible()
     }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        handleInActiveScene()
-    }
-}
-
-fileprivate extension SceneDelegate {    
-    private func handleInActiveScene() {
-        NotificationCenter.default.post(name: .sceneResignActive, object: nil)
-    }
-}
-
-public extension Notification.Name {
-    static let sceneResignActive = Notification.Name("SceneResignActive")
 }
 
