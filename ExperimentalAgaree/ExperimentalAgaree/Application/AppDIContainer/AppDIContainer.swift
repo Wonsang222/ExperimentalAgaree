@@ -7,6 +7,7 @@
 
 import Foundation
 import CommonNetworkModel
+import AsyncNetworkRequest
 
 final class AppDIContainer {
     lazy var appConfiguration = AppConfiguration()
@@ -19,6 +20,19 @@ final class AppDIContainer {
         
         let apiDataService = DefaultNetworkService(config: config)
         return DefaultDataTransferService(networkService: apiDataService)
+    }()
+    
+    lazy var asyncDataTransferService: AsyncDataTransferService = {
+        let config = ApiDataNetworkConfig(baseURL: URL(string: " ")!,
+                                          baseHeaders: ["Authorization":appConfiguration.uuid,
+                                                        "User-Agent": appConfiguration.apiKey],
+                                          networkServiceType: .responsive)
+        let asyncNetworkService = DefaultAsyncNetworkService(_networkConfig: config)
+        return DefaultAsyncDataTransferService(_asyncNetworkService: asyncNetworkService)
+    }()
+    
+    lazy var asyncGroupDataTransferService: AsyncGroupDatatransferService = {
+       return DefaultAsyncGroupDatatransferService(_asyncDatatransferService: asyncDataTransferService)
     }()
     
     lazy var timerService: TimerManager =  {

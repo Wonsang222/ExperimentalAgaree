@@ -38,9 +38,10 @@ struct GameInfo {
     func getGameTitle() -> String {
         return gamePath.description
     }    
-    mutating func setPlayer(_ newValue: UInt8) -> Self {
-        numberOfPlayers = newValue
-        return self
+    
+    func setPlayer(original: GameInfo, _ newValue: UInt8) {
+        self = original
+        self.numberOfPlayers = newValue
     }
 }
 

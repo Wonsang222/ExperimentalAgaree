@@ -10,6 +10,7 @@ import Foundation
 final class DefaultSTTRepository: STTRepository {
     private var sttService: SpeechTaskUsable
     private let executionQueue: DataTransferDispatchQueue
+    
     var description: String {
         sttService.getDescription()
     }
