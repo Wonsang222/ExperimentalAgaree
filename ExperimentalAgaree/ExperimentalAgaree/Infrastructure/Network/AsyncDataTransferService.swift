@@ -52,12 +52,11 @@ extension DefaultAsyncDataTransferService: AsyncDataTransferService {
     
     func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E
-    ) async throws -> T where E.Response == T{
+    ) async throws -> T where E.Response == T {
         let data = try await _asyncNetworkService.request(endpoint: endpoint)
         return try decode(decoder: endpoint.responseDecoder, data: data)
     }
 }
-
 
 final class RawDataResponseDecoder: ResponseDecoder {
     
@@ -80,7 +79,7 @@ final class RawDataResponseDecoder: ResponseDecoder {
 
 
 protocol AsyncGroupDatatransferService {
-    func makeGroupRequest<T: Decodable, E: ResponseRequestable>(with endpoints: [E]) async throws -> [T?] where E.Response == T
+    func makeGroupRequest<T: Decodable, E: ResponseRequestable>(with endpoints: [E]) async -> [T?] where E.Response == T
 }
 
 final class DefaultAsyncGroupDatatransferService {
@@ -92,25 +91,20 @@ final class DefaultAsyncGroupDatatransferService {
 }
 
 extension DefaultAsyncGroupDatatransferService: AsyncGroupDatatransferService {
-    func makeGroupRequest<T, E>(with endpoints: [E]) async throws -> [T?] where T : Decodable, T == E.Response, E : CommonNetworkModel.ResponseRequestable {
-        
-        try await withThrowingTaskGroup(of: T?.self,
-                                        returning: [T?].self
-        ) { group in
-            
-            var imageArr = [T]()
-            
+    func makeGroupRequest<T, E>(with endpoints: [E]) async  -> [T?] where T : Decodable, T == E.Response, E : CommonNetworkModel.ResponseRequestable {
+        return await withTaskGroup(of: T?.self, returning: [T?].self) { group in
             for endpoint in endpoints {
                 group.addTask { [weak self] in
-                    guard let self = self else { return nil }
-                    return try await self._asyncDatatransferService.request(with: endpoint)
+                    return try? await self?._asyncDatatransferService.request(with: endpoint)
                 }
             }
             
-
+            var returnArr = [T?]()
             
-            
-            return imageArr
+            for await image in group {
+                returnArr.append(image)
+            }
+            return returnArr
         }
     }
 }

@@ -68,7 +68,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     }
     
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleInactiveAction), name: .sceneResignActive, object: nil)
+        
     }
     
     @objc private func handleInactiveAction() {
