@@ -21,18 +21,41 @@ struct FetchGameModelUseCaseRequestValue {
 final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
     
     private let _gameRespository: GamesRepository
+    private let _asyncRepository: GameModelImageRepository
     
     init(
-        gameRespository: GamesRepository
+        gameRespository: GamesRepository,
+        _asyncRepository: GameModelImageRepository
     ) {
         self._gameRespository = gameRespository
+        self._asyncRepository = _asyncRepository
+    }
+    
+    
+    private func testing() {
+        
+    }
+    
+    private func checkDomainRule() {
+        
     }
     
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable? {
-        _gameRespository.fetchCharacterList(query: requestValue.gameInfo,
-                                           completion: completion)
+        _gameRespository.fetchCharacterList(query: requestValue.gameInfo) { domainModel in
+            switch domainModel {
+            case .success(let list):
+                
+                Task {
+                    let photoURLs = list.models.map { $0.photoUrl }
+                    #warning("순서가 맞는다는 보장이 읎다")
+                }
+                
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        }
     }
 }

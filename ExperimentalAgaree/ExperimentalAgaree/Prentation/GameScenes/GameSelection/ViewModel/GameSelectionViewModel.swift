@@ -54,11 +54,11 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
             }
         }
     }
-
+    //Action
     func tapSeg(_ newValue: UInt8) {
         var currentTargetValue = target.getValue()
-        let newTargetValue = currentTargetValue.setPlayer(newValue)
-        target.setValue(newTargetValue)
+        currentTargetValue.setPlayer(original: currentTargetValue, newValue)
+        target.setValue(currentTargetValue)
     }
     
     private func buildAuthErrorScript(_ noServices: String) -> String {

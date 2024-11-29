@@ -8,20 +8,25 @@
 import Foundation
 
 final class DefaultGameModelImageRepository {
-    private let _dataTransferService: AsyncDataTransferService
+    private let _groupDataTransferService: AsyncGroupDatatransferService
     
     init(
-        _dataTransferService: AsyncDataTransferService
+        _groupDataTransferService: AsyncGroupDatatransferService
     ) {
-        self._dataTransferService = _dataTransferService
+        self._groupDataTransferService = _groupDataTransferService
     }
 }
 
 extension DefaultGameModelImageRepository: GameModelImageRepository {
-    func fetchImage(path: String) async throws -> Data {
+    func fetchImage(path: [String]) async throws -> [Data?] {
         
-        let requestDTO = APIEndpoints.getImage(with: path)
-        let data = try await _dataTransferService.request(with: requestDTO)
+        let requestDTOArr = path.map { APIEndpoints.getImage(with: $0)}
+        let data = await _groupDataTransferService.makeGroupRequest(with: requestDTOArr)
         return data
+    }
+    
+    func fetchImage(path: String) async throws -> Data? {
+        let requestDTO = APIEndpoints.getImage(with: path)
+        
     }
 }

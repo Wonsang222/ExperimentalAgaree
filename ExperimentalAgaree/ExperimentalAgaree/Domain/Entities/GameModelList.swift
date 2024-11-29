@@ -12,7 +12,7 @@ struct NullGameModel {
     let photo = #imageLiteral(resourceName: "joker")
 }
 
-struct GameModel {
+final class GameModel {
     let name: String?
     let photoUrl: String?
     var photo: UIImage? = nil
