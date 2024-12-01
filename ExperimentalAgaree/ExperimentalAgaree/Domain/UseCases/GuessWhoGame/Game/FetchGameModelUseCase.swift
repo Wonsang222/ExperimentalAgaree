@@ -31,11 +31,6 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         self._asyncRepository = _asyncRepository
     }
     
-    
-    private func testing() {
-        
-    }
-    
     private func checkDomainRule() {
         
     }
@@ -44,18 +39,27 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping (Result<GameModelList, Error>) -> Void
     ) -> Cancellable? {
-        _gameRespository.fetchCharacterList(query: requestValue.gameInfo) { domainModel in
+        _gameRespository.fetchCharacterList(query: requestValue.gameInfo) { [weak self] domainModel in
             switch domainModel {
             case .success(let list):
-                
                 Task {
-                    let photoURLs = list.models.map { $0.photoUrl }
-                    #warning("순서가 맞는다는 보장이 읎다")
+                    await self?._asyncRepository.fetchImages(paths: list) { result in
+                        completion(.success(result))
+                    }
                 }
-                
             case .failure(let err):
                 completion(.failure(err))
             }
         }
     }
 }
+
+//fileprivate extension UIImage {
+//    convenience init?(with downloadedData: Data?) {
+//        if let data = downloadedData {
+//            self.init(data: data)!
+//        } else {
+//            return nil
+//        }
+//    }
+//}

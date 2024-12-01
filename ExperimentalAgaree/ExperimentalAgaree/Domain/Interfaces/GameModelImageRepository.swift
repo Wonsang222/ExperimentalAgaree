@@ -8,6 +8,8 @@
 import Foundation
 
 protocol GameModelImageRepository {
-    func fetchImage(path: [String]) async throws -> [Data?]
+    
+    func fetchImages(paths: GameModelList, completion: @escaping (GameModelList) -> Void) async
+    func fetchImages(path: [String]) async throws -> [Data?]
     func fetchImage(path: String) async throws -> Data?
 }

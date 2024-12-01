@@ -14,10 +14,11 @@ struct NullGameModel {
 
 final class GameModel {
     let name: String?
-    let photoUrl: String?
+    let photoUrl: String
     var photo: UIImage? = nil
+    var photoBinary: Data? = nil
     
-    init(name: String?, photoUrl: String?) {
+    init(name: String?, photoUrl: String) {
         self.name = name
         self.photoUrl = photoUrl
     }
@@ -30,6 +31,7 @@ final class GameModelList {
         return gameModels.popLast()
     }
     
+    // struct인 경우는 위험한 코드
     var models: [GameModel] {
         return gameModels
     }

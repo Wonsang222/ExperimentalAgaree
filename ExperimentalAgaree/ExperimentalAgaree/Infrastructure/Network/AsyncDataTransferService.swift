@@ -79,7 +79,8 @@ final class RawDataResponseDecoder: ResponseDecoder {
 
 
 protocol AsyncGroupDatatransferService {
-    func makeGroupRequest<T: Decodable, E: ResponseRequestable>(with endpoints: [E]) async -> [T?] where E.Response == T
+    func makeGroupRequest<T: Decodable, E: ResponseRequestable>(with endpoints: E) async -> T? where E.Response == T
+    func makeGroupRequests<T: Decodable, E: ResponseRequestable>(with endpoints: [E]) async -> [T?] where E.Response == T
 }
 
 final class DefaultAsyncGroupDatatransferService {
@@ -91,7 +92,11 @@ final class DefaultAsyncGroupDatatransferService {
 }
 
 extension DefaultAsyncGroupDatatransferService: AsyncGroupDatatransferService {
-    func makeGroupRequest<T, E>(with endpoints: [E]) async  -> [T?] where T : Decodable, T == E.Response, E : CommonNetworkModel.ResponseRequestable {
+    func makeGroupRequest<T, E>(with endpoints: E) async -> T? where T : Decodable, T == E.Response, E : CommonNetworkModel.ResponseRequestable {
+        try? await _asyncDatatransferService.request(with: endpoints)
+    }
+    
+    func makeGroupRequests<T, E>(with endpoints: [E]) async  -> [T?] where T : Decodable, T == E.Response, E : CommonNetworkModel.ResponseRequestable {
         return await withTaskGroup(of: T?.self, returning: [T?].self) { group in
             for endpoint in endpoints {
                 group.addTask { [weak self] in
