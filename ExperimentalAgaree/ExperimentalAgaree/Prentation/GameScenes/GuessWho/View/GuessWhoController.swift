@@ -40,11 +40,28 @@ final class GuessWhoController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func bind(to viewModel: GuessWhoViewModel) {
+        
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(viewResignActive),
+                                               name: UIApplication.willResignActiveNotification,
+                                               object: nil)
+    }
+    
+    @objc 
+    private func viewResignActive() {
+        gameViewModel.stopPlayingGame()
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setNotification()
     }
     //MARK: - Methods
     private func configureUI() {

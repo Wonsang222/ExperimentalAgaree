@@ -22,7 +22,7 @@ extension DefaultGameModelImageRepository: GameModelImageRepository {
     func fetchImages(paths: GameModelList, completion: @escaping (GameModelList) -> Void) async {
         await withTaskGroup(of: Void.self) { [weak self] group in
             for path in paths.models {
-                group.addTask {
+                group.addTask { [weak self]  in
                     path.photoBinary = try? await self?.fetchImage(path: path.photoUrl)
                 }
             }

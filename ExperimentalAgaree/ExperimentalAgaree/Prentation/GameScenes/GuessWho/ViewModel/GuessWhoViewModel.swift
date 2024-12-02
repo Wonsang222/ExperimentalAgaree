@@ -10,6 +10,7 @@ import Foundation
 protocol GuessWhoViewModelInput {
     func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void)
     func viewWillDisappear() // 리소스 정리
+    func stopPlayingGame()
 }
 
 protocol GuessWhoViewModelOutput {
@@ -63,18 +64,8 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.actions = actions
         self.mainQueue = mainQueue
         self.fetchData = fetchData
-        
-        setNotification()
     }
-    
-    private func setNotification() {
-        
-    }
-    
-    @objc private func handleInactiveAction() {
-        
-    }
-    
+
     private func handleError(_ error: Error) {
         var description: String
         switch error {
@@ -160,5 +151,10 @@ extension DefaultGuessWhoViewModel {
         sttGameTask = nil
         timerGameTask?.cancel()
         timerGameTask = nil
+    }
+    
+    func  stopPlayingGame() {
+        let errHandler = ErrorHandler(errMsg: "게임이 중단되었습니다.", completion: actions.popToRoot)
+        error.setValue(errHandler)
     }
 }

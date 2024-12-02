@@ -31,7 +31,7 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         self._asyncRepository = _asyncRepository
     }
     
-    private func checkDomainRule() {
+    private func checkDomainRule(equestValue: FetchGameModelUseCaseRequestValue) {
         
     }
     
@@ -42,8 +42,9 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         _gameRespository.fetchCharacterList(query: requestValue.gameInfo) { [weak self] domainModel in
             switch domainModel {
             case .success(let list):
+                guard let strongSelf = self else { return }
                 Task {
-                    await self?._asyncRepository.fetchImages(paths: list) { result in
+                    await strongSelf._asyncRepository.fetchImages(paths: list) { result in
                         completion(.success(result))
                     }
                 }
