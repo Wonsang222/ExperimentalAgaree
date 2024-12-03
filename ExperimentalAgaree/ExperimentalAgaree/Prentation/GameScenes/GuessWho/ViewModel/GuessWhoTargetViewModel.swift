@@ -7,19 +7,14 @@
 
 import UIKit
 
-protocol SttGameModelable {
-    var name: String { get }
-}
 protocol PhotoGameModelable {
     var photo: UIImage { get }
 }
 
-final class GuessWhoTargetViewModel: SttGameModelable, PhotoGameModelable {
-    let name: String
+final class GuessWhoTargetViewModel: PhotoGameModelable {
     var photo: UIImage
     
-    init(name: String, photo: UIImage) {
-        self.name = name
+    init(photo: UIImage) {
         self.photo = photo
     }
 }

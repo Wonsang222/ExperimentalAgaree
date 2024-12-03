@@ -31,7 +31,6 @@ final class PreGameController: BaseController{
         self.gameSelectionViewModel = gameSelectionViewModel
         super.init(nibName: nil, bundle: nil)
         bind(to: self.gameSelectionViewModel)
-        
     }
     
     @available(*, unavailable)
@@ -52,7 +51,8 @@ final class PreGameController: BaseController{
         howToPlayView = instView
     }
     
-    private func handleError(_ errorHandler: ErrorHandler) {
+    private func handleError(_ errorHandler: ErrorHandler?) {
+        guard let errorHandler = errorHandler else { return }
         let script = errorHandler.errMsg
         let appSetting = URL(string: UIApplication.openSettingsURLString)!
         let completion = {

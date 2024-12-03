@@ -12,7 +12,7 @@ final class GuessWhoController: UIViewController {
     //MARK: - Properties
     
     private let gameViewModel: GuessWhoViewModel
-    private let guessView = GuessWhoView()
+    private var guessView = GuessWhoView()
     private var indicator: UIActivityIndicatorView?
 
     private let countView:UIImageView = {
@@ -46,6 +46,22 @@ final class GuessWhoController: UIViewController {
         indicator?.removeFromSuperview()
     }
     
+    private func bind(to viewModel: GuessWhoViewModel) {
+        viewModel.error.addObserver(.init(block: {[weak self] in self?.handleError($0)}, target: self))
+        viewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
+        }, target: self))
+        viewModel.time.addObserver(.init(block: { [weak self] in self?.bindProgressView($0)}, target: self))
+        viewModel.target.addObserver(.init(block: { [weak self] in self?.bindImgView($0)}, target: self))
+    }
+    
+    private func handleError(_ error: ErrorHandler?) {
+        guard let error = error else { return }
+        let script = error.errMsg
+        let completion = error.completion
+        
+        ext.showAlert(title: "알림", message: script, completion: completion)
+    }
+    
     private func makeIndicatorView() {
         removeIndicatorView()
         indicator = UIActivityIndicatorView(frame: .zero)
@@ -58,12 +74,13 @@ final class GuessWhoController: UIViewController {
             indicator.widthAnchor.constraint(equalTo: indicator.heightAnchor)
         ])
     }
-    
+        
     private func updateStatus(_ status: GuessWhoViewModelStatus) {
         switch status {
         case .animation:
             gameViewModel.guessWhoStatus.removeObserver(.init(block: { [weak self] in self?.updateStatus($0)}, target: self))
-            startCounter { [weak self] in self?.gameViewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
+            startCounter { [weak self] in
+                self?.gameViewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
             }, target: self)) }
         case .ready:
             removeIndicatorView()
@@ -71,10 +88,14 @@ final class GuessWhoController: UIViewController {
             makeIndicatorView()
         }
     }
-
-    private func bind(to viewModel: GuessWhoViewModel) {
-        viewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
-        }, target: self))
+    
+    private func bindImgView(_ targetVM: GuessWhoTargetViewModel?) {
+        guard let targetVM = targetVM else { return }
+        guessView.setPhoto(img: targetVM.photo)
+    }
+    
+    private func bindProgressView(_ second: Float) {
+        self.progressView.setProgress(second, animated: true)
     }
     
     private func setNotification() {

@@ -9,7 +9,7 @@ import UIKit
 
 final class GuessWhoView: BaseView {
     
-    let imageView:UIImageView = {
+    private let imageView:UIImageView = {
        let imgView = UIImageView()
         imgView.clipsToBounds = true
         imgView.image = UIImage(systemName: "trash")
@@ -37,6 +37,10 @@ final class GuessWhoView: BaseView {
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
         ])
+    }
+    
+    func setPhoto(img: UIImage) {
+        self.imageView.image = img
     }
 }
 

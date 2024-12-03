@@ -63,13 +63,12 @@ final class DefaultSTTUseCase: STTUseCase {
 
     private func judge(by target: GameModel?) -> Result<GameJudge<STTGameStatus>, Error> {
         // game clear
-        guard let target = target,
-              let targetName = target.name
+        guard let target = target
         else {
             return .success(.data(.Clear))
         }
         // next model
-        if _sttStack.word.contains(targetName) {
+        if _sttStack.word.contains(target.name) {
             resetSttModel()
             return .success(.data(.Right))
         }

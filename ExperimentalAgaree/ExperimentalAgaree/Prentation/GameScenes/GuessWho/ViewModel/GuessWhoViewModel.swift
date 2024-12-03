@@ -32,7 +32,7 @@ struct GuessWhoViewModelAction {
 }
 
 typealias GuessWhoViewModel = GuessWhoViewModelInput & GuessWhoViewModelOutput
-typealias InnerGuessWhoViewModel = SttGameModelable & PhotoGameModelable
+typealias InnerGuessWhoViewModel = PhotoGameModelable
 
 final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     

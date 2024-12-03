@@ -14,7 +14,7 @@ protocol GameSelectionViewModelInput {
 }
 
 protocol GameSelectionViewModelOutput {
-    var errorStr: Observable<ErrorHandler> { get }
+    var errorStr: Observable<ErrorHandler?> { get }
     var target: Observable<GameInfo> { get }
 }
 
@@ -29,7 +29,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
     private let useCase: GameSelectionUseCase
     private let action: GameSelectionViewModelAction
     
-    let errorStr: Observable<ErrorHandler> = Observable(value: ErrorHandler(errMsg: ""))
+    let errorStr: Observable<ErrorHandler?> = Observable(value: nil)
     let target: Observable<GameInfo>
     
     init(
