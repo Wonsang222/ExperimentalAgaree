@@ -13,12 +13,11 @@ struct NullGameModel {
 }
 
 final class GameModel {
-    let name: String?
+    let name: String
     let photoUrl: String
-    var photo: UIImage? = nil
     var photoBinary: Data? = nil
     
-    init(name: String?, photoUrl: String) {
+    init(name: String, photoUrl: String) {
         self.name = name
         self.photoUrl = photoUrl
     }

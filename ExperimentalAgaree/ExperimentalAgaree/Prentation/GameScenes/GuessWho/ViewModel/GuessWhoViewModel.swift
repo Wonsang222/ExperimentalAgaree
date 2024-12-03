@@ -21,11 +21,9 @@ protocol GuessWhoViewModelOutput {
 }
 
 enum GuessWhoViewModelStatus {
-    case preparation
     case animation
     case ready
-    case gaming
-    case stop // game stop -> Error  Notification
+    case waiting
 }
 
 struct GuessWhoViewModelAction {
@@ -49,10 +47,12 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     //MARK: - Output
     
+    // Reactive 프로그램을 사용하지 않으므로, status -> 애니메이션 -> binding 끊기 -> 애니메이션 종료 후 다시 bind
+    
     let target: Observable<GuessWhoTargetViewModel?> = Observable(value: nil)
     let time: Observable<Float> = Observable(value: 0)
     let error: Observable<ErrorHandler?> = Observable(value: nil)
-    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .preparation)
+    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .animation)
     
     init(
         guessWhoUseCase: GuessWhoGameUseCase,

@@ -13,15 +13,16 @@ final class GuessWhoController: UIViewController {
     
     private let gameViewModel: GuessWhoViewModel
     private let guessView = GuessWhoView()
+    private var indicator: UIActivityIndicatorView?
 
-    let countView:UIImageView = {
+    private let countView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
-    let progressView:UIProgressView = {
+    private let progressView:UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .default
         pv.tintColor = .systemBlue
@@ -36,12 +37,44 @@ final class GuessWhoController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func removeIndicatorView() {
+        indicator?.removeFromSuperview()
+    }
+    
+    private func makeIndicatorView() {
+        removeIndicatorView()
+        indicator = UIActivityIndicatorView(frame: .zero)
+        guard let indicator = indicator else { fatalError() }
+        view.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            indicator.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            indicator.widthAnchor.constraint(equalTo: indicator.heightAnchor)
+        ])
+    }
+    
+    private func updateStatus(_ status: GuessWhoViewModelStatus) {
+        switch status {
+        case .animation:
+            gameViewModel.guessWhoStatus.removeObserver(.init(block: { [weak self] in self?.updateStatus($0)}, target: self))
+            startCounter { [weak self] in self?.gameViewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
+            }, target: self)) }
+        case .ready:
+            removeIndicatorView()
+        case .waiting:
+            makeIndicatorView()
+        }
+    }
+
     private func bind(to viewModel: GuessWhoViewModel) {
-        
+        viewModel.guessWhoStatus.addObserver(.init(block: { [weak self]  in self?.updateStatus($0)
+        }, target: self))
     }
     
     private func setNotification() {
@@ -87,24 +120,23 @@ final class GuessWhoController: UIViewController {
         ])
     }
     
-    
-//    final func startCounter(handler:@escaping()->Void) {
-//        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
-//            self.countView.image = UIImage(systemName: "3.circle")
-//            self.countView.layoutIfNeeded()
-//        } completion: { finished in
-//            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-//                self.countView.image = UIImage(systemName: "2.circle")
-//                self.countView.layoutIfNeeded()
-//            } completion: { finished in
-//                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-//                    self.countView.image = UIImage(systemName: "1.circle")
-//                    self.countView.layoutIfNeeded()
-//                } completion: { finished in
-//                    handler()
-//                }
-//            }
-//        }
-//    }
+    private func startCounter(handler:@escaping()->Void) {
+        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
+            self.countView.image = UIImage(systemName: "3.circle")
+            self.countView.layoutIfNeeded()
+        } completion: { finished in
+            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                self.countView.image = UIImage(systemName: "2.circle")
+                self.countView.layoutIfNeeded()
+            } completion: { finished in
+                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                    self.countView.image = UIImage(systemName: "1.circle")
+                    self.countView.layoutIfNeeded()
+                } completion: { finished in
+                    handler()
+                }
+            }
+        }
+    }
 }
 
