@@ -79,6 +79,10 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         let errorHandler = ErrorHandler(errMsg: description)
         self.error.setValue(errorHandler)
     }
+    
+    private func bind() {
+        
+    }
 
     private func fetchGameModelList(targets: FetchGameModelUseCaseRequestValue) {
         fetchGameTask = guessWhoUseCase.fetch(requestValue: targets,

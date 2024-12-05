@@ -7,12 +7,25 @@
 
 import UIKit
 
-struct NullGameModel {
-    let name = "조커"
-    let photo = #imageLiteral(resourceName: "joker")
+protocol GameModelUsable {
+    var name: String { get }
+    var photoUrl: String { get }
+    var photoBinary: Data? { get set }
 }
 
-final class GameModel {
+final class GameClearModel: GameModelUsable {
+    let name: String = "끝"
+    let photoUrl: String = "temp"
+    var photoBinary: Data? = nil
+}
+
+final class NullGameModel: GameModelUsable {
+    let name = "조커"
+    let photoUrl: String = try! String(contentsOf: Bundle.main.url(forResource: "joker", withExtension: "jpg")!)
+    var photoBinary: Data? = nil
+}
+
+final class GameModel: GameModelUsable {
     let name: String
     let photoUrl: String
     var photoBinary: Data? = nil

@@ -30,11 +30,7 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         self._gameRespository = gameRespository
         self._asyncRepository = _asyncRepository
     }
-    
-    private func checkDomainRule(equestValue: FetchGameModelUseCaseRequestValue) {
         
-    }
-    
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping (Result<GameModelList, Error>) -> Void
@@ -54,13 +50,3 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
         }
     }
 }
-
-//fileprivate extension UIImage {
-//    convenience init?(with downloadedData: Data?) {
-//        if let data = downloadedData {
-//            self.init(data: data)!
-//        } else {
-//            return nil
-//        }
-//    }
-//}

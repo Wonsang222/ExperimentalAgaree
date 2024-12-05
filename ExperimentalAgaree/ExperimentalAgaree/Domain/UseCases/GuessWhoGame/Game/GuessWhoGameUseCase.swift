@@ -28,7 +28,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     private let _timerUseCase: TimerUseCase
     private let sttUseCase: STTUseCase
     
-    private var gameModels: GameModelList?
+    private var gameModels = [GameModel]()
 
     var targetModel: Observable<GameModel?> = Observable(value: nil)
 
@@ -42,7 +42,6 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.sttUseCase = sttUseCase
     }
     
-    // 중간에 에러나는지 확인학
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping FetchCompletion
@@ -51,8 +50,8 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             guard let self = self else { return }
             switch result {
             case .success(let modelList):
-                self.gameModels = modelList
-                targetModel.setValue(gameModels?.last)
+                self.gameModels = modelList.models
+                targetModel.setValue(gameModels.last)
                 completion(.success(()))
             case .failure(let err):
                 completion(.failure(err))
@@ -97,6 +96,10 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     }
     
     private func setTargetModel() {
-        targetModel.setValue(gameModels?.last)
+        targetModel.setValue(gameModels.last)
+    }
+    
+    private func setGameClearModel() {
+        
     }
 }

@@ -2,5 +2,4 @@
 
 
 
-
-nil -> joker!!!!!!
+viewmodel things
