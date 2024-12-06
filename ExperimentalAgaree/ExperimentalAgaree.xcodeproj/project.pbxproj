@@ -48,7 +48,7 @@
 		7E7B16622C7D4BC000632CBB /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16612C7D4BC000632CBB /* Alertable.swift */; };
 		7E7B16642C7D4C4200632CBB /* ExtensionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */; };
 		7E7B16672C7D4E5C00632CBB /* UIVC + AddBehaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */; };
-		7E7B9DC22CEC20D2000C68C5 /* BackBtnEmptyBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B9DC12CEC20D2000C68C5 /* BackBtnEmptyBehavior.swift */; };
+		7E7B9DC22CEC20D2000C68C5 /* HideNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B9DC12CEC20D2000C68C5 /* HideNavigationBarBehavior.swift */; };
 		7E7B9DC42CEC20F2000C68C5 /* GameEndBtnBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B9DC32CEC20F2000C68C5 /* GameEndBtnBehavior.swift */; };
 		7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */; };
 		7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */; };
@@ -143,7 +143,7 @@
 		7E7B16612C7D4BC000632CBB /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		7E7B16632C7D4C4200632CBB /* ExtensionBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionBase.swift; sourceTree = "<group>"; };
 		7E7B16662C7D4E5C00632CBB /* UIVC + AddBehaviors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC + AddBehaviors.swift"; sourceTree = "<group>"; };
-		7E7B9DC12CEC20D2000C68C5 /* BackBtnEmptyBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackBtnEmptyBehavior.swift; sourceTree = "<group>"; };
+		7E7B9DC12CEC20D2000C68C5 /* HideNavigationBarBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBehavior.swift; sourceTree = "<group>"; };
 		7E7B9DC32CEC20F2000C68C5 /* GameEndBtnBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndBtnBehavior.swift; sourceTree = "<group>"; };
 		7E8084CF2CD3025C00018238 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentalAgaree.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,7 +444,7 @@
 		7E7B9DC02CEC20BB000C68C5 /* Behaviors */ = {
 			isa = PBXGroup;
 			children = (
-				7E7B9DC12CEC20D2000C68C5 /* BackBtnEmptyBehavior.swift */,
+				7E7B9DC12CEC20D2000C68C5 /* HideNavigationBarBehavior.swift */,
 				7E7B9DC32CEC20F2000C68C5 /* GameEndBtnBehavior.swift */,
 			);
 			path = Behaviors;
@@ -844,7 +844,7 @@
 				C1DFB2B72C80ACB200011058 /* TimerSerivice.swift in Sources */,
 				C1DFB2A42C7DED1200011058 /* SttModel.swift in Sources */,
 				7E2D630B2CAFAEF7001619F0 /* HowToPlayView.swift in Sources */,
-				7E7B9DC22CEC20D2000C68C5 /* BackBtnEmptyBehavior.swift in Sources */,
+				7E7B9DC22CEC20D2000C68C5 /* HideNavigationBarBehavior.swift in Sources */,
 				C1DFB2E32C91D70200011058 /* DefaultTimerRepository.swift in Sources */,
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */,

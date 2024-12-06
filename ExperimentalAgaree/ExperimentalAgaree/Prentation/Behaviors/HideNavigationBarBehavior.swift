@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BackBtnEmptyBehavior: ViewControllerLifeCycleBehavior {
+class HideNavigationBarBehavior: ViewControllerLifeCycleBehavior {
     func viewWillAppear(vc: UIViewController) {
         vc.navigationController?.navigationBar.isHidden = true
     }
