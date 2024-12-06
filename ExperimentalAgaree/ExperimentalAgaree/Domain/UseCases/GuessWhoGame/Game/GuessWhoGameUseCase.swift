@@ -7,13 +7,15 @@
 
 import Foundation
 
+// 프로토콜 상속으로 했어야햇다
+
 protocol CommonGameUseCase {
     
     typealias FetchCompletion = (Result<Void, Error>) -> Void
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
     typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
     
-    var targetModel: Observable<GameModel?> { get }
+    var targetModel: Observable<GameModelUsable>! { get }
     
     func fetch(requestValue: FetchGameModelUseCaseRequestValue,
                completion: @escaping FetchCompletion) -> Cancellable?
@@ -28,9 +30,9 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     private let _timerUseCase: TimerUseCase
     private let sttUseCase: STTUseCase
     
-    private var gameModels = [GameModel]()
+    private var gameModels = [GameModelUsable]()
 
-    var targetModel: Observable<GameModel?> = Observable(value: nil)
+    var targetModel: Observable<GameModelUsable>!
 
     init(
         fetchUseCase: FetchGameModelUseCase,
@@ -42,6 +44,10 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.sttUseCase = sttUseCase
     }
     
+    private func setClearGameModel() {
+        self.gameModels.insert(GameClearModel(), at: 0)
+    }
+    
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping FetchCompletion
@@ -51,7 +57,8 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             switch result {
             case .success(let modelList):
                 self.gameModels = modelList.models
-                targetModel.setValue(gameModels.last)
+                setClearGameModel()
+                setTargetModel()
                 completion(.success(()))
             case .failure(let err):
                 completion(.failure(err))
@@ -75,19 +82,17 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
                 
         return sttUseCase.startRecognition(target: targetModel.getValue()) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else { return }            
             switch result {
             case .success(let gameJudge):
-                switch gameJudge {
-                case .data(let gameStatus):
-                    switch gameStatus {
-                    case .Clear:
+                if case .data(let gameStatus) = gameJudge {
+                    if case .Clear = gameStatus {
                         completion(.success(.data(true)))
-                    case .Right:
-                        self.setTargetModel()
+                    } else if case .Right = gameStatus {
+                        self.setTargetModel() {
+                            completion(.success(.data(true)))
+                        }
                     }
-                case .wrong:
-                    break
                 }
             case .failure(let err):
                 completion(.failure(err))
@@ -95,11 +100,24 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         }
     }
     
-    private func setTargetModel() {
-        targetModel.setValue(gameModels.last)
+    private func setTargetModel(completion: (() -> Void)? = nil) {
+        
+        let nextTarget = getNext()
+        if isFinished(by: nextTarget) {
+            completion?()
+            return
+        }
+        targetModel.setValue(nextTarget)
     }
     
-    private func setGameClearModel() {
-        
+    private func isFinished(by target: GameModelUsable) -> Bool {
+        if target is GameClearModel {
+            return true
+        }
+        return false
+    }
+    
+    private func getNext() -> GameModelUsable {
+        return gameModels.popLast()!
     }
 }

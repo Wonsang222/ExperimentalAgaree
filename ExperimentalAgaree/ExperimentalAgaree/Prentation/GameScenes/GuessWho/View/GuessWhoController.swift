@@ -6,6 +6,9 @@
 //
 
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 final class GuessWhoController: UIViewController {
     

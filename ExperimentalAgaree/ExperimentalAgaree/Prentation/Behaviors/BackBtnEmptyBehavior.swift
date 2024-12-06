@@ -8,7 +8,11 @@
 import UIKit
 
 class BackBtnEmptyBehavior: ViewControllerLifeCycleBehavior {
-    func viewDidLoad(vc: UIViewController) {
-        
+    func viewWillAppear(vc: UIViewController) {
+        vc.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func viewWillDisappear(vc: UIViewController) {
+        vc.navigationController?.navigationBar.isHidden = false
     }
 }

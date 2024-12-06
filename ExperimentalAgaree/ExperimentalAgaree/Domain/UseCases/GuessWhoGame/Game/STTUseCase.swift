@@ -14,7 +14,7 @@ enum STTGameStatus {
 
 protocol STTUseCase {
     typealias Completion = (Result<GameJudge<STTGameStatus>, Error>) -> Void
-    func startRecognition(target: GameModel?,
+    func startRecognition(target: GameModelUsable,
                           completion: @escaping Completion) -> Cancellable?
 }
 
@@ -32,7 +32,8 @@ final class DefaultSTTUseCase: STTUseCase {
         self._audioService = audioService
     }
     
-    func startRecognition(target: GameModel?,
+    #warning("????")
+    func startRecognition(target: GameModelUsable,
                           completion: @escaping Completion
     ) -> Cancellable? {
         
@@ -61,12 +62,7 @@ final class DefaultSTTUseCase: STTUseCase {
         return stt
     }
 
-    private func judge(by target: GameModel?) -> Result<GameJudge<STTGameStatus>, Error> {
-        // game clear
-        guard let target = target
-        else {
-            return .success(.data(.Clear))
-        }
+    private func judge(by target: GameModelUsable) -> Result<GameJudge<STTGameStatus>, Error> {
         // next model
         if _sttStack.word.contains(target.name) {
             resetSttModel()
