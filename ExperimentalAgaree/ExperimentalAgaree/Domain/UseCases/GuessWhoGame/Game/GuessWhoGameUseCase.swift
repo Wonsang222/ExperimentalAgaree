@@ -48,6 +48,17 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.gameModels.insert(GameClearModel(), at: 0)
     }
     
+    private func replaceGameModelWithNullGameModel(from gameModels: [GameModelUsable]) -> [GameModelUsable] {
+        var modelArr = gameModels
+        for (idx, model) in modelArr.enumerated() {
+            if model.photoBinary == nil {
+                modelArr.insert(NullGameModel(), at: idx + 1)
+                modelArr.remove(at: idx)
+            }
+        }
+        return modelArr
+    }
+    
     func fetch(
         requestValue: FetchGameModelUseCaseRequestValue,
         completion: @escaping FetchCompletion
@@ -56,7 +67,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             guard let self = self else { return }
             switch result {
             case .success(let modelList):
-                self.gameModels = modelList.models
+                self.gameModels = self.replaceGameModelWithNullGameModel(from: modelList.models)
                 setClearGameModel()
                 setTargetModel()
                 completion(.success(()))

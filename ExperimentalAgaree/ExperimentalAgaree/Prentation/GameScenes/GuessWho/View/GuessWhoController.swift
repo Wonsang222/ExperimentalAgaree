@@ -38,6 +38,7 @@ final class GuessWhoController: UIViewController {
     init(gameViewModel: GuessWhoViewModel) {
         self.gameViewModel = gameViewModel
         super.init(nibName: nil, bundle: nil)
+        bind(to: gameViewModel)
     }
     
     @available(*, unavailable)
@@ -89,6 +90,8 @@ final class GuessWhoController: UIViewController {
             removeIndicatorView()
         case .waiting:
             makeIndicatorView()
+        case .none:
+            break
         }
     }
     
@@ -144,7 +147,7 @@ final class GuessWhoController: UIViewController {
         ])
     }
     
-    private func startCounter(handler:@escaping()->Void) {
+    private func startCounter(handler: @escaping () -> Void) {
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
             self.countView.image = UIImage(systemName: "3.circle")
             self.countView.layoutIfNeeded()

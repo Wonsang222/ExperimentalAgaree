@@ -24,6 +24,7 @@ enum GuessWhoViewModelStatus {
     case animation
     case ready
     case waiting
+    case none
 }
 
 struct GuessWhoViewModelAction {
@@ -52,7 +53,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     let target: Observable<GuessWhoTargetViewModel?> = Observable(value: nil)
     let time: Observable<Float> = Observable(value: 0)
     let error: Observable<ErrorHandler?> = Observable(value: nil)
-    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .animation)
+    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .none)
     
     init(
         guessWhoUseCase: GuessWhoGameUseCase,
@@ -64,6 +65,9 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.actions = actions
         self.mainQueue = mainQueue
         self.fetchData = fetchData
+        
+        guessWhoStatus.setValue(.animation)
+        bind()
     }
 
     private func handleError(_ error: Error) {
@@ -81,7 +85,11 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     }
     
     private func bind() {
-        
+        guessWhoUseCase.targetModel.addObserver(Observer(block: { [weak self] in self?.setTarget(by: $0)}, target: self))
+    }
+    
+    private func setTarget(by model: GameModelUsable) {
+        target.setValue(.init(photo: UIImage(data: model.photoBinary!)!))
     }
 
     private func fetchGameModelList(targets: FetchGameModelUseCaseRequestValue) {
