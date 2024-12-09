@@ -15,7 +15,7 @@ protocol CommonGameUseCase {
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
     typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
     
-    var targetModel: Observable<GameModelUsable>! { get }
+    var targetModel: Observable<GameModelUsable?> { get }
     
     func fetch(requestValue: FetchGameModelUseCaseRequestValue,
                completion: @escaping FetchCompletion) -> Cancellable?
@@ -32,7 +32,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     
     private var gameModels = [GameModelUsable]()
 
-    var targetModel: Observable<GameModelUsable>!
+    var targetModel: Observable<GameModelUsable?> = Observable(value: nil)
 
     init(
         fetchUseCase: FetchGameModelUseCase,
@@ -91,9 +91,13 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     }
     
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
-                
-        return sttUseCase.startRecognition(target: targetModel.getValue()) { [weak self] result in
-            guard let self = self else { return }            
+        
+        guard let targetModel = targetModel.getValue() else {
+            fatalError("GuessWho UseCase Error")
+        }
+        
+        return sttUseCase.startRecognition(target: targetModel) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let gameJudge):
                 if case .data(let gameStatus) = gameJudge {

@@ -88,7 +88,8 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         guessWhoUseCase.targetModel.addObserver(Observer(block: { [weak self] in self?.setTarget(by: $0)}, target: self))
     }
     
-    private func setTarget(by model: GameModelUsable) {
+    private func setTarget(by model: GameModelUsable?) {
+        guard let model = model else { return }
         target.setValue(.init(photo: UIImage(data: model.photoBinary!)!))
     }
 
