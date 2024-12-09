@@ -68,7 +68,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     //MARK: - Game (GuessWho)
     
-    func makeGuessWhoVC() {
+    func makeGuessWhoVC(game: GameInfo, action: GuessWhoViewModelAction) -> GuessWhoController {
         
     }
     

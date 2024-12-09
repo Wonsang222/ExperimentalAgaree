@@ -44,3 +44,14 @@ final class GuessWhoView: BaseView {
     }
 }
 
+
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+struct GuessWhoViewPreview: PreviewProvider {
+    static var previews: some View {
+        UIViewPreview {
+            GuessWhoView()
+        }.previewLayout(.sizeThatFits)
+    }
+}
+#endif

@@ -8,6 +8,22 @@
 import UIKit
 import SwiftUI
 
+struct UIViewPreview<T: UIView>: UIViewRepresentable {
+    let view: T
+    
+    init(_ view: @escaping () -> T) {
+        self.view = view()
+    }
+    
+    func makeUIView(context: Context) -> some UIView {
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        
+    }
+}
+
 extension UIViewController {
     
     enum DeviceType {
