@@ -92,6 +92,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
     
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable? {
         
+        // start model
         guard let targetModel = targetModel.getValue() else {
             fatalError("GuessWho UseCase Error")
         }
@@ -105,7 +106,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
                         completion(.success(.data(true)))
                     } else if case .Right = gameStatus {
                         self.setTargetModel() {
-                            completion(.success(.data(true)))
+                            completion(.success(.data(false)))
                         }
                     }
                 }

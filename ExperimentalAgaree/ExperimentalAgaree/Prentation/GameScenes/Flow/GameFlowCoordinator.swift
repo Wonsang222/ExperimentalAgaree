@@ -9,7 +9,10 @@ import UIKit
 
 protocol GameFlowCoordinatorDependencies {
     func makeGameSelectionVC(game: GameInfo, action: GameSelectionViewModelAction) -> PreGameController
-    func makePlayingGameVC(gameInfo: GameInfo) -> GuessWhoController
+    func makeGuessWhoVC(game: FetchGameModelUseCaseRequestValue,
+                        action: GuessWhoViewModelAction,
+                        auths: [AuthRepository]
+    ) -> GuessWhoController
 }
 
 final class GameFlowCoordinator {

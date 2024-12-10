@@ -19,7 +19,7 @@ protocol TimerUseCase {
     ) -> Cancellable?
 }
 
-final class DefaultGame_timerUseCase: TimerUseCase {
+final class DefaultGametimerUseCase: TimerUseCase {
     
     private var _currentTimer: GameTimeInfo = GameTimeInfo(gameTime: 0.0)
     private let _timerService: TimerRepository

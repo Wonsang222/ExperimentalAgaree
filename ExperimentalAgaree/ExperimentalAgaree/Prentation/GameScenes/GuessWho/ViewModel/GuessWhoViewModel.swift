@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GuessWhoViewModelInput {
-    func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void)
+    func didAnimationFinished()
     func viewWillDisappear() // 리소스 정리
     func stopPlayingGame()
 }
@@ -24,7 +24,6 @@ enum GuessWhoViewModelStatus {
     case animation
     case ready
     case waiting
-    case none
 }
 
 struct GuessWhoViewModelAction {
@@ -47,13 +46,10 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     private var timerGameTask: Cancellable?
     
     //MARK: - Output
-    
-    // Reactive 프로그램을 사용하지 않으므로, status -> 애니메이션 -> binding 끊기 -> 애니메이션 종료 후 다시 bind
-    
     let target: Observable<GuessWhoTargetViewModel?> = Observable(value: nil)
     let time: Observable<Float> = Observable(value: 0)
     let error: Observable<ErrorHandler?> = Observable(value: nil)
-    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .none)
+    let guessWhoStatus: Observable<GuessWhoViewModelStatus> = Observable(value: .animation)
     
     init(
         guessWhoUseCase: GuessWhoGameUseCase,
@@ -66,7 +62,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.mainQueue = mainQueue
         self.fetchData = fetchData
         
-        guessWhoStatus.setValue(.animation)
+        fetchGameModelList(targets: fetchData)
         bind()
     }
 
@@ -151,10 +147,10 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
 extension DefaultGuessWhoViewModel {
     //MARK: - Input
 
-    func playAnimation(block: @escaping (_ completion: @escaping () -> Void) -> Void) {
-        fetchGameModelList(targets: fetchData)
-        guessWhoStatus.setValue(.animation)
-        block(gameStart)
+    func didAnimationFinished() {
+        startRecognizer()
+        startTimer(timerValue: fetchData.gameInfo.gameTimeValue)
+        
     }
     
     func viewWillDisappear() {

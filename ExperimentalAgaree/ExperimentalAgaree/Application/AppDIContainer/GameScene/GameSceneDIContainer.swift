@@ -8,9 +8,10 @@
 import UIKit
 
 final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
-    
+
     struct Dependencies {
         let apiDataTransferService: DataTransferService
+        let asyncDataTrasnferService: AsyncGroupDatatransferService
         let sttService: SpeechTaskUsable
         let timerService: TimerManager
         let audioService: AudioEngineBuilder
@@ -54,7 +55,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     //MARK: - GameResult
     
-    func makeGameResultVC() {
+    func makeGameResultVC(isWin: Bool) {
         
     }
     
@@ -68,16 +69,41 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     //MARK: - Game (GuessWho)
     
-    func makeGuessWhoVC(game: GameInfo, action: GuessWhoViewModelAction) -> GuessWhoController {
+    func makeGuessWhoVC(game: FetchGameModelUseCaseRequestValue,
+                        action: GuessWhoViewModelAction,
+                        auths: [AuthRepository]
+    ) -> GuessWhoController {
+        let vc = GuessWhoController(gameViewModel: makeGuessWhoVM(game: game,
+                                                                  action: action,
+                                                                  auths: auths))
+        return vc
+    }
+    
+    func makeGuessWhoVM(game: FetchGameModelUseCaseRequestValue,
+                        action: GuessWhoViewModelAction,
+                        auths: [AuthRepository]
+    ) -> GuessWhoViewModel {
+        DefaultGuessWhoViewModel(guessWhoUseCase: makeGuessWhoUseCase(auths: auths),
+                                 actions: action,
+                                 fetchData: game)
+    }
+    
+    func makeGuessWhoUseCase(auths: [AuthRepository]) -> GuessWhoGameUseCase {
+        return GuessWhoGameUseCase(fetchUseCase: <#T##FetchGameModelUseCase#>,
+                                   timerUseCase: <#T##TimerUseCase#>,
+                                   sttUseCase: <#T##STTUseCase#>)
+    }
+    
+    func makeFetchUseCase() -> FetchGameModelUseCase {
         
     }
     
-    func makeGuessWhoVM() {
-        
+    func makeTimerUseCase(repository: TimerRepository) -> TimerUseCase {
+        return DefaultGametimerUseCase(timerService: repository)
     }
     
-    func makeGuessWhoUseCase() {
-        
+    func makeSTTUseCase(repository: STTRepository) -> STTUseCase {
+        return DefaultSTTUseCase(sttService: <#T##STTRepository#>, audioService: <#T##AudioRepository#>)
     }
     
     //MARK: - Repositories
@@ -92,6 +118,10 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     func makeFetchGameRepository() -> GamesRepository {
         return DefaultGamesRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeAsyncFetchRepository() -> GameModelImageRepository {
+        return DefaultGameModelImageRepository(_groupDataTransferService: dependencies.asyncDataTrasnferService)
     }
     
     //MARK: - Flow Coordinator

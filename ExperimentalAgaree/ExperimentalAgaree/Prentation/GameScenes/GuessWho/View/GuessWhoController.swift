@@ -88,10 +88,9 @@ final class GuessWhoController: UIViewController {
             }, target: self)) }
         case .ready:
             removeIndicatorView()
+            gameViewModel.didAnimationFinished()
         case .waiting:
             makeIndicatorView()
-        case .none:
-            break
         }
     }
     

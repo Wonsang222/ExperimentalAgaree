@@ -55,6 +55,7 @@ final class AppDIContainer {
     func makeGameSceneDIContainer() -> GameSceneDIContainer {
         let dependencies = GameSceneDIContainer.Dependencies(
             apiDataTransferService: apiDataTransferService,
+            asyncDataTrasnferService: asyncGroupDataTransferService,
             sttService: sttService,
             timerService: timerService,
             audioService: audioService)
