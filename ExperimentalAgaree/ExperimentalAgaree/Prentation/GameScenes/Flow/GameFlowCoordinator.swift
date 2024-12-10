@@ -40,9 +40,18 @@ final class GameFlowCoordinator {
     
     private func goPlayGame(gameInfo: GameInfo) {
         
+        let reqValue = FetchGameModelUseCaseRequestValue(gameInfo: gameInfo)
+        
+        let guessWhoGameVC = dependencies.makeGuessWhoVC(game: reqValue,
+                                                         action: .init(showGameResult: showResultVC(isWin:), popToRoot: popToRoot),
+                                                         auths: <#T##[any AuthRepository]#>)
     }
     
     private func showResultVC(isWin: Bool) {
         
+    }
+    
+    private func popToRoot() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }

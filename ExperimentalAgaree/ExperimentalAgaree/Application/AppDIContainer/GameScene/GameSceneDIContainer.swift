@@ -95,7 +95,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
               let sttUseCase = sortedAuths.1 else { fatalError() }
         
         
-        return GuessWhoGameUseCase(fetchUseCase: <#T##FetchGameModelUseCase#>,
+        return GuessWhoGameUseCase(fetchUseCase: makeFetchUseCase(),
                                    timerUseCase: timerUsecase,
                                    sttUseCase: sttUseCase)
     }
@@ -113,7 +113,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     }
     
     func makeFetchUseCase() -> FetchGameModelUseCase {
-        
+        return DefaultFetchGameModelUseCase(gameRespository: makeFetchGameRepository(), _asyncRepository: makeAsyncFetchRepository())
     }
     
     func makeTimerUseCase(repository: TimerRepository) -> TimerUseCase {

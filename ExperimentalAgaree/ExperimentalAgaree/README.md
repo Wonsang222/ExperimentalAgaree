@@ -1,9 +1,6 @@
 #  To-Do List
 
 
-
-DI 해결중,..
-
 첫번째 페이지에서 coordinator 이동 해야함 -> Gameinfo requestvalue로 wrapping 
 1. fetch, start 타이밍잡기 -> vc에서 이벤트 수신 go!
 2. DI  코드 완성하기
