@@ -11,12 +11,13 @@ protocol GameSelectionUseCase {
     func requestGameAuthorization()
     func checkGameAuthrization(completion: @escaping (String?) -> Void)
     func getTargetModel() -> GameInfo
+    var _gameAuths: [AuthRepository] { get }
 }
 
 final class DefaultGameSelectionUseCase: GameSelectionUseCase {
     
     private let _targetGame: GameInfo
-    private let _gameAuths: [AuthRepository]
+    let _gameAuths: [AuthRepository]
     
     init(
         targetGame: GameInfo,

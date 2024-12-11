@@ -83,33 +83,33 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
                         action: GuessWhoViewModelAction,
                         auths: [AuthRepository]
     ) -> GuessWhoViewModel {
-        DefaultGuessWhoViewModel(guessWhoUseCase: makeGuessWhoUseCase(auths: auths),
+        DefaultGuessWhoViewModel(guessWhoUseCase: makeGuessWhoUseCase(gameInfo: game.gameInfo, auths: auths),
                                  actions: action,
                                  fetchData: game)
     }
     
-    func makeGuessWhoUseCase(auths: [AuthRepository]) -> GuessWhoGameUseCase {
+    func makeGuessWhoUseCase(gameInfo: GameInfo, auths: [AuthRepository]) -> GuessWhoGameUseCase {
         
         let sortedAuths = sortAuths(with: auths)
-        guard let timerUsecase = sortedAuths.0,
-              let sttUseCase = sortedAuths.1 else { fatalError() }
         
+        guard let audioRepository = sortedAuths.0,
+              let sttRepository = sortedAuths.1 else { fatalError() }
         
         return GuessWhoGameUseCase(fetchUseCase: makeFetchUseCase(),
-                                   timerUseCase: timerUsecase,
-                                   sttUseCase: sttUseCase)
+                                   timerUseCase: makeTimerUseCase(repository: makeTimerRepository()),
+                                   sttUseCase: makeSTTUseCase(stt: sttRepository, audio: audioRepository))
     }
     
-    private func sortAuths(with auths: [AuthRepository]) -> (TimerUseCase?, STTUseCase?) {
-        let timerUseCase = auths.first { auth in
-            auth is TimerUseCase
-        } as? TimerUseCase
+    private func sortAuths(with auths: [AuthRepository]) -> (AudioRecognizationRepository?, SttReqRepository?) {
+        let audioRepository = auths.first { auth in
+            auth is AudioRecognizationRepository
+        } as? AudioRecognizationRepository
         
-        let sttUseCase = auths.first { auth in
-            auth is STTUseCase
-        } as? STTUseCase
+        let sttRepository = auths.first { auth in
+            auth is SttReqRepository
+        } as? SttReqRepository
         
-        return (timerUseCase, sttUseCase)
+        return (audioRepository, sttRepository)
     }
     
     func makeFetchUseCase() -> FetchGameModelUseCase {
@@ -120,7 +120,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
         return DefaultGametimerUseCase(timerService: repository)
     }
     
-    func makeSTTUseCase(stt: STTRepository, audio: AudioRepository) -> STTUseCase {
+    func makeSTTUseCase(stt: SttReqRepository, audio: AudioRecognizationRepository) -> STTUseCase {
         return DefaultSTTUseCase(sttService: stt , audioService: audio)
     }
     
@@ -140,6 +140,10 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     func makeAsyncFetchRepository() -> GameModelImageRepository {
         return DefaultGameModelImageRepository(_groupDataTransferService: dependencies.asyncDataTrasnferService)
+    }
+    
+    func makeTimerRepository() -> TimerRepository {
+        return DefaultTimerRepository(timerService: dependencies.timerService)
     }
     
     //MARK: - Flow Coordinator

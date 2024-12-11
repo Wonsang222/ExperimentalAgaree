@@ -21,12 +21,12 @@ protocol STTUseCase {
 final class DefaultSTTUseCase: STTUseCase {
     
     private var _sttStack: SttModel = SttModel(word: "")
-    private let _sttService: STTRepository
-    private let _audioService: AudioRepository
+    private let _sttService: SttReqRepository
+    private let _audioService: AudioRecognizationRepository
 
     init(
-        sttService: STTRepository,
-        audioService: AudioRepository
+        sttService: SttReqRepository,
+        audioService: AudioRecognizationRepository
     ) {
         self._sttService = sttService
         self._audioService = audioService

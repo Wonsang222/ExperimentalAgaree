@@ -19,7 +19,7 @@ protocol GameSelectionViewModelOutput {
 }
 
 struct GameSelectionViewModelAction {
-    let goPlayGame: (GameInfo) -> Void
+    let goPlayGame: (GameInfo, [AuthRepository]) -> Void
 }
 
 typealias GameSelectionViewModel = GameSelectionViewModelInput & GameSelectionViewModelOutput
@@ -49,7 +49,7 @@ final class DefaultGameSelectionViewModel: GameSelectionViewModel {
         checkAuthorization { [weak self] granted in
             guard let self = self else { return }
             if granted {
-                self.action.goPlayGame(self.target.getValue())
+                self.action.goPlayGame(self.target.getValue(), useCase._gameAuths)
                 return
             }
         }
