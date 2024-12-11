@@ -61,7 +61,6 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.actions = actions
         self.mainQueue = mainQueue
         self.fetchData = fetchData
-        
         fetchGameModelList(targets: fetchData)
         bind()
     }
@@ -86,7 +85,9 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     
     private func setTarget(by model: GameModelUsable?) {
         guard let model = model else { return }
-        target.setValue(.init(photo: UIImage(data: model.photoBinary!)!))
+        mainQueue.async {
+            self.target.setValue(.init(photo: UIImage(data: model.photoBinary!)!))
+        }
     }
 
     private func fetchGameModelList(targets: FetchGameModelUseCaseRequestValue) {
@@ -106,12 +107,14 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         timerGameTask = guessWhoUseCase.startTimer(gameTimerValue: timerValue,
                                                    completion: { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .data(let timerInfo):
-                let second = timerInfo.gameTime
-                self.time.setValue(second)
-            case .wrong:
-                self.actions.showGameResult(false)
+            mainQueue.async {
+                switch result {
+                case .data(let timerInfo):
+                    let second = timerInfo.gameTime
+                    self.time.setValue(second)
+                case .wrong:
+                    self.actions.showGameResult(false)
+                }
             }
         })
     }
@@ -119,21 +122,22 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     private func startRecognizer() {
         sttGameTask = guessWhoUseCase.startRecognizer(completion: { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let judgeResult):
-                if case .data(let isClear) = judgeResult {
-                    if isClear {
-                        actions.showGameResult(isClear)
+            self.mainQueue.async {
+                switch result {
+                case .success(let judgeResult):
+                    if case .data(let isClear) = judgeResult {
+                        if isClear {
+                            self.actions.showGameResult(isClear)
+                        }
                     }
+                case .failure(let err):
+                    self.handleError(err)
                 }
-            case .failure(let err):
-                self.handleError(err)
             }
         })
     }
     
-    // 타이머밸류로 wrapping
-    private func gameStart() {
+    private func startGame() {
         if guessWhoStatus.getValue() != .ready {
             let errHandler = ErrorHandler(errMsg: "예상하지 못한 에러입니다.", completion: actions.popToRoot)
             error.setValue(errHandler)
@@ -148,9 +152,7 @@ extension DefaultGuessWhoViewModel {
     //MARK: - Input
 
     func didAnimationFinished() {
-        startRecognizer()
-        startTimer(timerValue: fetchData.gameInfo.gameTimeValue)
-        
+        self.startGame()
     }
     
     func viewWillDisappear() {

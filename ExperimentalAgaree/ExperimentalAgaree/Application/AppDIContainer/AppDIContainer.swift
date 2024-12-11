@@ -23,10 +23,11 @@ final class AppDIContainer {
     }()
     
     lazy var asyncDataTransferService: AsyncDataTransferService = {
-        let config = ApiDataNetworkConfig(baseURL: URL(string: " ")!,
+        let config = ApiDataNetworkConfig(baseURL: URL(string:appConfiguration.apiBasePhoto)!,
                                           baseHeaders: ["Authorization":appConfiguration.uuid,
                                                         "User-Agent": appConfiguration.apiKey],
                                           networkServiceType: .responsive)
+        
         let asyncNetworkService = DefaultAsyncNetworkService(_networkConfig: config)
         return DefaultAsyncDataTransferService(_asyncNetworkService: asyncNetworkService)
     }()

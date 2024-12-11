@@ -39,6 +39,7 @@ final class DefaultFetchGameModelUseCase: FetchGameModelUseCase {
             switch domainModel {
             case .success(let list):
                 guard let strongSelf = self else { return }
+                
                 Task {
                     await strongSelf._asyncRepository.fetchImages(paths: list) { result in
                         completion(.success(result))

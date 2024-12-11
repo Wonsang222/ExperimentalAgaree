@@ -29,4 +29,9 @@ final class AppConfiguration {
         }
         return apiBaseURL
     }()
+    
+    lazy var apiBasePhoto: String = {
+        guard let apiBasePhoto = Bundle.main.object(forInfoDictionaryKey: "ApiPhotoBaseUrl") as? String else { fatalError() }
+        return apiBasePhoto
+    }()
 }

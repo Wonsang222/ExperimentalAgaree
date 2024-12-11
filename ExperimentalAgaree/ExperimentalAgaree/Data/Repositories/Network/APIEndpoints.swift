@@ -24,7 +24,8 @@ struct APIEndpoints {
     }
     
     static func getImage(with path: String) -> Endpoint<Data> {
-        return Endpoint(path: path,
+        let lastPath = (path as NSString).lastPathComponent
+        return Endpoint(path: lastPath,
                         responseDecoder: RawDataResponseDecoder(),
                         method: .get,
                         queryParameter: nil,

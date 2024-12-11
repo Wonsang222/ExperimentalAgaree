@@ -67,6 +67,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             guard let self = self else { return }
             switch result {
             case .success(let modelList):
+                
                 self.gameModels = self.replaceGameModelWithNullGameModel(from: modelList.models)
                 setClearGameModel()
                 setTargetModel()

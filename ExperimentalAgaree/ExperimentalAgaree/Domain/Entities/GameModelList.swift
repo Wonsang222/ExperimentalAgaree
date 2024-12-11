@@ -22,7 +22,7 @@ final class GameClearModel: GameModelUsable {
 final class NullGameModel: GameModelUsable {
     let name = "조커"
     let photoUrl: String = ""
-    var photoBinary: Data? = try! Data(contentsOf: Bundle.main.url(forResource: "joker", withExtension: "jpg")!)
+    var photoBinary: Data? = UIImage(named: "joker")!.jpegData(compressionQuality: 1.0)
 }
 
 final class GameModel: GameModelUsable {

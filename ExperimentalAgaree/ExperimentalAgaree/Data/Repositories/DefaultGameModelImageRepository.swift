@@ -22,6 +22,7 @@ extension DefaultGameModelImageRepository: GameModelImageRepository {
     func fetchImages(paths: GameModelList, completion: @escaping (GameModelList) -> Void) async {
         await withTaskGroup(of: Void.self) { [weak self] group in
             for path in paths.models {
+                
                 group.addTask { [weak self]  in
                     path.photoBinary = try? await self?.fetchImage(path: path.photoUrl)
                 }
@@ -39,7 +40,6 @@ extension DefaultGameModelImageRepository: GameModelImageRepository {
     }
     
     func fetchImages(path: [String]) async throws -> [Data?] {
-        
         let requestDTOArr = path.map { APIEndpoints.getImage(with: $0)}
         let data = await _groupDataTransferService.makeGroupRequests(with: requestDTOArr)
         return data
