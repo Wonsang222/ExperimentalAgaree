@@ -89,6 +89,7 @@ final class GuessWhoController: UIViewController {
         case .ready:
             removeIndicatorView()
             gameViewModel.didAnimationFinished()
+            progressView.isHidden = false
         case .waiting:
             makeIndicatorView()
         }
@@ -121,8 +122,14 @@ final class GuessWhoController: UIViewController {
         super.viewDidLoad()
         configureUI()
         setNotification()
+        setBehaviors()
     }
     //MARK: - Methods
+    
+    private func setBehaviors() {
+        addBehaviors([HideNavigationBarBehavior()])
+    }
+    
     private func configureUI() {
         view.addSubview(guessView)
         guessView.addSubview(countView)
