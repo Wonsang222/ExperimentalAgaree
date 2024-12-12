@@ -25,8 +25,8 @@ final class GuessWhoController: UIViewController {
         return iv
     }()
     
-    private let progressView:UIProgressView = {
-        let pv = UIProgressView()
+    private let progressView:TimerProgresssView = {
+        let pv = TimerProgresssView()
         pv.progressViewStyle = .default
         pv.tintColor = .systemBlue
         pv.isHidden = true
@@ -90,6 +90,8 @@ final class GuessWhoController: UIViewController {
             removeIndicatorView()
             gameViewModel.didAnimationFinished()
             progressView.isHidden = false
+            countView.removeFromSuperview()
+            guessView.showPhotoView()
         case .waiting:
             makeIndicatorView()
         }
@@ -101,7 +103,7 @@ final class GuessWhoController: UIViewController {
     }
     
     private func bindProgressView(_ second: Float) {
-        self.progressView.setProgress(second, animated: true)
+        self.progressView.setProgress(0.03, animated: true)
     }
     
     private func setNotification() {

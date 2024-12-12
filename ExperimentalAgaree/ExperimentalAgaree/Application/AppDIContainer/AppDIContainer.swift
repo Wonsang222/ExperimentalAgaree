@@ -37,7 +37,7 @@ final class AppDIContainer {
     }()
     
     lazy var timerService: TimerManager =  {
-        let config = DefaultTimerConfiguration(timeInterval: 0.2, isRepeat: false)
+        let config = DefaultTimerConfiguration(timeInterval: 0.2, isRepeat: true)
         return DefaultTimerService(config: config)
     }()
     

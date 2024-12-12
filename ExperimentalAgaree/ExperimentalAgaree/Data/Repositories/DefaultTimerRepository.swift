@@ -21,8 +21,7 @@ final class DefaultTimerRepository: TimerRepository {
     ) -> Cancellable? {
         
         let timerTask = TimerTask()
-        timerTask.task = timerService.startTimer(gameSec: gameTime,
-                                       handlerQueue: .main) { second in
+        timerTask.task = timerService.startTimer(gameSec: gameTime) { second in
             let timerDomainModel = GameTimeInfo(gameTime: second)
             completion(timerDomainModel)
         }

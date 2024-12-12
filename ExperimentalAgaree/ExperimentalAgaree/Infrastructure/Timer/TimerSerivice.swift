@@ -10,7 +10,6 @@ import Foundation
 protocol TimerManager {
     func startTimer(
         gameSec:Float,
-        handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
 }
@@ -19,7 +18,7 @@ final class DefaultTimerService: TimerManager {
 
     private let _queue: DataTransferDispatchQueue
     private let _config: TimerConfigurable
-    
+
     init(
         queue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInteractive),
         config: TimerConfigurable
@@ -31,13 +30,11 @@ final class DefaultTimerService: TimerManager {
     @discardableResult
     func startTimer(
         gameSec:Float,
-        handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> TimerUsable?
     {
         let timer = setTimer(gameTime: gameSec,
                                   config: _config,
-                                  handlerQueue: handlerQueue,
                                   completion: completion)
         _queue.asyncExecute {
             RunLoop.current.add(timer, forMode: .common)
@@ -47,20 +44,16 @@ final class DefaultTimerService: TimerManager {
         return timer
     }
     
-
     private func setTimer(
         gameTime: Float,
         config: TimerConfigurable,
-        handlerQueue: DispatchQueue,
         completion: @escaping (Float) -> Void
     ) -> Timer
     {
         let frequency = calculateGameSpeed(gameSecond: gameTime)
         let timer = Timer(timeInterval: config.timeInterval,
                           repeats: config.isRepeat) { _ in
-            handlerQueue.async {
-                completion(frequency)
-            }
+            completion(frequency)
         }
         return timer
     }

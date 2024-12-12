@@ -42,6 +42,10 @@ final class GuessWhoView: BaseView {
     func setPhoto(img: UIImage) {
         self.imageView.image = img
     }
+    
+    func showPhotoView() {
+        self.imageView.isHidden = false
+    }
 }
 
 

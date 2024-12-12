@@ -35,6 +35,7 @@
 		7E42F7592C8AB1B600C760C9 /* FetchGameModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */; };
 		7E445B0C2CF5430C00A26731 /* AsyncNetworkRequest in Frameworks */ = {isa = PBXBuildFile; productRef = 7E445B0B2CF5430C00A26731 /* AsyncNetworkRequest */; };
 		7E445B0E2CF5625C00A26731 /* AsyncDataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E445B0D2CF5625C00A26731 /* AsyncDataTransferService.swift */; };
+		7E5067922D0A6AA4008B8021 /* UIProgressView + Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5067912D0A6AA4008B8021 /* UIProgressView + Timer.swift */; };
 		7E51415B2D02955500E7D03D /* UIVC + SwiftUI_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E51415A2D02955500E7D03D /* UIVC + SwiftUI_Preview.swift */; };
 		7E5633432CF00B9400D13013 /* CommonNetworkModel in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5633422CF00B9400D13013 /* CommonNetworkModel */; };
 		7E5633482CF0208700D13013 /* ResultVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5633462CF0208700D13013 /* ResultVCViewController.m */; };
@@ -126,6 +127,7 @@
 		7E41A1C52C8E7074006060A3 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		7E42F7582C8AB1B600C760C9 /* FetchGameModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGameModelUseCase.swift; sourceTree = "<group>"; };
 		7E445B0D2CF5625C00A26731 /* AsyncDataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncDataTransferService.swift; sourceTree = "<group>"; };
+		7E5067912D0A6AA4008B8021 /* UIProgressView + Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIProgressView + Timer.swift"; sourceTree = "<group>"; };
 		7E51415A2D02955500E7D03D /* UIVC + SwiftUI_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC + SwiftUI_Preview.swift"; sourceTree = "<group>"; };
 		7E5633412CF00B7B00D13013 /* CommonNetworkModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CommonNetworkModel; path = ../OuterFrameWork/CommonNetworkModel; sourceTree = "<group>"; };
 		7E5633442CF0208700D13013 /* ExperimentalAgaree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExperimentalAgaree-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				7E2D62FC2CAF6408001619F0 /* UILabel + UpdateLabelFontSize.swift */,
 				C178BA762CB2743D0081CB10 /* UILabel + UIButton.swift */,
 				7E51415A2D02955500E7D03D /* UIVC + SwiftUI_Preview.swift */,
+				7E5067912D0A6AA4008B8021 /* UIProgressView + Timer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */,
 				7E5633482CF0208700D13013 /* ResultVCViewController.m in Sources */,
 				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
+				7E5067922D0A6AA4008B8021 /* UIProgressView + Timer.swift in Sources */,
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
 				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,
 				C1DFB2E72C966E9600011058 /* STTUseCase.swift in Sources */,
@@ -1023,7 +1027,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD5K45Y4NW;
+				DEVELOPMENT_TEAM = MBB7F97KSX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";
@@ -1061,7 +1065,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD5K45Y4NW;
+				DEVELOPMENT_TEAM = MBB7F97KSX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";

@@ -112,7 +112,6 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
                 case .data(let timerInfo):
                     let second = timerInfo.gameTime
                     self.time.setValue(second)
-                    print(second)
                 case .wrong:
                     self.actions.showGameResult(false)
                 }
