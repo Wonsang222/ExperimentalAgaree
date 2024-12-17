@@ -111,6 +111,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
                 switch result {
                 case .data(let timerInfo):
                     let second = timerInfo.gameTime
+                    print("sec", second)
                     self.time.setValue(second)
                 case .wrong:
                     self.actions.showGameResult(false)

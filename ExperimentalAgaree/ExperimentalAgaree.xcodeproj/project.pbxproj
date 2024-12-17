@@ -53,7 +53,6 @@
 		7E7B9DC42CEC20F2000C68C5 /* GameEndBtnBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B9DC32CEC20F2000C68C5 /* GameEndBtnBehavior.swift */; };
 		7E83FBBE2C755B6100DF4DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */; };
 		7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */; };
-		7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBC12C755B6100DF4DD7 /* ViewController.swift */; };
 		7E83FBC52C755B6100DF4DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E83FBC32C755B6100DF4DD7 /* Main.storyboard */; };
 		7E83FBC72C755B6300DF4DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */; };
 		7E83FBDA2C759A1D00DF4DD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83FBD92C759A1D00DF4DD7 /* NetworkService.swift */; };
@@ -151,7 +150,6 @@
 		7E83FBBA2C755B6100DF4DD7 /* ExperimentalAgaree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentalAgaree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E83FBBD2C755B6100DF4DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E83FBBF2C755B6100DF4DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7E83FBC12C755B6100DF4DD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7E83FBC42C755B6100DF4DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E83FBCB2C755B6300DF4DD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -484,7 +482,6 @@
 				C1C692D92C7A077900EF0C45 /* Domain */,
 				7E83FBD32C755CB900DF4DD7 /* Infrastructure */,
 				7E83FBD12C755B6D00DF4DD7 /* Application */,
-				7E83FBC12C755B6100DF4DD7 /* ViewController.swift */,
 				7E83FBC32C755B6100DF4DD7 /* Main.storyboard */,
 				7E83FBC62C755B6300DF4DD7 /* Assets.xcassets */,
 				7E83FBCB2C755B6300DF4DD7 /* Info.plist */,
@@ -796,7 +793,6 @@
 				7E75F8AD2C9262B0009E8BC5 /* GameJudgeable.swift in Sources */,
 				7E2C16A02CAA2AA300A96250 /* GameFlowCoordinator.swift in Sources */,
 				7E5633482CF0208700D13013 /* ResultVCViewController.m in Sources */,
-				7E83FBC22C755B6100DF4DD7 /* ViewController.swift in Sources */,
 				7E5067922D0A6AA4008B8021 /* UIProgressView + Timer.swift in Sources */,
 				C1DFB2B52C80AC5500011058 /* TimerConfiguration.swift in Sources */,
 				C1DFB2D02C87478600011058 /* GameType.swift in Sources */,

@@ -8,16 +8,6 @@
 import Foundation
 import AVFoundation
 
-struct AudioBufferDTO {
-    let data: Data
-    let format: AudioFormat
-}
-
-struct AudioFormat {
-    let sampleRate: Double
-    let channelCount: Int
-}
-
 enum AudioError: Error {
     case systemError
     case sessionError
@@ -37,7 +27,7 @@ struct DefaultAudioSessionConfiguration: AudioSessionCofigurable {
 }
 
 protocol AudioEngineBuilder: AuthCheckable {
-    func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void)
+    func start(completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void)
     func stop()
 }
 
@@ -50,16 +40,14 @@ final class AudioEngineBuilderService: AudioEngineBuilder {
         self._config = _config
     }
     
-    func start(completion: @escaping (Result<AudioBufferDTO, AudioError>) -> Void) {
+    func start(completion: @escaping (Result<AVAudioPCMBuffer, AudioError>) -> Void) {
         do {
             try setAudioSession()
             checkActivation(_engine: _engine)
             let inputNode = _engine.inputNode
             let recordingFormat = inputNode.outputFormat(forBus: _config.bus)
-            inputNode.installTap(onBus: _config.bus, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
-                if let dto =  self?.convertDTO(buffer, format: recordingFormat) {
-                    completion(.success(dto))
-                }
+            inputNode.installTap(onBus: _config.bus, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+                completion(.success(buffer))
             }
             _engine.prepare()
             try _engine.start()
@@ -84,15 +72,6 @@ final class AudioEngineBuilderService: AudioEngineBuilder {
         try session.setCategory(_config.category)
         try session.setMode(_config.mode)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
-    }
-    
-    private func convertDTO(_ buffer: AVAudioPCMBuffer, format: AVAudioFormat) -> AudioBufferDTO {
-        let audioData = buffer.audioBufferList.pointee.mBuffers.mData
-        let dataSize = Int(buffer.audioBufferList.pointee.mBuffers.mDataByteSize)
-        let data = Data(bytes: audioData!, count: dataSize)
-        let format = AudioFormat(sampleRate: format.sampleRate, channelCount: Int(format.channelCount))
-        let dto = AudioBufferDTO(data: data, format: format)
-        return dto
     }
     
     private func resolveError(err: Error) -> AudioError {

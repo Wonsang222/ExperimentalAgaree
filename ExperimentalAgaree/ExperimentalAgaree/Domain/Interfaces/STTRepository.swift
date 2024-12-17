@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 typealias STTRepository = SttReqRepository & AuthRepository
 
@@ -19,5 +20,5 @@ protocol SttReqRepository {
     
     typealias Completion = (Result<SttModel, Error>) -> Void
     
-    func startRecognition(buffer: AudioBufferDTO,completion: @escaping Completion) -> Cancellable?
+    func startRecognition(buffer:  AVAudioPCMBuffer,completion: @escaping Completion) -> Cancellable?
 }

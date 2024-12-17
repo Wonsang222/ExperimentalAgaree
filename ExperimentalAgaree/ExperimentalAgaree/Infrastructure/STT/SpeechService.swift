@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 import Speech
 
 
@@ -48,7 +49,7 @@ protocol SttService {
                 completion: @escaping Completion
     ) -> SttTaskCancellable?
     
-    func appendRecogRequest(_ buffer: AudioBufferDTO) throws
+    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer) throws
 }
 
 typealias SpeechTaskUsable = SttService & AuthCheckable
@@ -56,6 +57,7 @@ typealias SpeechTaskUsable = SttService & AuthCheckable
 final class DefaultSpeechService: SpeechTaskUsable {
     
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+    private let recognizer: SFSpeechRecognizer
     private let config: SttConfigurable
 
     init(
@@ -63,6 +65,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
         ) {
         self.config = config
         self.recognitionRequest.shouldReportPartialResults = true
+        self.recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))!
         }
     
     func request(
@@ -70,7 +73,6 @@ final class DefaultSpeechService: SpeechTaskUsable {
                 completion: @escaping Completion
     ) -> SttTaskCancellable? {
     
-            let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: config.id))!
             let task = recognizer.recognitionTask(with: recognitionRequest,
                                                                           resultHandler: { result, error in
                 
@@ -85,33 +87,8 @@ final class DefaultSpeechService: SpeechTaskUsable {
             return task
     }
     
-    func appendRecogRequest(_ buffer: AudioBufferDTO) throws {
-        let pcmBuffer = try convertToPCMBuffer(from: buffer)
-        recognitionRequest.append(pcmBuffer)
-    }
-
-    private func convertToPCMBuffer(from dto: AudioBufferDTO) throws -> AVAudioPCMBuffer {
-        // AVAudioFormat을 생성합니다.
-        guard let audioFormat = AVAudioFormat(standardFormatWithSampleRate: dto.format.sampleRate,
-                                              channels: AVAudioChannelCount(dto.format.channelCount)) else {
-            throw AudioError.generic
-        }
-        
-        // AVAudioPCMBuffer를 생성합니다.
-        guard let pcmBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: AVAudioFrameCount(dto.data.count) / audioFormat.streamDescription.pointee.mBytesPerFrame) else {
-            throw AudioError.generic
-        }
-        
-        pcmBuffer.frameLength = pcmBuffer.frameCapacity
-
-        // Data의 바이트를 pcmBuffer에 복사합니다.
-        let audioBuffer = pcmBuffer.audioBufferList.pointee.mBuffers
-        dto.data.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
-            if let baseAddress = bufferPointer.baseAddress {
-                memcpy(audioBuffer.mData, baseAddress, Int(audioBuffer.mDataByteSize))
-            }
-        }
-        return pcmBuffer
+    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer) throws {
+        recognitionRequest.append(buffer)
     }
 }
 

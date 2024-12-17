@@ -61,7 +61,7 @@ final class DefaultTimerService: TimerManager {
     private func calculateGameSpeed(
         gameSecond:Float
     ) -> Float {
-        let timerSpeed = (1.0 / gameSecond) * 1.0
+        let timerSpeed = (1.0 / gameSecond) * 0.1
         return timerSpeed
     }
 }

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import AVFoundation
 
 typealias AudioRepository = AudioRecognizationRepository & AuthRepository
 
 protocol AudioRecognizationRepository {
     
-    typealias Completion = (Result<AudioBufferDTO, Error>) -> Void
+    typealias Completion = (Result< AVAudioPCMBuffer, Error>) -> Void
     
     func startRecognition(
         completion: @escaping Completion

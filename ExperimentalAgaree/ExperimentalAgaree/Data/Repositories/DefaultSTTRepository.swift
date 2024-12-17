@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 final class DefaultSTTRepository: STTRepository {
     private var sttService: SpeechTaskUsable
@@ -22,9 +23,10 @@ final class DefaultSTTRepository: STTRepository {
         self.executionQueue = executionQueue
     }
     
-    func startRecognition(buffer: AudioBufferDTO,completion: @escaping Completion) -> Cancellable?
+    func startRecognition(buffer:  AVAudioPCMBuffer,
+                          completion: @escaping Completion
+    ) -> Cancellable?
     {
-    
         do {
             try appendAudioBufferToSttRequest(buffer: buffer)
             let sttTask = SttTask()
@@ -43,7 +45,7 @@ final class DefaultSTTRepository: STTRepository {
         }
     }
     
-    private func appendAudioBufferToSttRequest(buffer: AudioBufferDTO) throws {
+    private func appendAudioBufferToSttRequest(buffer:  AVAudioPCMBuffer) throws {
         try sttService.appendRecogRequest(buffer)
     }
     

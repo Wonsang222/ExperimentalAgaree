@@ -34,7 +34,7 @@ final class DefaultGametimerUseCase: TimerUseCase {
         _timerService.countGameTime(gameTime: gameTimerValue.gameTime) { [weak self] timerInfo in
             guard let strongSelf = self else  { return }
             strongSelf._currentTimer = strongSelf._currentTimer + timerInfo
-            if strongSelf.judge(by: gameTimerValue.gameTime) {
+            if strongSelf.judge(by: 1.0) {
                 completion(.data(timerInfo))
             } else {
                 completion(.wrong)

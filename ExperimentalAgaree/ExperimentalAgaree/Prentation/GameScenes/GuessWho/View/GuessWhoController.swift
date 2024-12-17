@@ -103,7 +103,7 @@ final class GuessWhoController: UIViewController {
     }
     
     private func bindProgressView(_ second: Float) {
-        self.progressView.setProgress(0.03, animated: true)
+        self.progressView.setProgress(second, animated: true)
     }
     
     private func setNotification() {
