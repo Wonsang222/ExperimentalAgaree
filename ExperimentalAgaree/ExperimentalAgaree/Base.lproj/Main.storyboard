@@ -14,16 +14,27 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ExperimentalAgaree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cv1-yP-YJP">
+                                <rect key="frame" x="172.66666666666666" y="415.66666666666669" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cv1-yP-YJP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0iv-CR-FsY"/>
+                            <constraint firstItem="cv1-yP-YJP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="irq-7r-mXc"/>
+                        </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="1700"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-34"/>
+            <point key="canvasLocation" x="57" y="-87"/>
         </scene>
     </scenes>
     <resources>
