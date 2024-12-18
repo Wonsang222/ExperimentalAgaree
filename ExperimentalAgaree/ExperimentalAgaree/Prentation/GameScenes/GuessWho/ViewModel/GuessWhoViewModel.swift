@@ -5,7 +5,7 @@
 //  Created by 황원상 on 9/24/24.
 //
 
-import Foundation
+import UIKit
 
 protocol GuessWhoViewModelInput {
     func didAnimationFinished()
@@ -144,7 +144,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
             return
         }
         startTimer(timerValue: fetchData.gameInfo.gameTimeValue)
-//        startRecognizer()
+        startRecognizer()
     }
 }
 

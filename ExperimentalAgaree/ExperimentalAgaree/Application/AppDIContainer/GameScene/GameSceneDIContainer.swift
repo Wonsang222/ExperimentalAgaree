@@ -55,16 +55,16 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     
     //MARK: - GameResult
     
-    func makeGameResultVC(isWin: Bool) {
-        
+    func makeGameResultVC(isWin: Bool, action: GameResultViewModelAction) -> ResultController {
+        return ResultController(resultViewModel: makeGameResultVM(isWin: isWin, action: action))
     }
     
-    func makeGameResultVM() {
-        
+    func makeGameResultVM(isWin: Bool, action: GameResultViewModelAction) -> GameResultViewModel {
+        return DefaultGameResultViewmodel(gameResultUseCase: makeGameResultUsecase(isWin: isWin), action: action)
     }
     
-    func makeGameResultUsecase() {
-        
+    func makeGameResultUsecase(isWin: Bool) -> GameResultUseCase {
+        return DefaultGameResultUseCase(isWin: isWin)
     }
     
     //MARK: - Game (GuessWho)

@@ -9,18 +9,31 @@ import UIKit
 
 final class ResultController: UIViewController {
     
-    private var isWin:Bool
+    private let resultViewModel: GameResultViewModel
     
-    let resultLabel:UILabel = {
+    private let resultLabel:UILabel = {
         let label = UILabel()
         label.text = ""
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
+    init(resultViewModel: GameResultViewModel) {
+        self.resultViewModel = resultViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
+        setBehaviors()
+        setGameEndBtn()
         
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
@@ -32,29 +45,21 @@ final class ResultController: UIViewController {
         resultLabel.updateLabelFontSize(view: view)
     }
     
-    init(isWin: Bool) {
-        self.isWin = isWin
-        super.init(nibName: nil, bundle: nil)
-        checkTheResult()
+    private func bind() {
+        resultLabel.text = resultViewModel.resultString
     }
     
-    @available(iOS, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func setBehaviors() {
+        addBehaviors([GameEndBtnBehavior()])
     }
     
-    func checkTheResult(){
-        if isWin{
-            resultLabel.text = "통과~!"
-        } else {
-            resultLabel.text = "땡~!"
-        }
+    private func setGameEndBtn() {
+        let btn = navigationItem.rightBarButtonItem!
+        btn.target = self
+        btn.action = #selector(rightBtnAction)
     }
-//    
-//    func configureEmptyController() {
-//        if var stack = navigationController?.viewControllers, let index = stack.firstIndex(of: self){
-//            stack.insert(EmptyController(), at: index)
-//            navigationController?.viewControllers = stack
-//        }
-//    }
+    
+    @objc private func rightBtnAction() {
+        resultViewModel.popToRoot()
+    }
 }
