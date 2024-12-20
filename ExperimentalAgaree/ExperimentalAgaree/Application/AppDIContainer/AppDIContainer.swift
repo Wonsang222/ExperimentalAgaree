@@ -48,7 +48,7 @@ final class AppDIContainer {
     }()
     
     lazy var sttService: SpeechTaskUsable = {
-        let config: SttConfigurable = SttConfiguration(id: "ko")
+        let config: SttConfigurable = SttConfiguration(id: "ko-KR")
         let service = DefaultSpeechService(config: config)
         return service
     }()
