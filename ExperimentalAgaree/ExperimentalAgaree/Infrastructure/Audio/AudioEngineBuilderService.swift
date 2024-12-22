@@ -53,7 +53,6 @@ final class AudioEngineBuilderService: AudioEngineBuilder {
             try _engine.start()
         } catch {
             completion(.failure(resolveError(err: error)))
-            stop()
         }
     }
 

@@ -10,6 +10,7 @@ import Foundation
 final class DefaultAudioRepository: AudioRepository {
     
     private let service: AudioEngineBuilder
+    
     var description: String {
         service.getDescription()
     }

@@ -76,18 +76,12 @@ final class DefaultSpeechService: SpeechTaskUsable {
             let task = recognizer.recognitionTask(with: recognitionRequest,
                                                                           resultHandler: { result, error in
                 
-                var isFinal = false
-                
                 if result != nil {
                     let text = result?.bestTranscription.formattedString
                     guard let text = text else { return }
                     queue.asyncExecute {
                         completion(.success(text))
                     }
-                }
-                
-                if error  != nil || isFinal {
-                    completion(.failure(<#T##SpeechError#>))
                 }
             })
             return task

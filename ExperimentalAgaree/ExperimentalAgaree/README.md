@@ -1,11 +1,8 @@
 #  To-Do List
 
-repository stt, audio 손봐야함
-
-numToCount 수정
-
 stt는 반복사용 이슈
-
+타이머 over -> stop 안되는듯 
+타이머 stt 메모리 정리 가능?
 
 느낀점
 1. domain에서 에러에 대한 callback을 정해줘서 vm -> vc 로 전달해야하지 않았을까? (클린 아키텍쳐)
