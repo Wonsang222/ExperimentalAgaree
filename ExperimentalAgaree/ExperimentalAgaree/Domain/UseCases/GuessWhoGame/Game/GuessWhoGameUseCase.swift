@@ -24,6 +24,7 @@ protocol CommonGameUseCase {
                     completion: @escaping TimerCompletion) -> Cancellable?
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable?
     func startAudioEngine(completion: @escaping AudioEngineCompletion)
+    func stopAudioEngine()
 }
 
 final class GuessWhoGameUseCase: CommonGameUseCase {
@@ -59,6 +60,10 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             }
         }
         return modelArr
+    }
+    
+    func stopAudioEngine() {
+        sttUseCase.stopRecognitioin()
     }
     
     func startAudioEngine(completion: @escaping AudioEngineCompletion) {
@@ -110,19 +115,21 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         
         return sttUseCase.startRecognition(target: targetModel) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let gameJudge):
-                if case .data(let gameStatus) = gameJudge {
-                    if case .Clear = gameStatus {
-                        completion(.success(.data(true)))
-                    } else if case .Right = gameStatus {
-                        self.setTargetModel() {
-                            completion(.success(.data(false)))
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let gameJudge):
+                    if case .data(let gameStatus) = gameJudge {
+                        if case .Clear = gameStatus {
+                            completion(.success(.data(true)))
+                        } else if case .Right = gameStatus {
+                            self.setTargetModel() {
+                                completion(.success(.data(false)))
+                            }
                         }
                     }
+                case .failure(let err):
+                    completion(.failure(err))
                 }
-            case .failure(let err):
-                completion(.failure(err))
             }
         }
     }

@@ -133,7 +133,6 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
     private func startRecognizer() {
         sttGameTask = guessWhoUseCase.startRecognizer(completion: { [weak self] result in
             guard let self = self else { return }
-            self.mainQueue.async {
                 switch result {
                 case .success(let judgeResult):
                     if case .data(let isClear) = judgeResult {
@@ -144,7 +143,6 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
                 case .failure(let err):
                     self.handleError(err)
                 }
-            }
         })
     }
     
@@ -173,6 +171,7 @@ extension DefaultGuessWhoViewModel {
         sttGameTask = nil
         timerGameTask?.cancel()
         timerGameTask = nil
+        guessWhoUseCase.stopAudioEngine()
     }
     
     func  stopPlayingGame() {

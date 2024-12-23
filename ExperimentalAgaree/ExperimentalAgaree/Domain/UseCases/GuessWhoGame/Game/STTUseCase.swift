@@ -64,7 +64,6 @@ final class DefaultSTTUseCase: STTUseCase {
         }
     }
 
-#warning("no usage")
     func stopRecognitioin() {
         _audioService.stop()
     }

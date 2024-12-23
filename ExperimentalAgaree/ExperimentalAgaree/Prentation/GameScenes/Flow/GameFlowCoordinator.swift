@@ -51,7 +51,6 @@ final class GameFlowCoordinator {
     }
     
     private func showResultVC(isWin: Bool) {
-        let action = GameResultViewModelAction(popToRoot: popToRoot)
         let vc = dependencies.makeGameResultVC(isWin: isWin, action: .init(popToRoot: popToRoot))
         navigationController?.pushViewController(vc, animated: true)
     }

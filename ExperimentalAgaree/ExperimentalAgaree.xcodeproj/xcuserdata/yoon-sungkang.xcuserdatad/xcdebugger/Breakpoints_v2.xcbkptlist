@@ -14,9 +14,25 @@
             filePath = "ExperimentalAgaree/Prentation/GameScenes/GuessWho/ViewModel/GuessWhoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "viewWillDisappear()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5964DABD-CAF9-4AD5-8696-A64E8AB2A9F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ExperimentalAgaree/Prentation/GameScenes/GuessWho/ViewModel/GuessWhoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "startTimer(timerValue:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
