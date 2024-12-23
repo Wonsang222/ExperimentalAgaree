@@ -125,6 +125,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
                     self.time.setValue(second)
                 case .wrong:
                     self.actions.showGameResult(false)
+                    self.timerGameTask?.cancel()
                 }
             }
         })
@@ -153,7 +154,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
             return
         }
         startTimer(timerValue: fetchData.gameInfo.gameTimeValue)
-        startRecognizer()
+//        startRecognizer()
     }
 }
 
