@@ -14,6 +14,7 @@ protocol CommonGameUseCase {
     typealias FetchCompletion = (Result<Void, Error>) -> Void
     typealias TimerCompletion = (GameJudge<GameTimeInfo>) -> Void
     typealias SttCompletion = (Result<GameJudge<Bool>, Error>) -> Void
+    typealias AudioEngineCompletion = (Result<Void, Error>) -> Void
     
     var targetModel: Observable<GameModelUsable?> { get }
     
@@ -22,6 +23,7 @@ protocol CommonGameUseCase {
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping TimerCompletion) -> Cancellable?
     func startRecognizer(completion: @escaping SttCompletion) -> Cancellable?
+    func startAudioEngine(completion: @escaping AudioEngineCompletion)
 }
 
 final class GuessWhoGameUseCase: CommonGameUseCase {
@@ -57,6 +59,14 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             }
         }
         return modelArr
+    }
+    
+    func startAudioEngine(completion: @escaping AudioEngineCompletion) {
+        sttUseCase.setAudioEngine { result in
+            if case .failure(let error) = result {
+                completion(.failure(error))
+            }
+        }
     }
     
     func fetch(

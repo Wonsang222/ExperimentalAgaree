@@ -62,21 +62,32 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
         self.mainQueue = mainQueue
         self.fetchData = fetchData
         fetchGameModelList(targets: fetchData)
+        startAudioEngine()
         bind()
+    }
+    
+    private func startAudioEngine() {
+        guessWhoUseCase.startAudioEngine { [weak self] result in
+            if case let .failure(error) = result {
+                self?.handleError(error)
+            }
+        }
     }
 
     private func handleError(_ error: Error) {
-        var description: String
-        switch error {
-        case let netWorkError as DatatransferError:
-            description = netWorkError.description
-        case let sttError as SpeechError:
-            description = sttError.description
-        default:
-            description = "알수 없는 에러입니다."
+        mainQueue.async {
+            var description: String
+            switch error {
+            case let netWorkError as DatatransferError:
+                description = netWorkError.description
+            case let sttError as SpeechError:
+                description = sttError.description
+            default:
+                description = "알수 없는 에러입니다."
+            }
+            let errorHandler = ErrorHandler(errMsg: description)
+            self.error.setValue(errorHandler)
         }
-        let errorHandler = ErrorHandler(errMsg: description)
-        self.error.setValue(errorHandler)
     }
     
     private func bind() {

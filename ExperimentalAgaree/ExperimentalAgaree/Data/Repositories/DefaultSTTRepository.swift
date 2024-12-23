@@ -23,12 +23,9 @@ final class DefaultSTTRepository: STTRepository {
         self.executionQueue = executionQueue
     }
     
-    func startRecognition(buffer:  AVAudioPCMBuffer,
-                          completion: @escaping Completion
+    func startRecognition(completion: @escaping Completion
     ) -> Cancellable?
     {
-        do {
-            try appendAudioBufferToSttRequest(buffer: buffer)
             let sttTask = SttTask()
             sttTask.task = sttService.request(on: executionQueue, completion: { result in
                 switch result {
@@ -39,14 +36,10 @@ final class DefaultSTTRepository: STTRepository {
                 }
             })
             return sttTask
-        } catch {
-            completion(.failure(error))
-            return nil
-        }
     }
     
-    private func appendAudioBufferToSttRequest(buffer:  AVAudioPCMBuffer) throws {
-        try sttService.appendRecogRequest(buffer)
+    func appendAudioBufferToSttRequest(buffer:  AVAudioPCMBuffer) {
+        sttService.appendRecogRequest(buffer)
     }
     
     func checkAuth(completion: @escaping (Bool) -> Void) {

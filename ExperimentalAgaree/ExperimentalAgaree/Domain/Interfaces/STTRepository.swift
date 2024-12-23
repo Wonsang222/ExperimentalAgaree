@@ -20,5 +20,6 @@ protocol SttReqRepository {
     
     typealias Completion = (Result<SttModel, Error>) -> Void
     
-    func startRecognition(buffer:  AVAudioPCMBuffer,completion: @escaping Completion) -> Cancellable?
+    func startRecognition(completion: @escaping Completion) -> Cancellable?
+    func appendAudioBufferToSttRequest(buffer:  AVAudioPCMBuffer)
 }

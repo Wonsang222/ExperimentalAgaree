@@ -18,6 +18,7 @@ protocol STTUseCase {
     func startRecognition(target: GameModelUsable,
                           completion: @escaping Completion) -> Cancellable?
     func stopRecognitioin()
+    func setAudioEngine(completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class DefaultSTTUseCase: STTUseCase {
@@ -25,7 +26,7 @@ final class DefaultSTTUseCase: STTUseCase {
     private var _sttStack: SttModel = SttModel(word: "")
     private let _sttService: SttReqRepository
     private let _audioService: AudioRecognizationRepository
-    private var buffer: AVAudioPCMBuffer?
+
     
     init(
         sttService: SttReqRepository,
@@ -35,13 +36,14 @@ final class DefaultSTTUseCase: STTUseCase {
         self._audioService = audioService
     }
     
-    private func teamp() {
+    func setAudioEngine(completion: @escaping (Result<Void, Error>) -> Void) {
         _audioService.startRecognition { [weak self] result in
             switch result {
             case .success(let buffer):
-                self?.buffer = buffer
+                self?._sttService.appendAudioBufferToSttRequest(buffer: buffer)
+                completion(.success(()))
             case .failure(let error):
-                print(123)
+                completion(.failure(error))
             }
         }
     }
@@ -50,7 +52,7 @@ final class DefaultSTTUseCase: STTUseCase {
                           completion: @escaping Completion
     ) -> Cancellable? {
         
-        _sttService.startRecognition(buffer: <#T##AVAudioPCMBuffer#>) { result in
+       return _sttService.startRecognition() { result in
             switch result {
             case .success(let sttModel):
                 self._sttStack = self._sttStack + sttModel
@@ -61,28 +63,6 @@ final class DefaultSTTUseCase: STTUseCase {
             }
         }
     }
-        
-//        _audioService.startRecognition { [weak self] result in
-//        guard let self = self else { return }
-//            
-//            switch result {
-//            case .success(let audioBufferDTO):
-//                return self._sttService.startRecognition(buffer: audioBufferDTO, completion: { sttResult in
-//                    switch sttResult {
-//                    case .success(let sttModel):
-//                        self._sttStack = self._sttStack + sttModel
-//                        let finalResult = self.judge(by: target)
-//                        completion(finalResult)
-//                    case .failure(let sttError):
-//                        completion(.failure(sttError))
-//                        return nil
-//                    }
-//                })
-//                
-//            case .failure(let err):
-//                completion(.failure(err))
-//            }
-//        }
 
 #warning("no usage")
     func stopRecognitioin() {

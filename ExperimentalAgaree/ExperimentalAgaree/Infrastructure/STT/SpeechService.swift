@@ -49,7 +49,7 @@ protocol SttService {
                 completion: @escaping Completion
     ) -> SttTaskCancellable?
     
-    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer) throws
+    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer)
 }
 
 typealias SpeechTaskUsable = SttService & AuthCheckable
@@ -87,7 +87,7 @@ final class DefaultSpeechService: SpeechTaskUsable {
             return task
     }
     
-    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer) throws {
+    func appendRecogRequest(_ buffer:  AVAudioPCMBuffer) {
         recognitionRequest.append(buffer)
     }
 }
