@@ -124,6 +124,7 @@ final class DefaultGuessWhoViewModel: GuessWhoViewModel {
                     let second = timerInfo.gameTime
                     self.time.setValue(second)
                 case .wrong:
+                    self.timerGameTask?.cancel()
                     self.actions.showGameResult(false)
                 }
             }
@@ -164,7 +165,6 @@ extension DefaultGuessWhoViewModel {
         self.startGame()
     }
     
-    #warning("땡 땡~")
     func viewWillDisappear() {
         fetchGameTask?.cancel()
         fetchGameTask = nil

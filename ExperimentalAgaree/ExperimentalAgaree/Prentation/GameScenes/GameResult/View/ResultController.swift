@@ -59,7 +59,21 @@ final class ResultController: UIViewController {
         btn.action = #selector(rightBtnAction)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.rightBarButtonItem?.target = nil
+        navigationItem.rightBarButtonItem?.action = nil
+        navigationItem.rightBarButtonItem = nil
+    }
+    
     @objc private func rightBtnAction() {
         resultViewModel.popToRoot()
     }
 }
+
+
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+
+#endif

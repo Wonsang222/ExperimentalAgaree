@@ -1,10 +1,11 @@
 #  To-Do List
 
-stt는 반복사용 이슈
-타이머 over -> stop 안되는듯 
-타이머 stt 메모리 정리 가능?
 
-thread 사용
+ 땡 -> ui 쏠림
+ 맞추면 타이머 리셋
+ fetch -> game clear model 확인
+  
+
 
 느낀점
 1. domain에서 에러에 대한 callback을 정해줘서 vm -> vc 로 전달해야하지 않았을까? (클린 아키텍쳐)
@@ -13,4 +14,4 @@ thread 사용
 4. 위 과정에서 불변성을 위해 Struct를 사용해야하는데... 
 5. Testable 한 코드가 뭔지 조금은 알겠다. -> protocol로 mock dummy 등을 만들기 수월하게.. 상속은 final 키워드와 함께 사용이 불가능해서..
 6. Module화를 시도했다.
-7. 
+7. Memory Leak Instrument 사용
