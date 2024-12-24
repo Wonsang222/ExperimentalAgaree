@@ -1021,7 +1021,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD5K45Y4NW;
+				DEVELOPMENT_TEAM = MBB7F97KSX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";
@@ -1059,7 +1059,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD5K45Y4NW;
+				DEVELOPMENT_TEAM = MBB7F97KSX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExperimentalAgaree/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "게임 진행을 위해 해당 디바이스의 마이크를 사용합니다.";

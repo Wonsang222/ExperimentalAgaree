@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TimerManager {
+    @discardableResult
     func startTimer(
         gameSec:Float,
         completion: @escaping (Float) -> Void

@@ -126,6 +126,11 @@ final class GuessWhoController: UIViewController {
         setNotification()
         setBehaviors()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        gameViewModel.viewWillDisappear()
+    }
     //MARK: - Methods
     
     private func setBehaviors() {
