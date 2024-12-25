@@ -2,7 +2,7 @@
 //  File.swift
 //  
 //
-//  Created by WISA Mobile on 11/22/24.
+//  Created by Wonsang Hwang on 11/22/24.
 //
 
 import Foundation

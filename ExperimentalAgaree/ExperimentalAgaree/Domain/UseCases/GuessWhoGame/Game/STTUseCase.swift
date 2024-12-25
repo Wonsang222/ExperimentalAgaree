@@ -57,7 +57,7 @@ final class DefaultSTTUseCase: STTUseCase {
             case .success(let sttModel):
                 self._sttStack = self._sttStack + sttModel
                 let finalResult = self.judge(by: target)
-                completion(finalResult)
+                completion(.success(finalResult))
             case .failure(let sttError):
                 completion(.failure(sttError))
             }
@@ -68,13 +68,15 @@ final class DefaultSTTUseCase: STTUseCase {
         _audioService.stop()
     }
 
-    private func judge(by target: GameModelUsable) -> Result<GameJudge<STTGameStatus>, Error> {
-        // next model
-        if _sttStack.word.contains(target.name) {
+    private func judge(by target: GameModelUsable) -> GameJudge<STTGameStatus> {
+        
+        if target is GameClearModel {
+            return .data(.Clear)
+        } else if _sttStack.word.contains(target.name) {
             resetSttModel()
-            return .success(.data(.Right))
+            return .data(.Right)
         }
-        return .success(.wrong)
+        return .wrong
     }
 
     private func resetSttModel() {

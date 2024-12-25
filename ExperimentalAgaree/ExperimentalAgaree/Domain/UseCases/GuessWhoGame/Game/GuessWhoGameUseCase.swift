@@ -47,8 +47,10 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
         self.sttUseCase = sttUseCase
     }
     
-    private func setClearGameModel() {
-        self.gameModels.insert(GameClearModel(), at: 0)
+    private func setClearGameModel(from gameModels: [GameModelUsable]) -> [GameModelUsable] {
+        var modelArr = gameModels
+        modelArr.insert(GameClearModel(), at: 0)
+        return modelArr
     }
     
     private func replaceGameModelWithNullGameModel(from gameModels: [GameModelUsable]) -> [GameModelUsable] {
@@ -84,7 +86,7 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
             case .success(let modelList):
                 
                 self.gameModels = self.replaceGameModelWithNullGameModel(from: modelList.models)
-                setClearGameModel()
+                self.gameModels = self.setClearGameModel(from: modelList.models)
                 setTargetModel()
                 completion(.success(()))
             case .failure(let err):
@@ -125,6 +127,8 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
                             self.setTargetModel() {
                                 completion(.success(.data(false)))
                             }
+                            //reset
+                            self.resetTimerInfo()
                         }
                     }
                 case .failure(let err):
@@ -132,6 +136,10 @@ final class GuessWhoGameUseCase: CommonGameUseCase {
                 }
             }
         }
+    }
+    
+    private func resetTimerInfo() {
+        _timerUseCase.resetTimerInfo()
     }
     
     private func setTargetModel(completion: (() -> Void)? = nil) {

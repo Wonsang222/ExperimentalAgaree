@@ -75,5 +75,21 @@ final class ResultController: UIViewController {
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI
 
+struct Preview: PreviewProvider {
+    static var previews: some View {
+        Container().edgesIgnoringSafeArea(.all  )
+    }
+    
+    struct Container: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> some UIViewController {
+            return ResultController(resultViewModel: GameSceneDIContainer.makeTempGameResultVM(isWin: true, action: GameSceneDIContainer.makeTempAction()))
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+            
+        }
+    }
+}
+
 
 #endif

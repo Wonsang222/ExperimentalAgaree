@@ -36,7 +36,7 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     func makeGameSelectionUseCase(gameInfo: GameInfo) -> GameSelectionUseCase {
         return DefaultGameSelectionUseCase(targetGame: gameInfo, gameAuths: makeGameAuths(by: gameInfo))
     }
-    
+        
     private func makeGameAuths(by gameInfo: GameInfo) -> [AuthRepository] {
         var authList = [AuthRepository]()
         let auths = gameInfo.getGamePath().auths
@@ -54,6 +54,22 @@ final class GameSceneDIContainer: GameFlowCoordinatorDependencies {
     }
     
     //MARK: - GameResult
+    
+#if DEBUG
+    static func makeTempGameResultVM(isWin: Bool, action: GameResultViewModelAction) -> GameResultViewModel {
+        return DefaultGameResultViewmodel(gameResultUseCase: makeGameTempResultUsecase(isWin: isWin), action: makeTempAction())
+    }
+    
+    static func makeGameTempResultUsecase(isWin: Bool) -> GameResultUseCase {
+        return DefaultGameResultUseCase(isWin: isWin)
+    }
+    
+    static func makeTempAction() -> GameResultViewModelAction {
+        return GameResultViewModelAction {
+        }
+    }
+    
+#endif
     
     func makeGameResultVC(isWin: Bool, action: GameResultViewModelAction) -> ResultController {
         return ResultController(resultViewModel: makeGameResultVM(isWin: isWin, action: action))

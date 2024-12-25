@@ -17,6 +17,7 @@ protocol TimerUseCase {
     func startTimer(gameTimerValue: GameTimerValue,
                     completion: @escaping Completion
     ) -> Cancellable?
+    func resetTimerInfo()
 }
 
 final class DefaultGametimerUseCase: TimerUseCase {
@@ -40,6 +41,10 @@ final class DefaultGametimerUseCase: TimerUseCase {
                 completion(.wrong)
             }
         }
+    }
+    
+    func resetTimerInfo() {
+        _currentTimer = GameTimeInfo(gameTime: 0.0)
     }
 
     private func judge(by gametime: Float) -> Bool {

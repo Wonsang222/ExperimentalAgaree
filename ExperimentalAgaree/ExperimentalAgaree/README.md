@@ -2,10 +2,6 @@
 
 
  땡 -> ui 쏠림
- 맞추면 타이머 리셋
- fetch -> game clear model 확인
-  
-
 
 느낀점
 1. domain에서 에러에 대한 callback을 정해줘서 vm -> vc 로 전달해야하지 않았을까? (클린 아키텍쳐)
