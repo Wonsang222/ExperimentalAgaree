@@ -15,6 +15,7 @@ final class ResultController: UIViewController {
         let label = UILabel()
         label.text = ""
         label.textColor = .white
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -30,6 +31,8 @@ final class ResultController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .black
         
         bind()
         setBehaviors()
@@ -82,7 +85,7 @@ struct Preview: PreviewProvider {
     
     struct Container: UIViewControllerRepresentable {
         func makeUIViewController(context: Context) -> some UIViewController {
-            return ResultController(resultViewModel: GameSceneDIContainer.makeTempGameResultVM(isWin: true, action: GameSceneDIContainer.makeTempAction()))
+            return ResultController(resultViewModel: GameSceneDIContainer.makeTempGameResultVM(isWin: false, action: GameSceneDIContainer.makeTempAction()))
         }
         
         func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
