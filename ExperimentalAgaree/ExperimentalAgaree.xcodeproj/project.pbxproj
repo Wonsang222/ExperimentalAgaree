@@ -1015,7 +1015,10 @@
 		7E83FBCF2C755B6300DF4DD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_PHOTO = "https://agareegames.fly.dev/photos";
+				API_BASE_URL = "";
+				API_BUNDLE = "";
+				API_PHOTO = "";
+				API_UUID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -1053,7 +1056,10 @@
 		7E83FBD02C755B6300DF4DD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_PHOTO = "https://agareegames.fly.dev/photos";
+				API_BASE_URL = "";
+				API_BUNDLE = "";
+				API_PHOTO = "";
+				API_UUID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
