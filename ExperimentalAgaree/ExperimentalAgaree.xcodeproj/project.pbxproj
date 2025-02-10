@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E121B8D2D39F3E5009E7EF1 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E121B8C2D39F3E5009E7EF1 /* CustomProgressView.swift */; };
 		7E28F2082CD9D58600DD7A2D /* DataTransferServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */; };
 		7E28F20B2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */; };
 		7E2C16972CAA1DA200A96250 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E121B8C2D39F3E5009E7EF1 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		7E28F2072CD9D58600DD7A2D /* DataTransferServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferServiceTest.swift; sourceTree = "<group>"; };
 		7E28F20A2CD9D7F600DD7A2D /* GuessWhoUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoUseCaseTests.swift; sourceTree = "<group>"; };
 		7E2C16962CAA1DA200A96250 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -182,6 +184,10 @@
 		C1EA0BEB2CA43C7400CA5CA4 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7E0CBDE82D59804C00E75FDE /* CustomView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CustomView; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		7E83FBB72C755B6100DF4DD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -216,6 +222,7 @@
 		7E1918682CA232AB008986B9 /* GuessWho */ = {
 			isa = PBXGroup;
 			children = (
+				7E0CBDE82D59804C00E75FDE /* CustomView */,
 				7E2D63012CAF6C52001619F0 /* ViewModel */,
 				7E19186A2CA232D4008986B9 /* View */,
 			);
@@ -227,6 +234,7 @@
 			children = (
 				7E2D630C2CAFAFD2001619F0 /* GuessWhoController.swift */,
 				7E2D630E2CAFB013001619F0 /* GuessWhoView.swift */,
+				7E121B8C2D39F3E5009E7EF1 /* CustomProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -689,6 +697,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				7E0CBDE82D59804C00E75FDE /* CustomView */,
+			);
 			name = ExperimentalAgaree;
 			packageProductDependencies = (
 				7E5633422CF00B9400D13013 /* CommonNetworkModel */,
@@ -847,6 +858,7 @@
 				7E83FBC02C755B6100DF4DD7 /* SceneDelegate.swift in Sources */,
 				C178BA792CB7FEC30081CB10 /* ErrorHandler.swift in Sources */,
 				7E3CBC732CB75DBD00E2AD1D /* AuthCheckable.swift in Sources */,
+				7E121B8D2D39F3E5009E7EF1 /* CustomProgressView.swift in Sources */,
 				7E8522522CBDEB7A00481710 /* DefaultAudioRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
