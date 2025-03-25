@@ -14,6 +14,8 @@
 
 - Node Express 프레임 워크로 API 서버를 만들고, 이를 https://fly.io 에 배포하여, 앱스토어 서비스를 운영했습니다.
 
+- 앱스토어 itms-apps://itunes.apple.com/app/id6450410415
+
 ---
 
 # 앱의 구성
